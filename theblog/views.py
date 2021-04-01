@@ -1,11 +1,11 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Event, Category, MicroSitios
-from .forms import PostForm, EventForm, CategoryForm, MicroSitioForm
+from .models import Post, Event, MicroSitios
+from .forms import PostForm, EventForm, MicroSitioForm
 from django.urls import reverse_lazy
 # from itertools import chain
 
-# Create your views here.
+# Create your views here.CategoryForm Category
 
 #def home(request):
 #    return render(request, 'home.html', {})
@@ -66,10 +66,10 @@ class AdminEventListView(ListView):
     #ordering = ['-post_date']
 
 
-def CategoryView(request, cats):
-    category_posts = Post.objects.filter(category=cats.title().replace('-', ' ')).order_by('-id')
-    category_posts_events = Event.objects.filter(category=cats.title().replace('-', ' ')).order_by('-id')
-    return render(request, 'categories.html', {'cats':cats.title().replace('-', ' '), 'category_posts':category_posts, 'category_posts_events':category_posts_events})
+# def CategoryView(request, cats):
+#     category_posts = Post.objects.filter(category=cats.title().replace('-', ' ')).order_by('-id')
+#     category_posts_events = Event.objects.filter(category=cats.title().replace('-', ' ')).order_by('-id')
+#     return render(request, 'categories.html', {'cats':cats.title().replace('-', ' '), 'category_posts':category_posts, 'category_posts_events':category_posts_events})
 
 # def SearchView(request, search):
 #     category_posts = Post.objects.filter(category=search.title().replace('-', ' ')).order_by('-id')
@@ -95,13 +95,13 @@ class AddPostView(CreateView):
     #   Para controlar los campos a mostrar
     #   fields = ('title', 'body')
 
-class AddCategoryView(CreateView):
-    model = Category
-    form_class = CategoryForm
-    template_name = 'add_category.html'
-    #fields = '__all__'
-    #   Para controlar los campos a mostrar
-    #   fields = ('title', 'body')
+# class AddCategoryView(CreateView):
+#     model = Category
+#     form_class = CategoryForm
+#     template_name = 'add_category.html'
+#     #fields = '__all__'
+#     #   Para controlar los campos a mostrar
+#     #   fields = ('title', 'body')
 
 
 class AddMicroSitioView(CreateView):

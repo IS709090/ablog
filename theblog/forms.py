@@ -1,11 +1,11 @@
 from django import forms
-from .models import Post, Event, Category, MicroSitios
+from .models import Post, Event, MicroSitios
 
-choices = Category.objects.all().values_list('name', 'name')
-choice_list = []
+# choices = Category.objects.all().values_list('name', 'name')
+# choice_list = []Category
 
-for item in choices:
-    choice_list.append(item)
+# for item in choices:
+#     choice_list.append(item)
 
 class PostForm(forms.ModelForm):
     class Meta:
@@ -37,13 +37,13 @@ class EventForm(forms.ModelForm):
             #'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Contenido del evento'}),
         }
 
-class CategoryForm(forms.ModelForm):
-    class Meta:
-        model = Category
-        fields = ('name', )
-        widgets = {
-            'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre de la categoría'}),
-        }
+# class CategoryForm(forms.ModelForm):
+#     class Meta:
+#         model = Category
+#         fields = ('name', )
+#         widgets = {
+#             'name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nombre de la categoría'}),
+#         }
 
 class MicroSitioForm(forms.ModelForm):
     class Meta:
