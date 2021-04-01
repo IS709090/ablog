@@ -1,0 +1,21 @@
+{% extends 'baseBackend.html' %}
+
+{% block title %}
+Iniciar Sesión
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<h1>Iniciar Sesión</h1>
+
+<div class="form-group">
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Iniciar Sesión</button>
+
+</div>
+
+{% endblock %}

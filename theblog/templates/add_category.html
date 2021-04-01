@@ -1,0 +1,33 @@
+{% extends 'baseBackend.html' %}
+
+{% block title %}
+Crear Categoría
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<br>
+<br>
+<h1>Añadir Categoría</h1>
+<div style="text-align: justify; font-size: 1.1em;">
+  <p> Asegúrate de que el nombre de la categoría tenga formato en título, solo la primera palabra tiene que ser la única con
+    mayúscula al inicio. </p>
+</div>
+<div class="form-group">
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary">Añadir Categoría</button>
+
+</div>
+{% else %}
+<br>
+<br>
+<h1>No eres permitido aquí! (y lo sabes...)</h1>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends 'baseBackend.html' %}
+
+{% block title %}
+MicroSitios
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<br>
+<br>
+<h1>MicroSitios</h1>
+
+{% for post in object_list %}
+
+<div class="row ml-auto mr-auto">
+
+    <ul>
+        <li>
+            <a href="{{ post.link }}">
+                <h4>{{ post.title }}</h4>
+            </a>
+
+            <a class="btn btn-primary" href="{% url 'update_micro' post.pk %}">Editar</a>
+            <a class="btn btn-danger" href="{% url 'delete_micro' post.pk %}">Eliminar</a>
+
+        </li>
+    </ul>
+</div>
+
+
+<hr>
+
+{% endfor %}
+
+{% else %}
+<br>
+<br>
+<h1>No eres permitido aquí! (y lo sabes...)</h1>
+
+{% endif %}
+
+{% endblock %}

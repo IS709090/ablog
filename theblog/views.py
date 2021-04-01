@@ -1,0 +1,177 @@
+from django.shortcuts import render
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from .models import Post, Event, Category, MicroSitios
+from .forms import PostForm, EventForm, CategoryForm, MicroSitioForm
+from django.urls import reverse_lazy
+# from itertools import chain
+
+# Create your views here.
+
+#def home(request):
+#    return render(request, 'home.html', {})
+
+# List
+
+class HomeView(ListView):
+    model = Post
+    template_name = 'home.html'
+    # ordering = ['-post_date']
+    ordering = ['-id']
+    def get_context_data(self, *args, **kwargs):
+        micros = MicroSitios.objects.all().order_by('-id')
+        eventos = Event.objects.all().order_by('-id')
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context["micros"] = micros
+        context["eventos"] = eventos
+        return context
+
+
+class HomeAdminView(ListView):
+    model = Post
+    template_name = 'adminHome.html'
+
+
+class ArticleListView(ListView):
+    model = Post
+    template_name = 'article_list.html'
+    #ordering = ['-post_date']
+    ordering = ['-id']
+
+
+class AdminArticleListView(ListView):
+    model = Post
+    template_name = 'adminArticle_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
+
+
+class AdminMicroSitioListView(ListView):
+    model = MicroSitios
+    template_name = 'adminMicro_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
+
+
+class EventListView(ListView):
+    model = Event
+    template_name = 'event_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
+
+
+class AdminEventListView(ListView):
+    model = Event
+    template_name = 'adminEvent_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
+
+
+def CategoryView(request, cats):
+    category_posts = Post.objects.filter(category=cats.title().replace('-', ' ')).order_by('-id')
+    category_posts_events = Event.objects.filter(category=cats.title().replace('-', ' ')).order_by('-id')
+    return render(request, 'categories.html', {'cats':cats.title().replace('-', ' '), 'category_posts':category_posts, 'category_posts_events':category_posts_events})
+
+# def SearchView(request, search):
+#     category_posts = Post.objects.filter(category=search.title().replace('-', ' ')).order_by('-id')
+#     category_events = Event.objects.filter(category=search.title().replace('-', ' ')).order_by('-id')
+#     title_posts = Post.objects.filter(title=search).order_by('-id')
+#     title_events = Event.objects.filter(title=search).order_by('-id')
+#     body_posts = Post.objects.filter(body=search).order_by('-id')
+#     body_events = Event.objects.filter(body=search).order_by('-id')
+#     finalPosts = chain(category_posts, title_posts, body_posts)
+#     finalEvents = chain(category_events, title_events, body_events)
+#     # finalPosts = finalPosts.distinct()
+#     # finalEvents = finalEvents.distinct()
+#     return render(request, 'search.html', {'search':search.title().replace('-', ' '), 'category_posts':finalPosts, 'category_posts_events':finalEvents})
+    
+
+# Add
+
+class AddPostView(CreateView):
+    model = Post
+    form_class = PostForm
+    template_name = 'add_post.html'
+    #fields = '__all__'
+    #   Para controlar los campos a mostrar
+    #   fields = ('title', 'body')
+
+class AddCategoryView(CreateView):
+    model = Category
+    form_class = CategoryForm
+    template_name = 'add_category.html'
+    #fields = '__all__'
+    #   Para controlar los campos a mostrar
+    #   fields = ('title', 'body')
+
+
+class AddMicroSitioView(CreateView):
+    model = MicroSitios
+    form_class = MicroSitioForm
+    template_name = 'add_micro.html'
+    #fields = '__all__'
+    #   Para controlar los campos a mostrar
+    #   fields = ('title', 'body')
+
+
+class AddEventView(CreateView):
+    model = Event
+    form_class = EventForm
+    template_name = 'add_event.html'
+    #fields = '__all__'
+    #   Para controlar los campos a mostrar
+    #   fields = ('title', 'body')
+
+# Detail
+
+class EventDetailView(DetailView):
+    model = Event
+    template_name = 'event_details.html'
+    def get_context_data(self, *args, **kwargs):
+        context = super(EventDetailView, self).get_context_data(*args, **kwargs)
+        context['event_tag_list'] = Event.objects.all().order_by('-id')
+        return context
+
+class ArticleDetailView(DetailView):
+    model = Post
+    template_name = 'article_details.html'
+    def get_context_data(self, *args, **kwargs):
+        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+        context['post_tag_list'] = Post.objects.all().order_by('-id')
+        return context
+
+#Update
+
+class UpdatePostView(UpdateView):
+    model = Post
+    template_name = 'update_post.html'
+    form_class = PostForm
+    #fields = ['title', 'title_tag', 'author', 'category', 'body']
+
+class UpdateEventView(UpdateView):
+    model = Event
+    template_name = 'update_event.html'
+    form_class = EventForm
+    #fields = ['title', 'title_tag', 'author', 'category', 'body']
+
+class UpdateMicroSitioView(UpdateView):
+    model = MicroSitios
+    template_name = 'update_micro.html'
+    form_class = MicroSitioForm
+    #fields = ['title', 'title_tag', 'author', 'category', 'body']
+
+#Delete
+
+class DeletePostView(DeleteView):
+    model = Post
+    template_name = 'delete_post.html'
+    success_url = reverse_lazy('adminArticle_list')
+
+class DeleteEventView(DeleteView):
+    model = Event
+    template_name = 'delete_event.html'
+    success_url = reverse_lazy('adminEvent_list')
+
+class DeleteMicroSitioView(DeleteView):
+    model = MicroSitios
+    template_name = 'delete_micro.html'
+    success_url = reverse_lazy('adminMicro_list')

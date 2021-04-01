@@ -1,0 +1,51 @@
+{% extends 'baseListEvents.html' %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<div class="section">
+
+    <div class="row ml-auto mr-auto">
+        <h2 style="font-weight: 1000;">EVENTOS</h2>
+
+    </div>
+
+    <!-- TRANSVERSAL DIA A DIA -->
+
+    {% for event in object_list %}
+
+    <div class="row ml-auto mr-auto diaLanding" style="justify-content: space-evenly;">
+
+        <div class="col-md-4 ml-auto mr-auto ">
+            <div class="img-hover-zoom">
+                <a href="{% url 'event-detail' event.pk %}"> <img class="img-fluid img-raised"
+                        src="{{ event.header_image.url }}"
+                        alt=""></a>
+            </div>
+        </div>
+
+        <div class="col-md-8 ml-auto mr-auto">
+            <a href="{% url 'event-detail' event.pk %}">
+                <h4 class="text-primary">{{ event.title }}</h4>
+            </a>
+
+            <h5>{{ event.snippet }}</h5>
+        </div>
+
+    </div>
+
+    <hr>
+
+    {% endfor %}
+
+
+
+    <!-- TRANSVERSAL DIA A DIA -->
+
+
+
+</div>
+
+{% endblock %}

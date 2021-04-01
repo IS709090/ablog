@@ -1,0 +1,21 @@
+{% extends 'baseBackend.html' %}
+
+{% block title %}
+Editar Perfil
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<h1>Editar Perfil</h1>
+
+<div class="form-group">
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Editar Perfil</button>
+
+</div>
+
+{% endblock %}

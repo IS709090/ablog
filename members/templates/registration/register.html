@@ -1,0 +1,21 @@
+{% extends 'baseBackend.html' %}
+
+{% block title %}
+Registrarse
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<h1>Registrarse</h1>
+
+<div class="form-group">
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary">Registrarse</button>
+
+</div>
+
+{% endblock %}
