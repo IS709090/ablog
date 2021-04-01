@@ -15,8 +15,8 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
-from .views import HomeView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView
-# SearchView  CategoryView, AddCategoryView
+from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView
+# SearchView  
 urlpatterns = [
     # path('', HomeView.as_view(), name="home_list"),
     path('', HomeView.as_view(), name="home"),
@@ -26,12 +26,12 @@ urlpatterns = [
     path('admin/micrositios', AdminMicroSitioListView.as_view(), name="adminMicro_list"),
     path('publicaciones/', ArticleListView.as_view(), name="article_list"),
     path('eventos/', EventListView.as_view(), name="event_list"),
-    # path('categoria/<str:cats>/', CategoryView, name="category"),
+    path('categoria/<str:cats>/', CategoryView, name="category"),
     # path('busqueda/<str:search>/', SearchView, name="search"),
     path('publicacion/<int:pk>', ArticleDetailView.as_view(), name="article-detail"),
     path('evento/<int:pk>', EventDetailView.as_view(), name="event-detail"),
     path('admin/crear_evento/', AddEventView.as_view(), name="add_event"),
-    # path('admin/crear_categoria/', AddCategoryView.as_view(), name="add_category"),
+    path('admin/crear_categoria/', AddCategoryView.as_view(), name="add_category"),
     path('admin/crear_publicacion/', AddPostView.as_view(), name="add_post"),
     path('admin/crear_micrositio/', AddMicroSitioView.as_view(), name="add_micro"),
     path('admin/publicacion/editar/<int:pk>', UpdatePostView.as_view(), name="update_post"),
