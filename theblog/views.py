@@ -219,9 +219,9 @@ class DeleteMicroSitioView(DeleteView):
 class DeleteCarouselView(DeleteView):
     model = Carousel
     template_name = 'delete_carousel.html'
-    success_url = reverse_lazy('adminMicro_list')
+    success_url = reverse_lazy('adminCarousel_list')
 
 class DeleteLecturaView(DeleteView):
     model = Lectura
     template_name = 'delete_lectura.html'
-    success_url = reverse_lazy('adminMicro_list')
+    success_url = reverse_lazy('adminLectura_list')

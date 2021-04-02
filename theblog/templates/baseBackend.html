@@ -70,6 +70,30 @@
                     </div>
                 </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lectura Recomendada
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'add_lectura' %}">Crear Lectura Recomendada</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'adminLectura_list' %}">Editar o Eliminar Lectura Recomendada</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Slide de Carrusel
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'add_carousel' %}">Crear Slide de Carrusel</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'adminCarousel_list' %}">Editar o Eliminar Slide de Carrusel</a>
+                    </div>
+                </li>
+
                 <a class="nav-item nav-link" href="{% url 'add_category' %}">Categorías</a>
 
                 <div class="ml-5 pl-5">
