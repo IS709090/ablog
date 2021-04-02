@@ -1,0 +1,30 @@
+{% extends 'baseBackend.html' %}
+
+{% block title %}
+Crear Slide de Carrusel
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<br>
+<br>
+<h1>Añadir Slide de Carrusel</h1>
+
+<div class="form-group" enctype="multipart/form-data">
+
+  <form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary">Añadir Slide de Carrusel</button>
+
+</div>
+{% else %}
+<br>
+<br>
+<h1>No eres permitido aquí! (y lo sabes...)</h1>
+
+{% endif %}
+
+{% endblock %}

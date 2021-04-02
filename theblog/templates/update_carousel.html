@@ -1,0 +1,31 @@
+{% extends 'baseBackend.html' %}
+
+{% block title %}
+Editar Slide de Carrusel
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<br>
+<br>
+<h1>Editar Slide de Carrusel</h1>
+
+<div class="form-group">
+
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary">Editar</button>
+  
+</div>
+
+{% else %}
+<br>
+<br>
+<h1>No eres permitido aquí! (y lo sabes...)</h1>
+
+{% endif %}
+
+{% endblock %}
