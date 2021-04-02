@@ -1,7 +1,7 @@
 {% extends 'baseBackend.html' %}
 
 {% block title %}
-Crear MicroSitio
+Crear Slide de Carrusel
 {% endblock %}
 
 {% block content %}
@@ -10,14 +10,14 @@ Crear MicroSitio
 
 <br>
 <br>
-<h1>Añadir MicroSitio</h1>
+<h1>Añadir Slide de Carrusel</h1>
 
-<div class="form-group">
+<div class="form-group" enctype="multipart/form-data">
 
-  <form method="POST"  enctype="multipart/form-data">
+  <form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
-    <button class="btn btn-primary">Añadir MicroSitio</button>
+    <button class="btn btn-primary">Añadir Slide de Carrusel</button>
 
 </div>
 {% else %}

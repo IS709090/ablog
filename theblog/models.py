@@ -26,6 +26,30 @@ class MicroSitios(models.Model):
     def get_absolute_url(self):
         return reverse("adminMicro_list")
 
+# class Lectura(models.Model):
+#     title = models.CharField(max_length=255)
+#     description = models.CharField(max_length=255)
+#     link = models.CharField(max_length=255)
+#     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
+
+#     def __str__(self):
+#         return self.title
+    
+#     def get_absolute_url(self):
+#         return reverse("adminHome")
+
+# class Carousel(models.Model):
+#     title = models.CharField(max_length=255)
+#     subtitle = models.CharField(max_length=255)
+#     link = models.CharField(max_length=255)
+#     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
+
+#     def __str__(self):
+#         return self.title
+    
+#     def get_absolute_url(self):
+#         return reverse("adminHome") 
+
 # choices = Category.objects.all().values_list('name', 'name')
 # choice_list = []
 
