@@ -31,6 +31,7 @@ class Lectura(models.Model):
     description = models.CharField(max_length=255)
     link = models.CharField(max_length=255)
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
+    post_date = models.DateField(auto_now_add=True)
 
     def __str__(self):
         return self.title

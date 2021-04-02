@@ -20,9 +20,13 @@ class HomeView(ListView):
     def get_context_data(self, *args, **kwargs):
         micros = MicroSitios.objects.all().order_by('-id')
         eventos = Event.objects.all().order_by('-id')
+        lecturas = Lectura.objects.all().order_by('-id')
+        slides = Carousel.objects.all().order_by('-id')
         context = super(HomeView, self).get_context_data(*args, **kwargs)
         context["micros"] = micros
         context["eventos"] = eventos
+        context["lecturas"] = lecturas
+        context["slides"] = slides
         return context
 
 
