@@ -16,19 +16,22 @@
     </div>
 
     <div class="row ml-auto mr-auto">
-        <p class="text-muted h4" style="font-weight: 1000;"> {{ event.post_date }} </p>
+        <p class="text-muted h4" style="font-weight: 1000;">
+            {% load i18n %}
+            {% language 'es' %}
+            {{ event.post_date }}
+            {% endlanguage %}
+        </p>
     </div>
 
     <div class="row ml-auto mr-auto">
         <p class="text-muted h4" style="font-weight: 1000;">{{ event.author.first_name }} {{ event.author.last_name }}
         </p>
     </div>
-    
+
     <div class="row pb-5 ml-auto mr-auto">
         <div class="col-md-8 ml-auto mr-auto">
-            <img class="img-fluid img-raised"
-                src="{{ event.header_image.url }}"
-                alt="">
+            <img class="img-fluid img-raised" src="{{ event.header_image.url }}" alt="">
         </div>
 
     </div>
@@ -64,8 +67,7 @@
                 <h5>{{ event.title }}</h5>
                 <div class="img-hover-zoom">
                     <a href="{% url 'event-detail' event.pk %}">
-                        <img class="carousel-image"
-                            data-flickity-lazyload="{{ event.header_image.url }}" />
+                        <img class="carousel-image" data-flickity-lazyload="{{ event.header_image.url }}" />
                     </a>
                 </div>
             </div>
