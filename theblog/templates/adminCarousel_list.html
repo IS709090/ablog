@@ -1,0 +1,51 @@
+{% extends 'baseBackend.html' %}
+
+{% block title %}
+Slides de Carrusel
+{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+
+<br>
+<br>
+<h1>Slides de Carrusel</h1>
+
+{% for post in object_list %}
+
+<div class="row ml-auto mr-auto">
+
+    <ul>
+        <li>
+
+            <h4>{{ post.title }}</h4>
+
+
+            <p>{{ post.subtitle }}</p>
+            <br>
+            <br>
+            <p>Publicación a la que enlaza: <a href="{{ post.link }}">Enlace</a></p>
+
+            <br>
+            <a class="btn btn-primary" href="{% url 'update_carousel' post.pk %}">Editar</a>
+            <a class="btn btn-danger" href="{% url 'delete_carousel' post.pk %}">Eliminar</a>
+
+
+        </li>
+    </ul>
+</div>
+
+
+<hr>
+
+{% endfor %}
+
+{% else %}
+<br>
+<br>
+<h1>No eres permitido aquí! (y lo sabes...)</h1>
+
+{% endif %}
+
+{% endblock %}

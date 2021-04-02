@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Event, MicroSitios, Category
-from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm
+from .models import Post, Event, MicroSitios, Category, Lectura, Carousel
+from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, CarouselForm, LecturaForm
 from django.urls import reverse_lazy
 # from itertools import chain
 
@@ -41,6 +41,20 @@ class ArticleListView(ListView):
 class AdminArticleListView(ListView):
     model = Post
     template_name = 'adminArticle_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
+
+
+class AdminCarouselListView(ListView):
+    model = Carousel
+    template_name = 'adminCarousel_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
+
+
+class AdminLecturaListView(ListView):
+    model = Lectura
+    template_name = 'adminLectura_list.html'
     ordering = ['-id']
     #ordering = ['-post_date']
 
@@ -121,6 +135,18 @@ class AddEventView(CreateView):
     #   Para controlar los campos a mostrar
     #   fields = ('title', 'body')
 
+
+class AddCarouselView(CreateView):
+    model = Carousel
+    form_class = CarouselForm
+    template_name = 'add_carousel.html'
+
+
+class AddLecturaView(CreateView):
+    model = Lectura
+    form_class = LecturaForm
+    template_name = 'add_lectura.html'
+
 # Detail
 
 class EventDetailView(DetailView):
@@ -159,6 +185,20 @@ class UpdateMicroSitioView(UpdateView):
     form_class = MicroSitioForm
     #fields = ['title', 'title_tag', 'author', 'category', 'body']
 
+
+class UpdateCarouselView(UpdateView):
+    model = Carousel
+    template_name = 'update_carousel.html'
+    form_class = CarouselForm
+    #fields = ['title', 'title_tag', 'author', 'category', 'body']
+
+
+class UpdateLecturaView(UpdateView):
+    model = Lectura
+    template_name = 'update_lectura.html'
+    form_class = LecturaForm
+    #fields = ['title', 'title_tag', 'author', 'category', 'body']
+
 #Delete
 
 class DeletePostView(DeleteView):
@@ -174,4 +214,14 @@ class DeleteEventView(DeleteView):
 class DeleteMicroSitioView(DeleteView):
     model = MicroSitios
     template_name = 'delete_micro.html'
+    success_url = reverse_lazy('adminMicro_list')
+
+class DeleteCarouselView(DeleteView):
+    model = Carousel
+    template_name = 'delete_carousel.html'
+    success_url = reverse_lazy('adminMicro_list')
+
+class DeleteLecturaView(DeleteView):
+    model = Lectura
+    template_name = 'delete_lectura.html'
     success_url = reverse_lazy('adminMicro_list')

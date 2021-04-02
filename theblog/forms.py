@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Event, MicroSitios, Category
+from .models import Post, Event, MicroSitios, Category, Lectura, Carousel
 
 choices = Category.objects.all().values_list('name', 'name')
 choice_list = []
@@ -53,4 +53,28 @@ class MicroSitioForm(forms.ModelForm):
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Micrositio'}),
             'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace al Micrositio'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
+        }
+
+
+class LecturaForm(forms.ModelForm):
+    class Meta:
+        model = Lectura
+        fields = ('title', 'description','header_image', 'link')
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Micrositio'}),
+            'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace al Micrositio'}),
+            'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
+            'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen de la lectura'}),
+        }
+
+
+class CarouselForm(forms.ModelForm):
+    class Meta:
+        model = Carousel
+        fields = ('title', 'subtitle','header_image', 'link')
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Micrositio'}),
+            'subtitle': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen de la lectura'}),
+            'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace al Micrositio'}),
+            'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),   
         }
