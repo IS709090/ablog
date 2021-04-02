@@ -37,7 +37,7 @@ class Lectura(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse("adminHome")
+        return reverse("adminLectura_list")
 
 class Carousel(models.Model):
     title = models.CharField(max_length=255)
@@ -49,7 +49,7 @@ class Carousel(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse("adminHome")
+        return reverse("adminCarousel_list")
 
 class DatosDuros(models.Model):
     title = models.CharField(max_length=255)
