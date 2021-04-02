@@ -14,17 +14,17 @@
         <div class="carousel-inner">
 
           <div class="carousel-item active img-hover-zoom">
-            <img class="d-block w-100 img-fluid" src="{% static 'theblog/assets/img/transversal/carousel1st.png' %}"
-              alt="First slide">
+            <img class="d-block img-fluid" src="{% static 'theblog/assets/img/transversal/carousel1st.png' %}"
+              alt="First slide"  style="height: 87vh; width: max-content;">
           </div>
 
           {% for slide in slides %}
-          <div class="carousel-item img-hover-zoom"><img class="d-block w-100 img-fluid"
-              src="{{ slide.header_image.url }}" alt="Slides">
+          <div class="carousel-item img-hover-zoom"><img class="d-block img-fluid"
+              src="{{ slide.header_image.url }}" alt="Slides" style="height: 87vh; width: max-content;">
             <div class="carousel-caption d-none d-md-block mb-0 pb-3">
-              <a href="{{ slide.link }}">
-                <h1 class="mb-0 pb-0" style="font-weight: 1000;">{{ slide.title }}</h1>
-              </a>{{ slide.subtitle }}
+              <a class="mb-0 pb-0 h1" style="font-weight: 1000;" href="{{ slide.link }}">
+                {{ slide.title }}
+              </a><br>{{ slide.subtitle }}
             </div>
           </div>
           {% endfor %}
