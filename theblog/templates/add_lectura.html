@@ -12,9 +12,9 @@ Crear Lectura Recomendada
 <br>
 <h1>Añadir Lectura Recomendada</h1>
 
-<div class="form-group" enctype="multipart/form-data">
+<div class="form-group" >
 
-  <form method="POST">
+  <form method="POST" enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}
     <button class="btn btn-primary">Añadir Lectura Recomendada</button>
