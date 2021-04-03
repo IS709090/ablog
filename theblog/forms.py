@@ -41,10 +41,10 @@ class DatosDurosForm(forms.ModelForm):
         model = DatosDuros
         fields = ('title', 'author', 'snippet', 'header_image', 'link')
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento'}),
-            'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen del evento, que saldrá debajo del evento en el listado de eventos'}),
-            'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento que veremos en la pestaña'}),
-            'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del evento'}),
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Dato'}),
+            'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen del Dato'}),
+            'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace al que te lleva'}),
+            'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del Dato'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
         }
 
