@@ -9,7 +9,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <title>
     {% block title %}
-    Transversal ThinkTank
+    Acerca De
     {% endblock %}
   </title>
   <meta content="width=device-width,initial-scale=1,shrink-to-fit=no" name="viewport">
@@ -54,7 +54,7 @@
             <a class="nav-link text-primary" href="{% url 'acercaDe_list' %}">Acerca de Transversal</a>
           </li>
 
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link text-primary" href="{% url 'think_list' %}">Think Tank</a>
           </li>
 
@@ -66,7 +66,7 @@
             <a class="nav-link text-primary" href="{% url 'article_list' %}">Publicaciones</a>
           </li>
 
-          <li class="nav-item active d-block d-sm-none d-md-none">
+          <li class="nav-item d-block d-sm-none d-md-none">
             <a class="nav-link text-primary" href="{% url 'event_list' %}">Eventos</a>
           </li>
 
@@ -119,11 +119,11 @@
           <h5>Líneas Estratégicas</h5>
         </a>
 
-        <a class="nav-item  nav-link pl-4" style="color: white; " href="{% url 'article_list' %}">
+        <a class="nav-item nav-link pl-4" style="color: white; " href="{% url 'article_list' %}">
           <h5>Publicaciones</h5>
         </a>
 
-        <a class="nav-item active nav-link pl-4" style="color: white; " href="{% url 'event_list' %}">
+        <a class="nav-item nav-link pl-4" style="color: white; " href="{% url 'event_list' %}">
           <h5>Eventos</h5>
         </a>
 

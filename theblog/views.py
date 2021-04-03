@@ -100,6 +100,16 @@ class AcercaDeListView(ListView):
     #ordering = ['-post_date']
 
 
+class LineasListView(ListView):
+    model = Category
+    template_name = 'lineas.html'
+
+
+class ThinkTankListView(ListView):
+    model = Category
+    template_name = 'think.html'
+
+
 def CategoryView(request, cats):
     category_posts = Post.objects.filter(category=cats.capitalize().replace('-', ' ')).order_by('-id')
     category_posts_events = Event.objects.filter(category=cats.capitalize().replace('-', ' ')).order_by('-id')
