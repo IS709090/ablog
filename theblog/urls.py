@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
-from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminCarouselListView, AdminLecturaListView, AddCarouselView, AddLecturaView, UpdateCarouselView, UpdateLecturaView, DeleteCarouselView, DeleteLecturaView, AdminDatosDurosListView, AddDatosView, UpdateDatosView, DeleteDatosView
+from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminCarouselListView, AdminLecturaListView, AddCarouselView, AddLecturaView, UpdateCarouselView, UpdateLecturaView, DeleteCarouselView, DeleteLecturaView, AdminDatosDurosListView, AddDatosView, UpdateDatosView, DeleteDatosView, AcercaDeListView
 # SearchView  
 urlpatterns = [
     # path('', HomeView.as_view(), name="home_list"),
@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/eventos', AdminEventListView.as_view(), name="adminEvent_list"),
     path('admin/datosduros', AdminDatosDurosListView.as_view(), name="adminDatos_list"),
     path('admin/carrusel', AdminCarouselListView.as_view(), name="adminCarousel_list"),
+    path('acercaDe/', AcercaDeListView.as_view(), name="acercaDe_list"),
     path('admin/lectura', AdminLecturaListView.as_view(), name="adminLectura_list"),
     path('admin/micrositios', AdminMicroSitioListView.as_view(), name="adminMicro_list"),
     path('publicaciones/', ArticleListView.as_view(), name="article_list"),

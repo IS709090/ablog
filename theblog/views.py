@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros
+from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros, User
 from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, CarouselForm, LecturaForm, DatosDurosForm
 from django.urls import reverse_lazy
 # from itertools import chain
@@ -89,6 +89,13 @@ class EventListView(ListView):
 class AdminEventListView(ListView):
     model = Event
     template_name = 'adminEvent_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
+
+
+class AcercaDeListView(ListView):
+    model = User
+    template_name = 'acercaDe_list.html'
     ordering = ['-id']
     #ordering = ['-post_date']
 
