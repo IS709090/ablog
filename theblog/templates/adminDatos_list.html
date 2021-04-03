@@ -1,7 +1,7 @@
 {% extends 'baseBackend.html' %}
 
 {% block title %}
-Publicaciones
+Datos Duros
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@ Publicaciones
 
 <br>
 <br>
-<h1>Publicaciones</h1>
+<h1>Datos Duros</h1>
 
 {% for post in object_list %}
 
@@ -18,15 +18,15 @@ Publicaciones
 
     <ul>
         <li>
-            <a href="{% url 'article-detail' post.pk %}">
+            <a href="{{ post.link }}">
                 <h4>{{ post.title }}</h4>
             </a>
 
             <p>{{ post.snippet }}</p>
-            
+           
             <br>
-            <a class="btn btn-primary" href="{% url 'update_post' post.pk %}">Editar</a>
-            <a class="btn btn-danger" href="{% url 'delete_post' post.pk %}">Eliminar</a>
+            <a class="btn btn-primary" href="{% url 'update_event' post.pk %}">Editar</a>
+            <a class="btn btn-danger" href="{% url 'delete_event' post.pk %}">Eliminar</a>
             
 
         </li>
@@ -44,5 +44,6 @@ Publicaciones
 <h1>No eres permitido aquí! (y lo sabes...)</h1>
 
 {% endif %}
+
 
 {% endblock %}

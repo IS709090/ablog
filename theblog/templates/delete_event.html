@@ -7,7 +7,6 @@ Eliminar Evento
 {% block content %}
 
 {% if user.is_authenticated %}
-{% if user.id == event.author.id %}
 
 <br>
 <br>
@@ -26,15 +25,6 @@ Eliminar Evento
         <button class="btn btn-danger">Eliminar Evento</button>
 
 </div>
-
-{% else %}
-
-<br>
-<br>
-<h1 style="text-align: justify;">Tú no creaste este evento, por lo tanto, no puedes eliminarlo. Inicia sesión con las credenciales del autor original
-    para eliminar el evento o comunícate con él para eliminarlo.</h1>
-
-{% endif %}
 
 {% else %}
 <br>

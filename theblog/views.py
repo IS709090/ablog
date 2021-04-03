@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Event, MicroSitios, Category, Lectura, Carousel
-from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, CarouselForm, LecturaForm
+from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros
+from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, CarouselForm, LecturaForm, DatosDurosForm
 from django.urls import reverse_lazy
 # from itertools import chain
 
@@ -56,6 +56,13 @@ class AdminCarouselListView(ListView):
     #ordering = ['-post_date']
 
 
+class AdminDatosDurosListView(ListView):
+    model = DatosDuros
+    template_name = 'adminDatos_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
+
+
 class AdminLecturaListView(ListView):
     model = Lectura
     template_name = 'adminLectura_list.html'
@@ -85,9 +92,9 @@ class AdminEventListView(ListView):
 
 
 def CategoryView(request, cats):
-    category_posts = Post.objects.filter(category=cats.title().replace('-', ' ')).order_by('-id')
-    category_posts_events = Event.objects.filter(category=cats.title().replace('-', ' ')).order_by('-id')
-    return render(request, 'categories.html', {'cats':cats.title().replace('-', ' '), 'category_posts':category_posts, 'category_posts_events':category_posts_events})
+    category_posts = Post.objects.filter(category=cats.capitalize().replace('-', ' ')).order_by('-id')
+    category_posts_events = Event.objects.filter(category=cats.capitalize().replace('-', ' ')).order_by('-id')
+    return render(request, 'categories.html', {'cats':cats.capitalize().replace('-', ' '), 'category_posts':category_posts, 'category_posts_events':category_posts_events})
 
 # def SearchView(request, search):
 #     category_posts = Post.objects.filter(category=search.title().replace('-', ' ')).order_by('-id')
@@ -144,6 +151,12 @@ class AddCarouselView(CreateView):
     model = Carousel
     form_class = CarouselForm
     template_name = 'add_carousel.html'
+
+
+class AddDatosView(CreateView):
+    model = DatosDuros
+    form_class = DatosDurosForm
+    template_name = 'add_datos.html'
 
 
 class AddLecturaView(CreateView):
@@ -203,6 +216,14 @@ class UpdateLecturaView(UpdateView):
     form_class = LecturaForm
     #fields = ['title', 'title_tag', 'author', 'category', 'body']
 
+
+class UpdateDatosView(UpdateView):
+    model = DatosDuros
+    template_name = 'update_datos.html'
+    form_class = DatosDurosForm
+    #fields = ['title', 'title_tag', 'author', 'category', 'body']
+
+
 #Delete
 
 class DeletePostView(DeleteView):
@@ -229,3 +250,9 @@ class DeleteLecturaView(DeleteView):
     model = Lectura
     template_name = 'delete_lectura.html'
     success_url = reverse_lazy('adminLectura_list')
+
+
+class DeleteDatosView(DeleteView):
+    model = DatosDuros
+    template_name = 'delete_datos.html'
+    success_url = reverse_lazy('adminDatos_list')

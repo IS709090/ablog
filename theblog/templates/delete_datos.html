@@ -1,7 +1,7 @@
 {% extends 'baseBackend.html' %}
 
 {% block title %}
-Eliminar Publicación
+Eliminar Datos Duros
 {% endblock %}
 
 {% block content %}
@@ -10,19 +10,19 @@ Eliminar Publicación
 
 <br>
 <br>
-<h1>Eliminar Publicación</h1>
+<h1>Eliminar Datos Duros</h1>
 <br>
 <br>
-<h2>Eliminar: {{ post.title }} </h2>
+<h2>Eliminar: {{ event.title }} </h2>
 <div class="form-group">
 
     <form method="POST">
         {% csrf_token %}
 
-        <strong>¿Estás seguro de querer eliminar la publicación con nombre: {{ post.title }} ? </strong>
+        <strong>¿Estás seguro de querer eliminar el Dato Duro con nombre: {{ event.title }} ? </strong>
         <br>
         <br>
-        <button class="btn btn-danger">Eliminar publicación</button>
+        <button class="btn btn-danger">Eliminar Dato Duro</button>
 
 </div>
 

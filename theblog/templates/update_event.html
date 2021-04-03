@@ -7,7 +7,6 @@ Editar Evento
 {% block content %}
 
 {% if user.is_authenticated %}
-{% if user.id == event.author.id %}
 
 <br>
 <br>
@@ -22,20 +21,6 @@ Editar Evento
     <button class="btn btn-primary">Editar</button>
   
 </div>
-
-<script>
-  var id = "{{ user.id }}";
-  document.getElementById("user").value = id;
-</script>
-
-{% else %}
-
-<br>
-<br>
-<h1 style="text-align: justify;">Tú no creaste este evento, por lo tanto, no puedes editarlo. Inicia sesión con las credenciales del autor original
-    para editar el evento o comunícate con él para editarlo.</h1>
-
-{% endif %}
 
 {% else %}
 <br>

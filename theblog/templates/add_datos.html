@@ -1,7 +1,7 @@
 {% extends 'baseBackend.html' %}
 
 {% block title %}
-Editar Publicación
+Crear Datos Duros
 {% endblock %}
 
 {% block content %}
@@ -10,7 +10,7 @@ Editar Publicación
 
 <br>
 <br>
-<h1>Editar Publicación</h1>
+<h1>Añadir Datos Duros</h1>
 
 <div class="form-group">
 
@@ -18,9 +18,10 @@ Editar Publicación
     {% csrf_token %}
     {{ form.media }}
     {{ form.as_p }}
-    <button class="btn btn-primary">Editar</button>
-  
+    <button class="btn btn-primary">Publicar</button>
+
 </div>
+
 
 {% else %}
 <br>

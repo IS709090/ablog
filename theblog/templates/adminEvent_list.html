@@ -23,11 +23,11 @@ Eventos
             </a>
 
             <p>{{ post.snippet }}</p>
-            {% if user.id == post.author.id %}
+            
             <br>
             <a class="btn btn-primary" href="{% url 'update_event' post.pk %}">Editar</a>
             <a class="btn btn-danger" href="{% url 'delete_event' post.pk %}">Eliminar</a>
-            {% endif %}
+            
 
         </li>
     </ul>

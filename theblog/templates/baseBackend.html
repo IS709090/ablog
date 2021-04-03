@@ -94,6 +94,18 @@
                     </div>
                 </li>
 
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sección Datos Duros
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'add_datos' %}">Crear Datos Duros</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'adminDatos_list' %}">Editar o Eliminar Datos Duros</a>
+                    </div>
+                </li>
+
                 <a class="nav-item nav-link" href="{% url 'add_category' %}">Categorías</a>
 
                 <div class="ml-5 pl-5">

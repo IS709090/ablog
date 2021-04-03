@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Event, MicroSitios, Category, Lectura, Carousel
+from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros
 
 choices = Category.objects.all().values_list('name', 'name')
 choice_list = []
@@ -14,7 +14,6 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación que veremos en la pestaña'}),
-            #'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'type': 'hidden', 'id': 'user'}),            
             'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor de la publicación'}),
             'category': forms.Select(choices=choice_list, attrs={'class': 'form-control', 'placeholder': 'Categorías de la publicación'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
@@ -29,12 +28,24 @@ class EventForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento que veremos en la pestaña'}),
-            #'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'type': 'hidden', 'id': 'user'}),
             'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del evento'}),
             'category': forms.Select(choices=choice_list, attrs={'class': 'form-control', 'placeholder': 'Categorías del evento'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen del evento, que saldrá debajo del evento en el listado de eventos'}),
             #'body': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Contenido del evento'}),
+        }
+
+
+class DatosDurosForm(forms.ModelForm):
+    class Meta:
+        model = DatosDuros
+        fields = ('title', 'author', 'snippet', 'header_image', 'link')
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento'}),
+            'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen del evento, que saldrá debajo del evento en el listado de eventos'}),
+            'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento que veremos en la pestaña'}),
+            'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del evento'}),
+            'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
         }
 
 class CategoryForm(forms.ModelForm):
