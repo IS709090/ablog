@@ -14,7 +14,7 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación que veremos en la pestaña'}),
-            'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'type': 'hidden', 'id': 'user'}),            
+            #'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'type': 'hidden', 'id': 'user'}),            
             'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor de la publicación'}),
             'category': forms.Select(choices=choice_list, attrs={'class': 'form-control', 'placeholder': 'Categorías de la publicación'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
@@ -29,7 +29,7 @@ class EventForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento que veremos en la pestaña'}),
-            'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'type': 'hidden', 'id': 'user'}),
+            #'author': forms.TextInput(attrs={'class': 'form-control', 'value': '', 'type': 'hidden', 'id': 'user'}),
             'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del evento'}),
             'category': forms.Select(choices=choice_list, attrs={'class': 'form-control', 'placeholder': 'Categorías del evento'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
