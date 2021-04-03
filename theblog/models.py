@@ -63,7 +63,7 @@ class DatosDuros(models.Model):
         return self.title
     
     def get_absolute_url(self):
-        return reverse("adminHome")  
+        return reverse("adminDatos_List")  
 
 # choices = Category.objects.all().values_list('name', 'name')
 # choice_list = []
