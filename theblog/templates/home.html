@@ -15,12 +15,12 @@
 
           <div class="carousel-item active img-hover-zoom">
             <img class="d-block img-fluid" src="{% static 'theblog/assets/img/transversal/carousel1st.png' %}"
-              alt="First slide"  style="height: 87vh; width: max-content;">
+              alt="First slide" style="height: 87vh; width: max-content;">
           </div>
 
           {% for slide in slides %}
-          <div class="carousel-item img-hover-zoom"><img class="d-block img-fluid"
-              src="{{ slide.header_image.url }}" alt="Slides" style="height: 87vh; width: max-content;">
+          <div class="carousel-item img-hover-zoom"><img class="d-block img-fluid" src="{{ slide.header_image.url }}"
+              alt="Slides" style="height: 87vh; width: max-content;">
             <div class="carousel-caption d-none d-md-block mb-0 pb-3">
               <a class="mb-0 pb-0 h1" style="font-weight: 1000;" href="{{ slide.link }}">
                 {{ slide.title }}
@@ -78,78 +78,37 @@
     <br>
     <div class="row justify-content-center">
 
+
+      {% for dato in datos %}
       <div class="col-md-4">
         <div class="card">
           <div class="card-header">
             <div class=" img-hover-zoom">
-              <a href="">
-                <img class="card-img-top" src="" rel="nofollow" alt="Card image cap">
+              <a href="{{ dato.link }}">
+                <img class="card-img-top" src="{{ dato.header_image.url }}" rel="nofollow" alt="Card image cap">
               </a>
 
             </div>
 
           </div>
           <div class="card-body">
-            <a href="">
-              <h4 class="card-title text-primary">Designaciones ¿Públicas?</h4>
+            <a href="{{ dato.link }}">
+              <h4 class="card-title text-primary">{{ dato.title }}</h4>
             </a>
 
-            Llegó a su fin un proceso ciudadano enmarcado en la exigencia de designaciones públicas abiertas,
-            sujetas a criterios de experiencia, conocimiento e idoneidad.
-            <div class="text-muted" style="font-size: 90%;">Por Calep Pimienta <br>18 de diciembre
-              2020</div>
+            {{ dato.snippet }}
+            <div class="text-muted" style="font-size: 90%;">Por {{ dato.author.first_name }} {{ dato.author.last_name }}
+              <br>
+              {% load i18n %}
+              {% language 'es' %}
+              {{ dato.post_date }}
+              {% endlanguage %}</div>
           </div>
         </div>
       </div>
+      {% endfor %}
 
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-header">
-            <div class=" img-hover-zoom">
-              <a href="">
-                <img class="card-img-top" src="{% static 'theblog/assets/img/transversal/landing/noticia2.jpeg' %}"
-                  rel="nofollow" alt="Card image cap">
-              </a>
 
-            </div>
-
-          </div>
-          <div class="card-body">
-            <a href="">
-              <h4 class="card-title text-primary"> Mexican local government’s interventions against COVID-19:
-                virtues and flaws
-              </h4>
-            </a>
-            The federal government’s lackluster response to the socio-economic needs of the situation has required
-            local governments to intervene despite their narrow fiscal possibilities
-            <div class="text-muted" style="font-size: 90%;">Por Calep Pimienta <br>18 de diciembre
-              2020</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card">
-          <div class="card-header">
-            <div class=" img-hover-zoom">
-              <a href="">
-                <img class="card-img-top" src="{% static 'theblog/assets/img/transversal/landing/noticia3.png' %}"
-                  rel="nofollow" alt="Card image cap">
-              </a>
-
-            </div>
-
-          </div>
-          <div class="card-body">
-            <a href="">
-              <h4 class="card-title text-primary">Respuestas de los estados a la pandemia</h4>
-            </a>
-            La pandemia provocó uno de los peores escenarios para la toma de decisiones públicas
-            <div class="text-muted" style="font-size: 90%;">Por Calep Pimienta <br>18 de diciembre
-              2020</div>
-          </div>
-        </div>
-      </div>
 
     </div>
 
