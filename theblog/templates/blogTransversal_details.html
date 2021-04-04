@@ -1,6 +1,6 @@
-{% extends 'baseEventDetails.html' %}
+{% extends 'baseArticleDetails.html' %}
 {% block title %}
-{{ event.title_tag }}
+{{ object.title_tag }}
 {% endblock %}
 
 {% block content %}
@@ -12,27 +12,27 @@
     </div>
 
     <div class="row ml-auto mr-auto acercaDe">
-        <h3 class="text-primary " style="font-weight: 1000; font-size: 2em;"> {{ event.title }} </h3>
+        <h3 class="text-primary " style="font-weight: 1000; font-size: 2em;"> {{ object.title }} </h3>
     </div>
 
     <div class="row ml-auto mr-auto">
         <p class="text-muted h4" style="font-weight: 1000;">
             {% load i18n %}
             {% language 'es' %}
-            {{ event.post_date }}
+            {{ object.post_date }}
             {% endlanguage %}
         </p>
     </div>
 
     <div class="row ml-auto mr-auto">
-        <p class="text-muted h4" style="font-weight: 1000;">{{ event.author.first_name }} {{ event.author.last_name }}</p>
+        <p class="text-muted h4" style="font-weight: 1000;">{{ object.author.first_name }} {{ object.author.last_name }}</p>
     </div>
 
 
     <div class="row pb-5 ml-auto mr-auto">
         <div class="col-md-8 ml-auto mr-auto">
 
-            <img class="img-fluid img-raised" src="{{ event.header_image.url }}" alt="">
+            <img class="img-fluid img-raised" src="{{ object.header_image.url }}" alt="">
         </div>
 
     </div>
@@ -40,7 +40,7 @@
 
     <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%; text-align: justify;">
         <p>
-            {{ event.body|safe }}
+            {{ object.body|safe }}
         </p>
     </div>
 
@@ -52,11 +52,11 @@
         <h4 class="text-primary">Tags</h4>
     </div>
 
-    {% comment %} <div class="row pb-5 ml-auto mr-auto tags acercaDe" style="padding-left: 5%;">
-        <a href="{% url 'category' event.category|slugify %}"> <button class="btn btn-default btn-round">
-                {{event.category}}
+    <div class="row pb-5 ml-auto mr-auto tags acercaDe" style="padding-left: 5%;">
+        <a href="{% url 'category' object.category|slugify %}"> <button class="btn btn-default btn-round">
+                {{object.category}}
             </button> </a>
-    </div> {% endcomment %}
+    </div>
 
     <div class="row ml-auto mr-auto acercaDe">
         <h4 class="text-primary" style="font-size: 2em;">Publicaciones Similares</h4>
@@ -66,7 +66,7 @@
         <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
 
             {% for article in post_tag_list %}
-            {% if article.category == event.category %}
+            {% if article.category == object.category %}
             <div class="carousel-cell pr-5 pl-5">
                 <h5>{{ article.title }}</h5>
                 <div class="img-hover-zoom">
@@ -80,7 +80,7 @@
             {% endfor %}
 
             {% for article in event_tag_list %}
-            {% if article.category == event.category %}
+            {% if article.category == object.category %}
             <div class="carousel-cell pr-5 pl-5">
                 <h5>{{ article.title }}</h5>
                 <div class="img-hover-zoom">
@@ -94,7 +94,7 @@
             {% endfor %}
 
             {% for article in BlogPost_tag_list %}
-            {% if article.category == event.category %}
+            {% if article.category == object.category %}
             <div class="carousel-cell pr-5 pl-5">
                 <h5>{{ article.title }}</h5>
                 <div class="img-hover-zoom">

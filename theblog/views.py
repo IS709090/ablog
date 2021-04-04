@@ -233,12 +233,12 @@ class ArticleDetailView(DetailView):
 class BlogTransversalDetailView(DetailView):
     model = BlogTransversalPost
     template_name = 'blogTransversal_details.html'
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super(BlogTransversalDetailView, self).get_context_data(*args, **kwargs)
-    #     context['post_tag_list'] = Post.objects.all().order_by('-id')
-    #     context['event_tag_list'] = Event.objects.all().order_by('-id')
-    #     context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
-    #     return context
+    def get_context_data(self, *args, **kwargs):
+        context = super(BlogTransversalDetailView, self).get_context_data(*args, **kwargs)
+        context['post_tag_list'] = Post.objects.all().order_by('-id')
+        context['event_tag_list'] = Event.objects.all().order_by('-id')
+        context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
+        return context
 
 
 #Update

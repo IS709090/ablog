@@ -13,13 +13,13 @@ Eliminar Datos Duros
 <h1>Eliminar Datos Duros</h1>
 <br>
 <br>
-<h2>Eliminar: {{ event.title }} </h2>
+<h2>Eliminar: {{ object.title }} </h2>
 <div class="form-group">
 
     <form method="POST">
         {% csrf_token %}
 
-        <strong>¿Estás seguro de querer eliminar el Dato Duro con nombre: {{ event.title }} ? </strong>
+        <strong>¿Estás seguro de querer eliminar el Dato Duro con nombre: {{ object.title }} ? </strong>
         <br>
         <br>
         <button class="btn btn-danger">Eliminar Dato Duro</button>

@@ -13,13 +13,13 @@ Eliminar Publicación Blog Transversal
 <h1>Eliminar Publicación Blog Transversal</h1>
 <br>
 <br>
-<h2>Eliminar: {{ post.title }} </h2>
+<h2>Eliminar: {{ object.title }} </h2>
 <div class="form-group">
 
     <form method="POST">
         {% csrf_token %}
 
-        <strong>¿Estás seguro de querer eliminar la publicación con nombre: {{ post.title }} ? </strong>
+        <strong>¿Estás seguro de querer eliminar la publicación con nombre: {{ object.title }} ? </strong>
         <br>
         <br>
         <button class="btn btn-danger">Eliminar publicación</button>
