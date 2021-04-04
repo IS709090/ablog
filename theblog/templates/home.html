@@ -72,6 +72,11 @@
   </div>
   <!-- AQUI VA DONACION -->
 
+  <div class="row ml-auto mr-auto" style="justify-content: center;">
+    <h2 class="title text-center" style="color: rgb(128, 128, 129);font-size: 2em;  font-weight: 1000;">
+      DESDE EL ANÁLISIS Y LOS DATOS DUROS</h2>
+  </div>
+
   <!-- ANALISIS Y DATOS DUROS -->
 
   <div class="row ml-auto mr-auto">
@@ -204,10 +209,9 @@
     </div>
     <!-- TITULO PLATAFORMAS -->
 
-
-    <div class="row ml-auto mr-auto pb-3">
+    <div class="col-md-12  ml-auto mr-auto pb-3">
       <!-- PRIMER MICROSITIO -->
-      {% for micro in micros %}
+      {% comment %} {% for micro in micros %}
       <div class="col-md-6  ml-auto mr-auto pb-3">
         <div class="row ml-auto mr-auto" style="justify-content: center;">
           <div class=" img-hover-zoom img-raised">
@@ -228,17 +232,34 @@
           <a href="{{ micro.link }}"> <button class="btn btn-primary">Visitar</button> </a>
         </div>
       </div>
-      {% endfor %}
+      {% endfor %} {% endcomment %}
 
       <!-- PRIMER MICROSITIO -->
 
+      <div class="carouselContainer pb-5">
+        <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
+
+          {% for micro in micros %}
+
+          <div class="carousel-cell pr-5 pl-5">
+            <h5>{{ micro.title }}</h5>
+            <div class="img-hover-zoom">
+              <a href="{{ micro.link }}">
+                <img class="carousel-image" data-flickity-lazyload="{{ micro.header_image.url }}" />
+              </a>
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
+      </div>
 
     </div>
 
   </div>
 
   <!-- MICROSITIOS -->
-
 
 
   <!-- TRANSVERSAL DIA A DIA -->
