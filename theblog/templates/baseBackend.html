@@ -49,6 +49,18 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Blog Transversal
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'add_BlogTransversal' %}">Crear publicación de Blog Transversal</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'adminBlogTransversal_list' %}">Editar o Eliminar publicación de Blog Transversal</a>
+                    </div>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Eventos
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">

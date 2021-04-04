@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.urls import path
 from . import views
-from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminCarouselListView, AdminLecturaListView, AddCarouselView, AddLecturaView, UpdateCarouselView, UpdateLecturaView, DeleteCarouselView, DeleteLecturaView, AdminDatosDurosListView, AddDatosView, UpdateDatosView, DeleteDatosView, AcercaDeListView, ThinkTankListView
+from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminCarouselListView, AdminLecturaListView, AddCarouselView, AddLecturaView, UpdateCarouselView, UpdateLecturaView, DeleteCarouselView, DeleteLecturaView, AdminDatosDurosListView, AddDatosView, UpdateDatosView, DeleteDatosView, AcercaDeListView, ThinkTankListView, BlogTransversalDetailView, BlogTransversalListView, AdminBlogTransversalListView, UpdateBlogTransversalPostView, DeleteBlogTransversalPostView, AddBlogTransversalPostView
 # SearchView  
 urlpatterns = [
     # path('', HomeView.as_view(), name="home_list"),
     path('', HomeView.as_view(), name="home"),
     path('admin/inicio', HomeAdminView.as_view(), name="adminHome"),
     path('admin/publicaciones', AdminArticleListView.as_view(), name="adminArticle_list"),
+    path('admin/blogTransversal', AdminBlogTransversalListView.as_view(), name="adminBlogTransversal_list"),
     path('admin/eventos', AdminEventListView.as_view(), name="adminEvent_list"),
     path('admin/datosduros', AdminDatosDurosListView.as_view(), name="adminDatos_list"),
     path('admin/carrusel', AdminCarouselListView.as_view(), name="adminCarousel_list"),
@@ -30,25 +31,30 @@ urlpatterns = [
     path('admin/lectura', AdminLecturaListView.as_view(), name="adminLectura_list"),
     path('admin/micrositios', AdminMicroSitioListView.as_view(), name="adminMicro_list"),
     path('publicaciones/', ArticleListView.as_view(), name="article_list"),
+    path('blogTransversal/', BlogTransversalListView.as_view(), name="BlogTransversal_list"),
     path('eventos/', EventListView.as_view(), name="event_list"),
     path('categoria/<str:cats>/', CategoryView, name="category"),
     # path('busqueda/<str:search>/', SearchView, name="search"),
     path('publicacion/<int:pk>', ArticleDetailView.as_view(), name="article-detail"),
+    path('blogTransversal/<int:pk>', BlogTransversalDetailView.as_view(), name="BlogTransversal-detail"),
     path('evento/<int:pk>', EventDetailView.as_view(), name="event-detail"),
     path('admin/crear_evento/', AddEventView.as_view(), name="add_event"),
     path('admin/crear_carrusel/', AddCarouselView.as_view(), name="add_carousel"),
     path('admin/crear_lectura/', AddLecturaView.as_view(), name="add_lectura"),
     path('admin/crear_categoria/', AddCategoryView.as_view(), name="add_category"),
     path('admin/crear_publicacion/', AddPostView.as_view(), name="add_post"),
+    path('admin/crear_blogTransversal/', AddBlogTransversalPostView.as_view(), name="add_BlogTransversal"),
     path('admin/crear_datosduros/', AddDatosView.as_view(), name="add_datos"),
     path('admin/crear_micrositio/', AddMicroSitioView.as_view(), name="add_micro"),
     path('admin/publicacion/editar/<int:pk>', UpdatePostView.as_view(), name="update_post"),
+    path('admin/blogTransversal/editar/<int:pk>', UpdateBlogTransversalPostView.as_view(), name="update_BlogTransversal"),
     path('admin/carrusel/editar/<int:pk>', UpdateCarouselView.as_view(), name="update_carousel"),
     path('admin/lectura/editar/<int:pk>', UpdateLecturaView.as_view(), name="update_lectura"),
     path('admin/evento/editar/<int:pk>', UpdateEventView.as_view(), name="update_event"),
     path('admin/datosduros/editar/<int:pk>', UpdateDatosView.as_view(), name="update_datos"),
     path('admin/micrositio/editar/<int:pk>', UpdateMicroSitioView.as_view(), name="update_micro"),
     path('admin/publicacion/eliminar/<int:pk>', DeletePostView.as_view(), name="delete_post"),
+    path('admin/blogTransversal/eliminar/<int:pk>', DeleteBlogTransversalPostView.as_view(), name="delete_BlogTransversal"),
     path('admin/evento/eliminar/<int:pk>', DeleteEventView.as_view(), name="delete_event"),
     path('admin/datosduros/eliminar/<int:pk>', DeleteDatosView.as_view(), name="delete_datos"),
     path('admin/micrositio/eliminar/<int:pk>', DeleteMicroSitioView.as_view(), name="delete_micro"),

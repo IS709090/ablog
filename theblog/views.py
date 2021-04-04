@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros, User
-from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, CarouselForm, LecturaForm, DatosDurosForm
+from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros, User, BlogTransversalPost
+from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, CarouselForm, LecturaForm, DatosDurosForm, BlogTransversalPostForm
 from django.urls import reverse_lazy
 # from itertools import chain
 
@@ -44,9 +44,22 @@ class ArticleListView(ListView):
     ordering = ['-id']
 
 
+class BlogTransversalListView(ListView):
+    model = BlogTransversalPost
+    template_name = 'blogTransversalPost_list.html'
+    ordering = ['-id']
+
+
 class AdminArticleListView(ListView):
     model = Post
     template_name = 'adminArticle_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
+
+
+class AdminBlogTransversalListView(ListView):
+    model = BlogTransversalPost
+    template_name = 'adminBlogTransversal_list.html'
     ordering = ['-id']
     #ordering = ['-post_date']
 
@@ -113,7 +126,8 @@ class ThinkTankListView(ListView):
 def CategoryView(request, cats):
     category_posts = Post.objects.filter(category=cats.capitalize().replace('-', ' ')).order_by('-id')
     category_posts_events = Event.objects.filter(category=cats.capitalize().replace('-', ' ')).order_by('-id')
-    return render(request, 'categories.html', {'cats':cats.capitalize().replace('-', ' '), 'category_posts':category_posts, 'category_posts_events':category_posts_events})
+    category_BlogPost = BlogTransversalPost.objects.filter(category=cats.capitalize().replace('-', ' ')).order_by('-id')
+    return render(request, 'categories.html', {'cats':cats.capitalize().replace('-', ' '), 'category_posts':category_posts, 'category_posts_events':category_posts_events, 'category_BlogPost':category_BlogPost})
 
 # def SearchView(request, search):
 #     category_posts = Post.objects.filter(category=search.title().replace('-', ' ')).order_by('-id')
@@ -138,6 +152,16 @@ class AddPostView(CreateView):
     #fields = '__all__'
     #   Para controlar los campos a mostrar
     #   fields = ('title', 'body')
+
+
+class AddBlogTransversalPostView(CreateView):
+    model = BlogTransversalPost
+    form_class = BlogTransversalPostForm
+    template_name = 'add_BlogTransversal.html'
+    #fields = '__all__'
+    #   Para controlar los campos a mostrar
+    #   fields = ('title', 'body')
+    
 
 class AddCategoryView(CreateView):
     model = Category
@@ -190,7 +214,9 @@ class EventDetailView(DetailView):
     template_name = 'event_details.html'
     def get_context_data(self, *args, **kwargs):
         context = super(EventDetailView, self).get_context_data(*args, **kwargs)
+        context['post_tag_list'] = Post.objects.all().order_by('-id')
         context['event_tag_list'] = Event.objects.all().order_by('-id')
+        context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
         return context
 
 class ArticleDetailView(DetailView):
@@ -199,7 +225,21 @@ class ArticleDetailView(DetailView):
     def get_context_data(self, *args, **kwargs):
         context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
         context['post_tag_list'] = Post.objects.all().order_by('-id')
+        context['event_tag_list'] = Event.objects.all().order_by('-id')
+        context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
         return context
+
+
+class BlogTransversalDetailView(DetailView):
+    model = BlogTransversalPost
+    template_name = 'blogTransversal_details.html'
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(BlogTransversalDetailView, self).get_context_data(*args, **kwargs)
+    #     context['post_tag_list'] = Post.objects.all().order_by('-id')
+    #     context['event_tag_list'] = Event.objects.all().order_by('-id')
+    #     context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
+    #     return context
+
 
 #Update
 
@@ -208,6 +248,14 @@ class UpdatePostView(UpdateView):
     template_name = 'update_post.html'
     form_class = PostForm
     #fields = ['title', 'title_tag', 'author', 'category', 'body']
+
+
+class UpdateBlogTransversalPostView(UpdateView):
+    model = BlogTransversalPost
+    template_name = 'update_BlogTransversal.html'
+    form_class = BlogTransversalPostForm
+    #fields = ['title', 'title_tag', 'author', 'category', 'body']
+
 
 class UpdateEventView(UpdateView):
     model = Event
@@ -249,6 +297,13 @@ class DeletePostView(DeleteView):
     model = Post
     template_name = 'delete_post.html'
     success_url = reverse_lazy('adminArticle_list')
+
+
+class DeleteBlogTransversalPostView(DeleteView):
+    model = BlogTransversalPost
+    template_name = 'delete_BlogTransversal.html'
+    success_url = reverse_lazy('adminBlogTransversal_list')
+
 
 class DeleteEventView(DeleteView):
     model = Event
