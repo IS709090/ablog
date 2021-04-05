@@ -35,7 +35,8 @@
 
 @font-face {
   font-family: bodyFont;
-  src: url('theblog/assets/fonts/Gotham_Narrow_Book.otf');
+  src: url('/theblog/assets/fonts/Gotham_Narrow_Book.otf');
+  /* src: url("{% static 'theblog/assets/fonts/Gotham_Narrow_Book.otf' %}"); */
   
 }
 
@@ -332,7 +333,8 @@ h4:hover {
 } */
 
 .donation-title {
-  background-image: url("theblog/assets/img/transversal/landing/donacion2.png");
+  background-image: url("/theblog/assets/img/transversal/landing/donacion2.png");
+  /* background-image: url("{% static 'theblog/assets/img/transversal/landing/donacion2.png' %}"); */
   /* height: auto;
   width: auto; */
   /* You must set a specified height */
