@@ -320,7 +320,7 @@ h4:hover {
 } */
 
 .donation-title h2:hover {
-  color: #2e2e2e !important;
+  /* color: #2e2e2e !important; */
   text-decoration: underline;
   /* transform: scale(1.01); */
 
@@ -424,7 +424,7 @@ body {
   .navbar.fixed-right {
     bottom: 0;
     width: 15%;
-    height: 50%;
+    height: 100%;
     flex-flow: column nowrap;
     align-items: flex-start;
 
