@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 import os
-#import django_heroku
+import django_heroku
 import dj_database_url
 from decouple import config
 
@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY_SETTINGS')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['transversal-lsobv.ondigitalocean.app']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -162,7 +162,7 @@ STATICFILES_STORAGE = 'storages.backends.s3boto3.S3ManifestStaticStorage'
 LOGIN_REDIRECT_URL = 'adminHome'
 LOGOUT_REDIRECT_URL = 'home'
 
-#django_heroku.settings(locals(), staticfiles=False)
+django_heroku.settings(locals(), staticfiles=False)
 
 
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
