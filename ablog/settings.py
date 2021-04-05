@@ -29,7 +29,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY_SETTINGS')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['transversal-lsobv.ondigitalocean.app']
 
 
 # Application definition
