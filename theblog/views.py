@@ -219,6 +219,7 @@ class EventDetailView(DetailView):
         context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
         return context
 
+
 class ArticleDetailView(DetailView):
     model = Post
     template_name = 'article_details.html'
