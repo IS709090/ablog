@@ -78,14 +78,15 @@
         </ul>
 
         <!-- search FUNC -->
-        <form class="form-inline ml-auto">
+        <form class="form-inline ml-auto" action"{% url 'search' %}">
           <div class="form-group no-border">
-            <input type="text" class="form-control" placeholder="Buscar">
+            <input type="text" class="form-control" placeholder="Buscar" name="búsqueda">
           </div>
           <button type="submit" class="btn btn-white btn-just-icon btn-round">
             <i class="material-icons">search</i>
           </button>
         </form>
+
         <!-- search FUNC -->
 
         <!-- DONAR -->

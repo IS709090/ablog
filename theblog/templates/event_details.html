@@ -47,7 +47,7 @@
     </div>
 
     <div class="row pb-5 ml-auto mr-auto tags acercaDe" style="padding-left: 5%;">
-        <a href="{% url 'category' event.category|slugify %}"> <button class="btn btn-default btn-round">
+        <a href="{% url 'category' event.category %}"> <button class="btn btn-default btn-round">
                 {{event.category}}
             </button> </a>
     </div>

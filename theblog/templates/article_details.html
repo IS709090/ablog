@@ -53,7 +53,7 @@
     </div>
 
     <div class="row pb-5 ml-auto mr-auto tags acercaDe" style="padding-left: 5%;">
-        <a href="{% url 'category' post.category|slugify %}"> <button class="btn btn-default btn-round">
+        <a href="{% url 'category' post.category %}"> <button class="btn btn-default btn-round">
                 {{post.category}}
             </button> </a>
     </div>

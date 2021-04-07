@@ -79,19 +79,21 @@
         </ul>
 
         <!-- search FUNC -->
-        <form class="form-inline ml-auto">
+        <form class="form-inline ml-auto" action"{% url 'search' %}">
           <div class="form-group no-border">
-            <input type="text" class="form-control" placeholder="Buscar">
+            <input type="text" class="form-control" placeholder="Buscar"  name="búsqueda">
           </div>
           <button type="submit" class="btn btn-white btn-just-icon btn-round">
             <i class="material-icons">search</i>
           </button>
         </form>
+
         <!-- search FUNC -->
 
         <!-- DONAR -->
         <div class="ml-5 mr-5">
-          <button style="background-color: rgb(231, 207, 227);" class="btn btn-secondary btn-round" data-toggle="collapse" data-target="#filters">
+          <button style="background-color: rgb(231, 207, 227);" class="btn btn-secondary btn-round"
+            data-toggle="collapse" data-target="#filters">
             <form action="https://www.paypal.com/donate" method="post" target="_top"><input type="hidden" name="cmd"
                 value="_donations"> <input type="hidden" name="business" value="diegoaranab@gmail.com"> <input
                 type="hidden" name="item_name" value="Non Profit"> <input type="hidden" name="currency_code"

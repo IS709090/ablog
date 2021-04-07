@@ -5,6 +5,25 @@ from datetime import datetime, date
 from ckeditor.fields import RichTextField
 from tinymce import models as tinymce_models
 # Create your models here.
+# from django.db.models import Q
+
+# class PostQuerySet(models.QuerySet):
+#     def search(self, query=None):
+#         qs = self
+#         if query is not None:
+#             or_lookup = (Q(title__icontains=query) | 
+#                          Q(body__icontains=query)|
+#                          Q(snippet__icontains=query)
+#                         )
+#             qs = qs.filter(or_lookup).distinct() # distinct() is often necessary with Q lookups
+#         return qs
+
+# class PostManager(models.Manager):
+#     def get_queryset(self):
+#         return PostQuerySet(self.model, using=self._db)
+    
+#     def search(self, query=None):
+#         return self.get_queryset().search(query=query)
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -82,6 +101,8 @@ class Post(models.Model):
     category = models.CharField(max_length=255, default='Transversal')
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
+
+    # objects = PostManager()
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)

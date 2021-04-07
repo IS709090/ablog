@@ -11,7 +11,7 @@ Búsqueda: {{ search }}
     <div class="section">
 
         <div class="row ml-auto mr-auto">
-            <h2 style="font-weight: 1000;">{{ search }}</h2>
+            <h2 style="font-weight: 1000;">Búsqueda: {{ search }}</h2>
 
         </div>
 
@@ -24,7 +24,7 @@ Búsqueda: {{ search }}
             <div class="col-md-4 ml-auto mr-auto ">
                 <div class="img-hover-zoom">
                     <a href="{% url 'article-detail' post.pk %}"> <img class="img-fluid img-raised"
-                            src="http://transversalthinktank.org/storage/event_images/27dFyGm5x22kcOw1Zq7PrEX135a7y4H7PAEQNS51.jpeg"
+                            src="{{ post.header_image.url }}"
                             alt=""></a>
                 </div>
             </div>
@@ -34,7 +34,7 @@ Búsqueda: {{ search }}
                     <h4 class="text-primary">{{ post.title }}</h4>
                 </a>
 
-                <h5>{{ post.body }}</h5>
+                <h5>{{ post.snippet }}</h5>
             </div>
 
         </div>
@@ -50,7 +50,7 @@ Búsqueda: {{ search }}
             <div class="col-md-4 ml-auto mr-auto ">
                 <div class="img-hover-zoom">
                     <a href="{% url 'event-detail' event.pk %}"> <img class="img-fluid img-raised"
-                            src="http://transversalthinktank.org/storage/event_images/27dFyGm5x22kcOw1Zq7PrEX135a7y4H7PAEQNS51.jpeg"
+                            src="{{ event.header_image.url }}"
                             alt=""></a>
                 </div>
             </div>
@@ -60,7 +60,33 @@ Búsqueda: {{ search }}
                     <h4 class="text-primary">{{ event.title }}</h4>
                 </a>
 
-                <h5>{{ event.body }}</h5>
+                <h5>{{ event.snippet }}</h5>
+            </div>
+
+        </div>
+
+        <hr>
+
+        {% endfor %}
+
+        {% for event in category_blogposts %}
+
+        <div class="row ml-auto mr-auto diaLanding" style="justify-content: space-evenly;">
+
+            <div class="col-md-4 ml-auto mr-auto ">
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' event.pk %}"> <img class="img-fluid img-raised"
+                            src="{{ event.header_image.url }}"
+                            alt=""></a>
+                </div>
+            </div>
+
+            <div class="col-md-8 ml-auto mr-auto">
+                <a href="{% url 'BlogTransversal-detail' event.pk %}">
+                    <h4 class="text-primary">{{ event.title }}</h4>
+                </a>
+
+                <h5>{{ event.snippet }}</h5>
             </div>
 
         </div>
@@ -82,37 +108,11 @@ Búsqueda: {{ search }}
     <div class="section">
 
         <div class="row ml-auto mr-auto">
-            <h2 style="font-weight: 1000;">{{ search }}</h2>
+            <h2 style="font-weight: 1000;">Búsqueda: {{ search }}</h2>
 
         </div>
 
         <!-- TRANSVERSAL DIA A DIA -->
-
-        {% for post in category_posts %}
-
-        <div class="row ml-auto mr-auto diaLanding" style="justify-content: space-evenly;">
-
-            <div class="col-md-4 ml-auto mr-auto ">
-                <div class="img-hover-zoom">
-                    <a href="{% url 'article-detail' post.pk %}"> <img class="img-fluid img-raised"
-                            src="http://transversalthinktank.org/storage/event_images/27dFyGm5x22kcOw1Zq7PrEX135a7y4H7PAEQNS51.jpeg"
-                            alt=""></a>
-                </div>
-            </div>
-
-            <div class="col-md-8 ml-auto mr-auto">
-                <a href="{% url 'article-detail' post.pk %}">
-                    <h4 class="text-primary">{{ post.title }}</h4>
-                </a>
-
-                <h5>{{ post.body }}</h5>
-            </div>
-
-        </div>
-
-        <hr>
-
-        {% endfor %}
 
         {% for event in category_posts_events %}
 
@@ -121,7 +121,7 @@ Búsqueda: {{ search }}
             <div class="col-md-4 ml-auto mr-auto ">
                 <div class="img-hover-zoom">
                     <a href="{% url 'event-detail' event.pk %}"> <img class="img-fluid img-raised"
-                            src="http://transversalthinktank.org/storage/event_images/27dFyGm5x22kcOw1Zq7PrEX135a7y4H7PAEQNS51.jpeg"
+                            src="{{ event.header_image.url }}"
                             alt=""></a>
                 </div>
             </div>
@@ -131,7 +131,33 @@ Búsqueda: {{ search }}
                     <h4 class="text-primary">{{ event.title }}</h4>
                 </a>
 
-                <h5>{{ event.body }}</h5>
+                <h5>{{ event.snippet }}</h5>
+            </div>
+
+        </div>
+
+        <hr>
+
+        {% endfor %}
+
+        {% for event in category_blogposts %}
+
+        <div class="row ml-auto mr-auto diaLanding" style="justify-content: space-evenly;">
+
+            <div class="col-md-4 ml-auto mr-auto ">
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' event.pk %}"> <img class="img-fluid img-raised"
+                            src="{{ event.header_image.url }}"
+                            alt=""></a>
+                </div>
+            </div>
+
+            <div class="col-md-8 ml-auto mr-auto">
+                <a href="{% url 'BlogTransversal-detail' event.pk %}">
+                    <h4 class="text-primary">{{ event.title }}</h4>
+                </a>
+
+                <h5>{{ event.snippet }}</h5>
             </div>
 
         </div>
@@ -147,6 +173,52 @@ Búsqueda: {{ search }}
 
 
     </div>
+
+{% elif category_blogposts %}
+
+    <div class="section">
+
+        <div class="row ml-auto mr-auto">
+            <h2 style="font-weight: 1000;">Búsqueda: {{ search }}</h2>
+
+        </div>
+
+        <!-- TRANSVERSAL DIA A DIA -->
+
+        {% for event in category_blogposts %}
+
+        <div class="row ml-auto mr-auto diaLanding" style="justify-content: space-evenly;">
+
+            <div class="col-md-4 ml-auto mr-auto ">
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' event.pk %}"> <img class="img-fluid img-raised"
+                            src="{{ event.header_image.url }}"
+                            alt=""></a>
+                </div>
+            </div>
+
+            <div class="col-md-8 ml-auto mr-auto">
+                <a href="{% url 'BlogTransversal-detail' event.pk %}">
+                    <h4 class="text-primary">{{ event.title }}</h4>
+                </a>
+
+                <h5>{{ event.snippet }}</h5>
+            </div>
+
+        </div>
+
+        <hr>
+
+        {% endfor %}
+
+
+
+        <!-- TRANSVERSAL DIA A DIA -->
+
+
+
+    </div>
+
 
 {% else %}
 

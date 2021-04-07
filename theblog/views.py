@@ -3,52 +3,235 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros, User, BlogTransversalPost
 from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, CarouselForm, LecturaForm, DatosDurosForm, BlogTransversalPostForm
 from django.urls import reverse_lazy
-# from itertools import chain
+from itertools import chain
 
 # Create your views here. 
 
-#def home(request):
-#    return render(request, 'home.html', {})
+def SearchView(request, search_query):
+    print('ok')
+    category_posts = Post.objects.filter(category__icontains=search_query).order_by('-id')
+    category_events = Event.objects.filter(category__icontains=search_query).order_by('-id')
+    title_posts = Post.objects.filter(title__icontains=search_query).order_by('-id')
+    title_events = Event.objects.filter(title__icontains=search_query).order_by('-id')
+    body_posts = Post.objects.filter(body__icontains=search_query).order_by('-id')
+    body_events = Event.objects.filter(body__icontains=search_query).order_by('-id')
+    title_blogposts = BlogTransversalPost.objects.filter(title__icontains=search_query).order_by('-id')
+    category_blogposts = BlogTransversalPost.objects.filter(category__icontains=search_query).order_by('-id')
+    body_blogposts = BlogTransversalPost.objects.filter(body__icontains=search_query).order_by('-id')
+
+    def uniq(iterable):
+        seen = set()
+        for x in iterable:
+            if x in seen:
+                continue
+            seen.add(x)
+            yield x
+
+    finalPosts = uniq(chain(title_posts, body_posts, category_posts))
+    finalEvents = uniq(chain(title_events, body_events, category_events))
+    finalblogPosts = uniq(chain(title_blogposts, body_blogposts, category_blogposts))
+    qs = sorted(finalEvents, key=lambda instance: instance.pk, reverse=True)
+    qs2 = sorted(finalPosts, key=lambda instance: instance.pk, reverse=True)
+    qs3 = sorted(finalblogPosts, key=lambda instance: instance.pk, reverse=True)
+
+    return render(request, 'search.html', {'search':search_query, 'category_posts':qs2, 'category_posts_events':qs, 'category_blogposts':qs3})
+
 
 # List
 
-class HomeView(ListView):
-    model = Post
-    template_name = 'home.html'
-    # ordering = ['-post_date']
-    ordering = ['-id']
-    def get_context_data(self, *args, **kwargs):
-        micros = MicroSitios.objects.all().order_by('-id')
-        eventos = Event.objects.all().order_by('-id')
-        lecturas = Lectura.objects.all().order_by('-id')
-        slides = Carousel.objects.all().order_by('-id')
-        datos = DatosDuros.objects.all().order_by('-id')
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context["micros"] = micros
-        context["eventos"] = eventos
-        context["lecturas"] = lecturas
-        context["slides"] = slides
-        context["datos"] = datos
-        return context
 
+
+def HomeView(request):
+    micros = MicroSitios.objects.all().order_by('-id')
+    eventos = Event.objects.all().order_by('-id')
+    lecturas = Lectura.objects.all().order_by('-id')
+    slides = Carousel.objects.all().order_by('-id')
+    datos = DatosDuros.objects.all().order_by('-id')
+    blogPost = BlogTransversalPost.objects.all().order_by('-id')
+    posts = Post.objects.all().order_by('-id')
+    
+    search_query = request.GET.get('búsqueda', '')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'home.html', {'micros':micros, 'eventos':eventos, 'lecturas':lecturas, 'slides':slides, 'datos':datos, 'blogPost':blogPost, 'posts':posts})
+
+
+def ArticleListView(request):
+    posts = Post.objects.all().order_by('-id')
+    search_query = request.GET.get('búsqueda', '')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'article_list.html', {'object_list':posts})
+
+
+def BlogTransversalListView(request):
+    posts = BlogTransversalPost.objects.all().order_by('-id')
+    search_query = request.GET.get('búsqueda', '')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'blogTransversalPost_list.html', {'object_list':posts})
+
+
+def EventListView(request):
+    # model = Event
+    # template_name = 'event_list.html'
+    # ordering = ['-id']
+    # #ordering = ['-post_date']
+    posts = Event.objects.all().order_by('-id')
+    search_query = request.GET.get('búsqueda', '')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'event_list.html', {'object_list':posts})
+
+
+def AcercaDeListView(request):
+    # model = User
+    # template_name = 'acercaDe_list.html'
+    # ordering = ['-id']
+    # #ordering = ['-post_date']
+    posts = User.objects.all().order_by('-id')
+    search_query = request.GET.get('búsqueda', '')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'acercaDe_list.html', {'object_list':posts})
+
+
+def LineasListView(request):
+    # model = Category
+    # template_name = 'lineas.html'
+    posts = Category.objects.all().order_by('-id')
+    search_query = request.GET.get('búsqueda', '')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'lineas.html', {'object_list':posts})
+
+
+def ThinkTankListView(request):
+    # model = Category
+    # template_name = 'think.html'
+    posts = Category.objects.all().order_by('-id')
+    search_query = request.GET.get('búsqueda', '')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'think.html', {'object_list':posts})
+
+
+def CategoryView(request, cats):
+    category_posts = Post.objects.filter(category=cats).order_by('-id')
+    category_posts_events = Event.objects.filter(category=cats).order_by('-id')
+    category_BlogPost = BlogTransversalPost.objects.filter(category=cats).order_by('-id')
+    search_query = request.GET.get('búsqueda', '')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'categories.html', {'cats':cats, 'category_posts':category_posts, 'category_posts_events':category_posts_events, 'category_blogposts':category_BlogPost})
+
+
+
+# Detail
+
+def EventDetailView(request, pk):
+    # model = Event
+    # template_name = 'event_details.html'
+    posts = Event.objects.get(id = pk)
+    search_query = request.GET.get('búsqueda', '')
+    tags_post = Post.objects.all().order_by('-id')
+    tags_events = Event.objects.all().order_by('-id')
+    tags_blogp = BlogTransversalPost.objects.all().order_by('-id')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'event_details.html', {'event':posts, 'post_tag_list':tags_post, 'event_tag_list':tags_events, 'BlogPost_tag_list':tags_blogp})
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(EventDetailView, self).get_context_data(*args, **kwargs)
+    #     context['post_tag_list'] = Post.objects.all().order_by('-id')
+    #     context['event_tag_list'] = Event.objects.all().order_by('-id')
+    #     context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
+    #     return context
+
+    # def get(self, request):
+    #     # <view logic>
+    #     search_query = request.GET.get('búsqueda', '')
+    #     if search_query:
+    #         return SearchView(request, search_query)
+
+
+def ArticleDetailView(request, pk):
+    # model = Post
+    # template_name = 'article_details.html'
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
+    #     context['post_tag_list'] = Post.objects.all().order_by('-id')
+    #     context['event_tag_list'] = Event.objects.all().order_by('-id')
+    #     context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
+    #     return context
+    posts = Post.objects.get(id = pk)
+    search_query = request.GET.get('búsqueda', '')
+    tags_post = Post.objects.all().order_by('-id')
+    tags_events = Event.objects.all().order_by('-id')
+    tags_blogp = BlogTransversalPost.objects.all().order_by('-id')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'article_details.html', {'post':posts, 'post_tag_list':tags_post, 'event_tag_list':tags_events, 'BlogPost_tag_list':tags_blogp})
+
+
+def BlogTransversalDetailView(request, pk):
+    # model = BlogTransversalPost
+    # template_name = 'blogTransversal_details.html'
+    # def get_context_data(self, *args, **kwargs):
+    #     context = super(BlogTransversalDetailView, self).get_context_data(*args, **kwargs)
+    #     context['post_tag_list'] = Post.objects.all().order_by('-id')
+    #     context['event_tag_list'] = Event.objects.all().order_by('-id')
+    #     context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
+    #     return context
+    posts = BlogTransversalPost.objects.get(id = pk)
+    search_query = request.GET.get('búsqueda', '')
+    tags_post = Post.objects.all().order_by('-id')
+    tags_events = Event.objects.all().order_by('-id')
+    tags_blogp = BlogTransversalPost.objects.all().order_by('-id')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'blogTransversal_details.html', {'object':posts, 'post_tag_list':tags_post, 'event_tag_list':tags_events, 'BlogPost_tag_list':tags_blogp})
+
+
+
+
+# ADMIN
 
 class HomeAdminView(ListView):
     model = Post
     template_name = 'adminHome.html'
-
-
-class ArticleListView(ListView):
-    model = Post
-    template_name = 'article_list.html'
-    #ordering = ['-post_date']
-    ordering = ['-id']
-
-
-class BlogTransversalListView(ListView):
-    model = BlogTransversalPost
-    template_name = 'blogTransversalPost_list.html'
-    ordering = ['-id']
-
 
 class AdminArticleListView(ListView):
     model = Post
@@ -91,14 +274,6 @@ class AdminMicroSitioListView(ListView):
     ordering = ['-id']
     #ordering = ['-post_date']
 
-
-class EventListView(ListView):
-    model = Event
-    template_name = 'event_list.html'
-    ordering = ['-id']
-    #ordering = ['-post_date']
-
-
 class AdminEventListView(ListView):
     model = Event
     template_name = 'adminEvent_list.html'
@@ -106,88 +281,36 @@ class AdminEventListView(ListView):
     #ordering = ['-post_date']
 
 
-class AcercaDeListView(ListView):
-    model = User
-    template_name = 'acercaDe_list.html'
-    ordering = ['-id']
-    #ordering = ['-post_date']
-
-
-class LineasListView(ListView):
-    model = Category
-    template_name = 'lineas.html'
-
-
-class ThinkTankListView(ListView):
-    model = Category
-    template_name = 'think.html'
-
-
-def CategoryView(request, cats):
-    category_posts = Post.objects.filter(category=cats.capitalize().replace('-', ' ')).order_by('-id')
-    category_posts_events = Event.objects.filter(category=cats.capitalize().replace('-', ' ')).order_by('-id')
-    category_BlogPost = BlogTransversalPost.objects.filter(category=cats.capitalize().replace('-', ' ')).order_by('-id')
-    return render(request, 'categories.html', {'cats':cats.capitalize().replace('-', ' '), 'category_posts':category_posts, 'category_posts_events':category_posts_events, 'category_BlogPost':category_BlogPost})
-
-# def SearchView(request, search):
-#     category_posts = Post.objects.filter(category=search.title().replace('-', ' ')).order_by('-id')
-#     category_events = Event.objects.filter(category=search.title().replace('-', ' ')).order_by('-id')
-#     title_posts = Post.objects.filter(title=search).order_by('-id')
-#     title_events = Event.objects.filter(title=search).order_by('-id')
-#     body_posts = Post.objects.filter(body=search).order_by('-id')
-#     body_events = Event.objects.filter(body=search).order_by('-id')
-#     finalPosts = chain(category_posts, title_posts, body_posts)
-#     finalEvents = chain(category_events, title_events, body_events)
-#     # finalPosts = finalPosts.distinct()
-#     # finalEvents = finalEvents.distinct()
-#     return render(request, 'search.html', {'search':search.title().replace('-', ' '), 'category_posts':finalPosts, 'category_posts_events':finalEvents})
-    
-
 # Add
 
 class AddPostView(CreateView):
     model = Post
     form_class = PostForm
     template_name = 'add_post.html'
-    #fields = '__all__'
-    #   Para controlar los campos a mostrar
-    #   fields = ('title', 'body')
 
 
 class AddBlogTransversalPostView(CreateView):
     model = BlogTransversalPost
     form_class = BlogTransversalPostForm
     template_name = 'add_BlogTransversal.html'
-    #fields = '__all__'
-    #   Para controlar los campos a mostrar
-    #   fields = ('title', 'body')
-    
+
 
 class AddCategoryView(CreateView):
     model = Category
     form_class = CategoryForm
     template_name = 'add_category.html'
-    #fields = '__all__'
-    #   Para controlar los campos a mostrar
-    #   fields = ('title', 'body')
 
 
 class AddMicroSitioView(CreateView):
     model = MicroSitios
     form_class = MicroSitioForm
     template_name = 'add_micro.html'
-    #fields = '__all__'
-    #   Para controlar los campos a mostrar
-    #   fields = ('title', 'body')
 
 
 class AddEventView(CreateView):
     model = Event
     form_class = EventForm
     template_name = 'add_event.html'
-    #fields = '__all__'
-    #   Para controlar los campos a mostrar
-    #   fields = ('title', 'body')
 
 
 class AddCarouselView(CreateView):
@@ -207,39 +330,6 @@ class AddLecturaView(CreateView):
     form_class = LecturaForm
     template_name = 'add_lectura.html'
 
-# Detail
-
-class EventDetailView(DetailView):
-    model = Event
-    template_name = 'event_details.html'
-    def get_context_data(self, *args, **kwargs):
-        context = super(EventDetailView, self).get_context_data(*args, **kwargs)
-        context['post_tag_list'] = Post.objects.all().order_by('-id')
-        context['event_tag_list'] = Event.objects.all().order_by('-id')
-        context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
-        return context
-
-
-class ArticleDetailView(DetailView):
-    model = Post
-    template_name = 'article_details.html'
-    def get_context_data(self, *args, **kwargs):
-        context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
-        context['post_tag_list'] = Post.objects.all().order_by('-id')
-        context['event_tag_list'] = Event.objects.all().order_by('-id')
-        context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
-        return context
-
-
-class BlogTransversalDetailView(DetailView):
-    model = BlogTransversalPost
-    template_name = 'blogTransversal_details.html'
-    def get_context_data(self, *args, **kwargs):
-        context = super(BlogTransversalDetailView, self).get_context_data(*args, **kwargs)
-        context['post_tag_list'] = Post.objects.all().order_by('-id')
-        context['event_tag_list'] = Event.objects.all().order_by('-id')
-        context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
-        return context
 
 
 #Update
@@ -248,48 +338,41 @@ class UpdatePostView(UpdateView):
     model = Post
     template_name = 'update_post.html'
     form_class = PostForm
-    #fields = ['title', 'title_tag', 'author', 'category', 'body']
 
 
 class UpdateBlogTransversalPostView(UpdateView):
     model = BlogTransversalPost
     template_name = 'update_BlogTransversal.html'
     form_class = BlogTransversalPostForm
-    #fields = ['title', 'title_tag', 'author', 'category', 'body']
 
 
 class UpdateEventView(UpdateView):
     model = Event
     template_name = 'update_event.html'
     form_class = EventForm
-    #fields = ['title', 'title_tag', 'author', 'category', 'body']
 
 class UpdateMicroSitioView(UpdateView):
     model = MicroSitios
     template_name = 'update_micro.html'
     form_class = MicroSitioForm
-    #fields = ['title', 'title_tag', 'author', 'category', 'body']
 
 
 class UpdateCarouselView(UpdateView):
     model = Carousel
     template_name = 'update_carousel.html'
     form_class = CarouselForm
-    #fields = ['title', 'title_tag', 'author', 'category', 'body']
 
 
 class UpdateLecturaView(UpdateView):
     model = Lectura
     template_name = 'update_lectura.html'
     form_class = LecturaForm
-    #fields = ['title', 'title_tag', 'author', 'category', 'body']
 
 
 class UpdateDatosView(UpdateView):
     model = DatosDuros
     template_name = 'update_datos.html'
     form_class = DatosDurosForm
-    #fields = ['title', 'title_tag', 'author', 'category', 'body']
 
 
 #Delete
