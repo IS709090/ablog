@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'tinymce',
     'storages',
+    'multiselectfield',
 ]
 
 MIDDLEWARE = [

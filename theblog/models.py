@@ -4,26 +4,10 @@ from django.urls import reverse
 from datetime import datetime, date
 from ckeditor.fields import RichTextField
 from tinymce import models as tinymce_models
+from multiselectfield import MultiSelectField
 # Create your models here.
-# from django.db.models import Q
 
-# class PostQuerySet(models.QuerySet):
-#     def search(self, query=None):
-#         qs = self
-#         if query is not None:
-#             or_lookup = (Q(title__icontains=query) | 
-#                          Q(body__icontains=query)|
-#                          Q(snippet__icontains=query)
-#                         )
-#             qs = qs.filter(or_lookup).distinct() # distinct() is often necessary with Q lookups
-#         return qs
 
-# class PostManager(models.Manager):
-#     def get_queryset(self):
-#         return PostQuerySet(self.model, using=self._db)
-    
-#     def search(self, query=None):
-#         return self.get_queryset().search(query=query)
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -33,6 +17,14 @@ class Category(models.Model):
     
     def get_absolute_url(self):
         return reverse("adminHome")
+
+
+choices = Category.objects.all().values_list('name', 'name')
+choice_list = []
+
+for item in choices:
+    choice_list.append(item)
+
 
 class MicroSitios(models.Model):
     title = models.CharField(max_length=255)
@@ -84,11 +76,7 @@ class DatosDuros(models.Model):
     def get_absolute_url(self):
         return reverse("adminDatos_list")  
 
-# choices = Category.objects.all().values_list('name', 'name')
-# choice_list = []
 
-# for item in choices:
-#     choice_list.append(item)
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -98,9 +86,13 @@ class Post(models.Model):
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
-    category = models.CharField(max_length=255, default='Transversal')
+    #category = models.CharField(max_length=255, default='Transversal')
+    category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
+    fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
+    linkToFile = models.CharField(max_length=255, null=True, blank=True)
+    past_Publication_Date = models.CharField(max_length=255, null=True, blank=True)
 
     # objects = PostManager()
 
@@ -119,9 +111,13 @@ class BlogTransversalPost(models.Model):
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
-    category = models.CharField(max_length=255, default='Transversal')
+    # category = models.CharField(max_length=255, default='Transversal')
+    category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
+    fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
+    linkToFile = models.CharField(max_length=255, null=True, blank=True)
+    past_Publication_Date = models.CharField(max_length=255, null=True, blank=True)
     
     def __str__(self):
         return self.title + ' | ' + str(self.author)
@@ -138,9 +134,13 @@ class Event(models.Model):
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
-    category = models.CharField(max_length=255, default='Transversal')
+    # category = models.CharField(max_length=255, default='Transversal')
+    category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
+    fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
+    linkToFile = models.CharField(max_length=255, null=True, blank=True)
+    past_Publication_Date = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return self.title + ' | ' + str(self.author)
