@@ -16,12 +16,22 @@
     </div>
 
     <div class="row ml-auto mr-auto">
+        {% if event.past_Publication_Date %}
+
+        <p class="text-muted h4" style="font-weight: 1000;">
+            {{ event.past_Publication_Date }}
+        </p>
+
+        {% else %}
+
         <p class="text-muted h4" style="font-weight: 1000;">
             {% load i18n %}
             {% language 'es' %}
             {{ event.post_date }}
             {% endlanguage %}
         </p>
+
+        {% endif %}
     </div>
 
     <div class="row ml-auto mr-auto">
@@ -42,14 +52,34 @@
         </p>
     </div>
 
+    {% if event.fileDownload %}
+
+    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%;">
+        <a href="{{ event.fileDownload.url }}">
+            <button class="btn btn-primary btn-round">Descargar</button>
+        </a>
+    </div>
+
+    {% elif event.linkToFile %}
+
+    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%;">
+        <a href="{{ event.linkToFile }}">
+            <button class="btn btn-primary btn-round">Descargar</button>
+        </a>
+    </div>
+
+    {% endif %}
+
     <div class="row pb-5 ml-auto mr-auto acercaDe">
         <h4 class="text-primary">Tags</h4>
     </div>
 
     <div class="row pb-5 ml-auto mr-auto tags acercaDe" style="padding-left: 5%;">
-        <a href="{% url 'category' event.category %}"> <button class="btn btn-default btn-round">
-                {{event.category}}
+        {% for cat in event.category %}
+        <a href="{% url 'category' cat %}"> <button class="btn btn-default btn-round">
+                {{cat}}
             </button> </a>
+        {% endfor %}
     </div>
 
     <div class="row ml-auto mr-auto acercaDe">

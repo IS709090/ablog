@@ -16,16 +16,27 @@
     </div>
 
     <div class="row ml-auto mr-auto">
+        {% if object.past_Publication_Date %}
+
+        <p class="text-muted h4" style="font-weight: 1000;">
+            {{ object.past_Publication_Date }}
+        </p>
+
+        {% else %}
+
         <p class="text-muted h4" style="font-weight: 1000;">
             {% load i18n %}
             {% language 'es' %}
             {{ object.post_date }}
             {% endlanguage %}
         </p>
+
+        {% endif %}
     </div>
 
     <div class="row ml-auto mr-auto">
-        <p class="text-muted h4" style="font-weight: 1000;">{{ object.author.first_name }} {{ object.author.last_name }}</p>
+        <p class="text-muted h4" style="font-weight: 1000;">{{ object.author.first_name }} {{ object.author.last_name }}
+        </p>
     </div>
 
 
@@ -44,19 +55,39 @@
         </p>
     </div>
 
+    {% if object.fileDownload %}
+
     <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%;">
-        <button class="btn btn-primary btn-round">Descargar</button>
+        <a href="{{ object.fileDownload.url }}">
+            <button class="btn btn-primary btn-round">Descargar</button>
+        </a>
     </div>
+
+    {% elif object.linkToFile %}
+
+    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%;">
+        <a href="{{ object.linkToFile }}">
+            <button class="btn btn-primary btn-round">Descargar</button>
+        </a>
+    </div>
+
+    {% endif %}
+
 
     <div class="row pb-5 ml-auto mr-auto acercaDe">
         <h4 class="text-primary">Tags</h4>
     </div>
 
+
     <div class="row pb-5 ml-auto mr-auto tags acercaDe" style="padding-left: 5%;">
-        <a href="{% url 'category' object.category %}"> <button class="btn btn-default btn-round">
-                {{object.category}}
+        {% for cat in object.category %}
+        <a href="{% url 'category' cat %}"> <button class="btn btn-default btn-round">
+                {{cat}}
             </button> </a>
+        {% endfor %}
     </div>
+
+
 
     <div class="row ml-auto mr-auto acercaDe">
         <h4 class="text-primary" style="font-size: 2em;">Publicaciones Similares</h4>

@@ -23,7 +23,6 @@ class PostForm(forms.ModelForm):
             'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen de la publicación, que saldrá debajo de la publicación en el listado de publicaciones'}),
         }
 
-
 class BlogTransversalPostForm(forms.ModelForm):
     class Meta:
         model = BlogTransversalPost

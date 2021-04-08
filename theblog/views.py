@@ -138,9 +138,9 @@ def ThinkTankListView(request):
 
 
 def CategoryView(request, cats):
-    category_posts = Post.objects.filter(category=cats).order_by('-id')
-    category_posts_events = Event.objects.filter(category=cats).order_by('-id')
-    category_BlogPost = BlogTransversalPost.objects.filter(category=cats).order_by('-id')
+    category_posts = Post.objects.filter(category__contains=cats).order_by('-id')
+    category_posts_events = Event.objects.filter(category__contains=cats).order_by('-id')
+    category_BlogPost = BlogTransversalPost.objects.filter(category__contains=cats).order_by('-id')
     search_query = request.GET.get('búsqueda', '')
 
     if search_query:
