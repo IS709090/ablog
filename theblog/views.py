@@ -82,10 +82,6 @@ def BlogTransversalListView(request):
 
 
 def EventListView(request):
-    # model = Event
-    # template_name = 'event_list.html'
-    # ordering = ['-id']
-    # #ordering = ['-post_date']
     posts = Event.objects.all().order_by('-id')
     search_query = request.GET.get('búsqueda', '')
 
@@ -97,10 +93,6 @@ def EventListView(request):
 
 
 def AcercaDeListView(request):
-    # model = User
-    # template_name = 'acercaDe_list.html'
-    # ordering = ['-id']
-    # #ordering = ['-post_date']
     posts = User.objects.all().order_by('-id')
     search_query = request.GET.get('búsqueda', '')
 
@@ -112,8 +104,6 @@ def AcercaDeListView(request):
 
 
 def LineasListView(request):
-    # model = Category
-    # template_name = 'lineas.html'
     posts = Category.objects.all().order_by('-id')
     search_query = request.GET.get('búsqueda', '')
 
@@ -125,8 +115,6 @@ def LineasListView(request):
 
 
 def ThinkTankListView(request):
-    # model = Category
-    # template_name = 'think.html'
     posts = Category.objects.all().order_by('-id')
     search_query = request.GET.get('búsqueda', '')
 
@@ -154,47 +142,105 @@ def CategoryView(request, cats):
 # Detail
 
 def EventDetailView(request, pk):
-    # model = Event
-    # template_name = 'event_details.html'
     posts = Event.objects.get(id = pk)
     search_query = request.GET.get('búsqueda', '')
-    tags_post = Post.objects.all().order_by('-id')
-    tags_events = Event.objects.all().order_by('-id')
-    tags_blogp = BlogTransversalPost.objects.all().order_by('-id')
+
+    tags_post = []
+    tags_events = []
+    tags_blogp = []
+    
+    all_tags_post = Post.objects.all().order_by('-id')
+    all_tags_events = Event.objects.all().order_by('-id')
+    all_tags_blogp = BlogTransversalPost.objects.all().order_by('-id')
+
+    def uniq(iterable):
+        seen = set()
+        for x in iterable:
+            if x in seen:
+                continue
+            seen.add(x)
+            yield x
+
+    for cat in posts.category:
+        for event in all_tags_events:
+            for eventCat in event.category:
+                if eventCat == cat and event.id != posts.id:
+                    tags_events.append(Event.objects.get(id = event.id))
+ 
+    for cat in posts.category:
+        for event in all_tags_post:
+            for eventCat in event.category:
+                if eventCat == cat:
+                    tags_post.append(Post.objects.get(id = event.id))
+    
+    for cat in posts.category:
+        for event in all_tags_blogp:
+            for eventCat in event.category:
+                if eventCat == cat:
+                    tags_blogp.append(BlogTransversalPost.objects.get(id = event.id))
+
+
+    tags_events = uniq(tags_events)
+    tags_post = uniq(tags_post)
+    tags_blogp = uniq(tags_blogp)
+
+    tags_events = sorted(tags_events, key=lambda instance: instance.pk, reverse=True)
+    tags_post = sorted(tags_post, key=lambda instance: instance.pk, reverse=True)
+    tags_blogp = sorted(tags_blogp, key=lambda instance: instance.pk, reverse=True)
 
     if search_query:
         return SearchView(request, search_query)
        
     else:
         return render(request, 'event_details.html', {'event':posts, 'post_tag_list':tags_post, 'event_tag_list':tags_events, 'BlogPost_tag_list':tags_blogp})
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super(EventDetailView, self).get_context_data(*args, **kwargs)
-    #     context['post_tag_list'] = Post.objects.all().order_by('-id')
-    #     context['event_tag_list'] = Event.objects.all().order_by('-id')
-    #     context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
-    #     return context
-
-    # def get(self, request):
-    #     # <view logic>
-    #     search_query = request.GET.get('búsqueda', '')
-    #     if search_query:
-    #         return SearchView(request, search_query)
 
 
 def ArticleDetailView(request, pk):
-    # model = Post
-    # template_name = 'article_details.html'
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super(ArticleDetailView, self).get_context_data(*args, **kwargs)
-    #     context['post_tag_list'] = Post.objects.all().order_by('-id')
-    #     context['event_tag_list'] = Event.objects.all().order_by('-id')
-    #     context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
-    #     return context
     posts = Post.objects.get(id = pk)
     search_query = request.GET.get('búsqueda', '')
-    tags_post = Post.objects.all().order_by('-id')
-    tags_events = Event.objects.all().order_by('-id')
-    tags_blogp = BlogTransversalPost.objects.all().order_by('-id')
+
+    tags_post = []
+    tags_events = []
+    tags_blogp = []
+    
+    all_tags_post = Post.objects.all().order_by('-id')
+    all_tags_events = Event.objects.all().order_by('-id')
+    all_tags_blogp = BlogTransversalPost.objects.all().order_by('-id')
+
+    def uniq(iterable):
+        seen = set()
+        for x in iterable:
+            if x in seen:
+                continue
+            seen.add(x)
+            yield x
+
+    for cat in posts.category:
+        for event in all_tags_events:
+            for eventCat in event.category:
+                if eventCat == cat:
+                    tags_events.append(Event.objects.get(id = event.id))
+ 
+    for cat in posts.category:
+        for event in all_tags_post:
+            for eventCat in event.category:
+                if eventCat == cat and event.id != posts.id:
+                    tags_post.append(Post.objects.get(id = event.id))
+    
+    for cat in posts.category:
+        for event in all_tags_blogp:
+            for eventCat in event.category:
+                if eventCat == cat:
+                    tags_blogp.append(BlogTransversalPost.objects.get(id = event.id))
+
+
+    tags_events = uniq(tags_events)
+    tags_post = uniq(tags_post)
+    tags_blogp = uniq(tags_blogp)
+
+    tags_events = sorted(tags_events, key=lambda instance: instance.pk, reverse=True)
+    tags_post = sorted(tags_post, key=lambda instance: instance.pk, reverse=True)
+    tags_blogp = sorted(tags_blogp, key=lambda instance: instance.pk, reverse=True)
 
     if search_query:
         return SearchView(request, search_query)
@@ -204,23 +250,54 @@ def ArticleDetailView(request, pk):
 
 
 def BlogTransversalDetailView(request, pk):
-    # model = BlogTransversalPost
-    # template_name = 'blogTransversal_details.html'
-    # def get_context_data(self, *args, **kwargs):
-    #     context = super(BlogTransversalDetailView, self).get_context_data(*args, **kwargs)
-    #     context['post_tag_list'] = Post.objects.all().order_by('-id')
-    #     context['event_tag_list'] = Event.objects.all().order_by('-id')
-    #     context['BlogPost_tag_list'] = BlogTransversalPost.objects.all().order_by('-id')
-    #     return context
     posts = BlogTransversalPost.objects.get(id = pk)
     search_query = request.GET.get('búsqueda', '')
-    tags_post = Post.objects.all().order_by('-id')
-    tags_events = Event.objects.all().order_by('-id')
-    tags_blogp = BlogTransversalPost.objects.all().order_by('-id')
+    
+    tags_post = []
+    tags_events = []
+    tags_blogp = []
+    
+    all_tags_post = Post.objects.all().order_by('-id')
+    all_tags_events = Event.objects.all().order_by('-id')
+    all_tags_blogp = BlogTransversalPost.objects.all().order_by('-id')
+
+    def uniq(iterable):
+        seen = set()
+        for x in iterable:
+            if x in seen:
+                continue
+            seen.add(x)
+            yield x
+
+    for cat in posts.category:
+        for event in all_tags_events:
+            for eventCat in event.category:
+                if eventCat == cat:
+                    tags_events.append(Event.objects.get(id = event.id))
+ 
+    for cat in posts.category:
+        for event in all_tags_post:
+            for eventCat in event.category:
+                if eventCat == cat:
+                    tags_post.append(Post.objects.get(id = event.id))
+    
+    for cat in posts.category:
+        for event in all_tags_blogp:
+            for eventCat in event.category:
+                if eventCat == cat and event.id != posts.id:
+                    tags_blogp.append(BlogTransversalPost.objects.get(id = event.id))
+
+
+    tags_events = uniq(tags_events)
+    tags_post = uniq(tags_post)
+    tags_blogp = uniq(tags_blogp)
+
+    tags_events = sorted(tags_events, key=lambda instance: instance.pk, reverse=True)
+    tags_post = sorted(tags_post, key=lambda instance: instance.pk, reverse=True)
+    tags_blogp = sorted(tags_blogp, key=lambda instance: instance.pk, reverse=True)
 
     if search_query:
-        return SearchView(request, search_query)
-       
+        return SearchView(request, search_query)   
     else:
         return render(request, 'blogTransversal_details.html', {'object':posts, 'post_tag_list':tags_post, 'event_tag_list':tags_events, 'BlogPost_tag_list':tags_blogp})
 

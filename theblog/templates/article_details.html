@@ -92,7 +92,7 @@
         <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
 
             {% for article in post_tag_list %}
-            {% if article.category == post.category %}
+
             <div class="carousel-cell pr-5 pl-5">
                 <h5>{{ article.title }}</h5>
                 <div class="img-hover-zoom">
@@ -101,12 +101,11 @@
                     </a>
                 </div>
             </div>
-            {% endif %}
 
             {% endfor %}
 
             {% for article in event_tag_list %}
-            {% if article.category == post.category %}
+
             <div class="carousel-cell pr-5 pl-5">
                 <h5>{{ article.title }}</h5>
                 <div class="img-hover-zoom">
@@ -115,12 +114,11 @@
                     </a>
                 </div>
             </div>
-            {% endif %}
 
             {% endfor %}
 
             {% for article in BlogPost_tag_list %}
-            {% if article.category == post.category %}
+
             <div class="carousel-cell pr-5 pl-5">
                 <h5>{{ article.title }}</h5>
                 <div class="img-hover-zoom">
@@ -129,7 +127,6 @@
                     </a>
                 </div>
             </div>
-            {% endif %}
 
             {% endfor %}
 
