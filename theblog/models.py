@@ -24,6 +24,12 @@ choice_list = []
 for item in choices:
     choice_list.append(item)
 
+users = User.objects.all().values_list('first_name', 'last_name')
+users_choice_list = []
+
+for item in users:
+    users_choice_list.append(item)
+
 
 class MicroSitios(models.Model):
     title = models.CharField(max_length=255)
@@ -49,39 +55,13 @@ class Lectura(models.Model):
     def get_absolute_url(self):
         return reverse("adminLectura_list")
 
-# class Carousel(models.Model):
-#     title = models.CharField(max_length=255)
-#     subtitle = models.CharField(max_length=255)
-#     link = models.CharField(max_length=255)
-#     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
-
-#     def __str__(self):
-#         return self.title
-    
-#     def get_absolute_url(self):
-#         return reverse("adminCarousel_list")
-
-# class DatosDuros(models.Model):
-#     title = models.CharField(max_length=255)
-#     snippet = models.CharField(max_length=255)
-#     author = models.ForeignKey(User, on_delete=models.CASCADE)
-#     link = models.CharField(max_length=255)
-#     post_date = models.DateField(auto_now_add=True)
-#     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
-
-#     def __str__(self):
-#         return self.title
-    
-#     def get_absolute_url(self):
-#         return reverse("adminDatos_list")  
-
-
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = MultiSelectField(choices=users_choice_list)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
@@ -106,7 +86,8 @@ class BlogTransversalPost(models.Model):
     title = models.CharField(max_length=255)
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = MultiSelectField(choices=users_choice_list)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
@@ -129,7 +110,8 @@ class Event(models.Model):
     title = models.CharField(max_length=255)
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    # author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = MultiSelectField(choices=users_choice_list)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()

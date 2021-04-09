@@ -36,7 +36,14 @@
     </div>
 
     <div class="row ml-auto mr-auto">
-        <p class="text-muted h4" style="font-weight: 1000;">{{ object.author.first_name }} {{ object.author.last_name }}
+        <p class="text-muted h4" style="font-weight: 1000;">
+            {% for item in object.author %}
+            {% if forloop.last %}
+            {{ item }}
+            {% else %}
+            {{ item }},
+            {% endif %}
+            {% endfor %}
         </p>
     </div>
 
@@ -111,7 +118,7 @@
             {% endfor %}
 
             {% for article in event_tag_list %}
-            
+
             <div class="carousel-cell pr-5 pl-5">
                 <h5>{{ article.title }}</h5>
                 <div class="img-hover-zoom">
@@ -124,7 +131,7 @@
             {% endfor %}
 
             {% for article in BlogPost_tag_list %}
-            
+
             <div class="carousel-cell pr-5 pl-5">
                 <h5>{{ article.title }}</h5>
                 <div class="img-hover-zoom">

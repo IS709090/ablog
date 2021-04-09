@@ -34,8 +34,19 @@
         {% endif %}
     </div>
 
-    <div class="row ml-auto mr-auto">
+    {% comment %} <div class="row ml-auto mr-auto">
         <p class="text-muted h4" style="font-weight: 1000;">{{ post.author.first_name }} {{ post.author.last_name }}</p>
+    </div> {% endcomment %}
+    <div class="row ml-auto mr-auto">
+        <p class="text-muted h4" style="font-weight: 1000;">
+            {% for item in post.author %}
+            {% if forloop.last %}
+            {{ item }}
+            {% else %}
+            {{ item }},
+            {% endif %}
+            {% endfor %}
+        </p>
     </div>
 
 

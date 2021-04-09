@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Event, MicroSitios, Category, Lectura, BlogTransversalPost
+from .models import Post, Event, MicroSitios, Category, Lectura, BlogTransversalPost, User
 
 # Carousel, DatosDuros,
 
@@ -7,7 +7,13 @@ choices = Category.objects.all().values_list('name', 'name')
 choice_list = []
 
 for item in choices:
-    choice_list.append(item) 
+    choice_list.append(item)
+
+users = User.objects.all().values_list('first_name', 'last_name')
+users_choice_list = []
+
+for item in users:
+    users_choice_list.append(item)
 
 class SubscriberForm(forms.Form):
     email = forms.EmailField(label='Your email',
@@ -19,10 +25,11 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
         category = forms.ChoiceField(choices=choice_list)
+        author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación que veremos en la pestaña'}),
-            'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor de la publicación'}),
+            # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor de la publicación'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
             'linkToFile': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Enlace a archivo descargable, si está almacenado en otra plataforma'}),
@@ -35,10 +42,11 @@ class BlogTransversalPostForm(forms.ModelForm):
         model = BlogTransversalPost
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
         category = forms.ChoiceField(choices=choice_list)
+        author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog que veremos en la pestaña'}),
-            'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del Blog'}),
+            # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del Blog'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
             'linkToFile': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Enlace a archivo descargable, si está almacenado en otra plataforma'}),
@@ -52,10 +60,11 @@ class EventForm(forms.ModelForm):
         model = Event
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
         category = forms.ChoiceField(choices=choice_list)
+        author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento que veremos en la pestaña'}),
-            'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del evento'}),
+            # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del evento'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
             'linkToFile': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Enlace a archivo descargable, si está almacenado en otra plataforma'}),

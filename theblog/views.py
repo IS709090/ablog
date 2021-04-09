@@ -64,7 +64,14 @@ def HomeView(request):
     datos = []
     posts = []
     eventos = []
+
+    users = User.objects.all().values_list('first_name', 'last_name')
+    choice_list = []
+
+    for item in users:
+        choice_list.append(item)
     
+    print(choice_list)
     count = 0
     for blogP in blogPost:
         if count == 3:
@@ -335,6 +342,9 @@ def BlogTransversalDetailView(request, pk):
             for eventCat in event.category:
                 if eventCat == cat and event.id != posts.id:
                     tags_blogp.append(BlogTransversalPost.objects.get(id = event.id))
+    
+    for cat in posts.author:
+        print(cat)
 
 
     tags_events = uniq(tags_events)
