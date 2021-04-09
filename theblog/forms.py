@@ -3,11 +3,18 @@ from .models import Post, Event, MicroSitios, Category, Lectura, BlogTransversal
 
 # Carousel, DatosDuros,
 
-choices = Category.objects.all().values_list('name', 'name')
-choice_list = []
 
-for item in choices:
-    choice_list.append(item)
+MY_CHOICES = (('item_key1', 'Item title 1.1'),
+              ('item_key2', 'Item title 1.2'),
+              ('item_key3', 'Item title 1.3'),
+              ('item_key4', 'Item title 1.4'),
+              ('item_key5', 'Item title 1.5'))
+
+# choices = Category.objects.all().values_list('name', 'name')
+# choice_list = []
+
+# for item in choices:
+#     choice_list.append(item)
 
 users = User.objects.all().values_list('first_name', 'last_name')
 users_choice_list = []
@@ -24,7 +31,7 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
-        category = forms.ChoiceField(choices=choice_list)
+        category = forms.ChoiceField(choices=MY_CHOICES)
         author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación'}),
@@ -41,7 +48,7 @@ class BlogTransversalPostForm(forms.ModelForm):
     class Meta:
         model = BlogTransversalPost
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
-        category = forms.ChoiceField(choices=choice_list)
+        category = forms.ChoiceField(choices=MY_CHOICES)
         author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog'}),
@@ -59,7 +66,7 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
-        category = forms.ChoiceField(choices=choice_list)
+        category = forms.ChoiceField(choices=MY_CHOICES)
         author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento'}),

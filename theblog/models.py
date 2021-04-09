@@ -17,12 +17,17 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse("adminHome")
 
+MY_CHOICES = (('item_key1', 'Item title 1.1'),
+              ('item_key2', 'Item title 1.2'),
+              ('item_key3', 'Item title 1.3'),
+              ('item_key4', 'Item title 1.4'),
+              ('item_key5', 'Item title 1.5'))
 
-choices = Category.objects.all().values_list('name', 'name')
-choice_list = []
+# choices = Category.objects.all().values_list('name', 'name')
+# choice_list = []
 
-for item in choices:
-    choice_list.append(item)
+# for item in choices:
+#     choice_list.append(item)
 
 users = User.objects.all().values_list('first_name', 'last_name')
 users_choice_list = []
@@ -58,6 +63,12 @@ class Lectura(models.Model):
 class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     rol = models.TextField()
+    profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile/")
+    twitter = models.CharField(max_length=255, null=True, blank=True)
+    facebook = models.CharField(max_length=255, null=True, blank=True)
+    linkedin = models.CharField(max_length=255, null=True, blank=True)
+    instagram = models.CharField(max_length=255, null=True, blank=True)
+    youtube = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return str(self.user)
@@ -72,7 +83,7 @@ class Post(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=choice_list)
+    category = MultiSelectField(choices=MY_CHOICES)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -98,7 +109,7 @@ class BlogTransversalPost(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=choice_list)
+    category = MultiSelectField(choices=MY_CHOICES)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -122,7 +133,7 @@ class Event(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=choice_list)
+    category = MultiSelectField(choices=MY_CHOICES)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
