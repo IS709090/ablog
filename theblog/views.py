@@ -359,6 +359,7 @@ def BlogTransversalDetailView(request, pk):
         return render(request, 'blogTransversal_details.html', {'object':posts, 'post_tag_list':tags_post, 'event_tag_list':tags_events, 'BlogPost_tag_list':tags_blogp})
 
 
+
 def acercaDeDetailView(request, pk):
     posts = Profile.objects.get(id = pk)
     search_query = request.GET.get('búsqueda', '')
