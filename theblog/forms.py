@@ -10,17 +10,17 @@ MY_CHOICES = (('item_key1', 'Item title 1.1'),
               ('item_key4', 'Item title 1.4'),
               ('item_key5', 'Item title 1.5'))
 
-# choices = Category.objects.all().values_list('name', 'name')
-# choice_list = []
+choices = Category.objects.all().values_list('name', 'name')
+choice_list = []
 
-# for item in choices:
-#     choice_list.append(item)
+for item in choices:
+    choice_list.append(item)
 
-# users = User.objects.all().values_list('first_name', 'last_name')
-# users_choice_list = []
+users = User.objects.all().values_list('first_name', 'last_name')
+users_choice_list = []
 
-# for item in users:
-#     users_choice_list.append(item)
+for item in users:
+    users_choice_list.append(item)
 
 class SubscriberForm(forms.Form):
     email = forms.EmailField(label='Your email',
@@ -31,8 +31,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
-        category = forms.ChoiceField(choices=MY_CHOICES)
-        author = forms.ChoiceField(choices=MY_CHOICES)
+        category = forms.ChoiceField(choices=choice_list)
+        author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación que veremos en la pestaña'}),
@@ -48,8 +48,8 @@ class BlogTransversalPostForm(forms.ModelForm):
     class Meta:
         model = BlogTransversalPost
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
-        category = forms.ChoiceField(choices=MY_CHOICES)
-        author = forms.ChoiceField(choices=MY_CHOICES)
+        category = forms.ChoiceField(choices=choice_list)
+        author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog que veremos en la pestaña'}),
@@ -66,8 +66,8 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
-        category = forms.ChoiceField(choices=MY_CHOICES)
-        author = forms.ChoiceField(choices=MY_CHOICES)
+        category = forms.ChoiceField(choices=choice_list)
+        author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento que veremos en la pestaña'}),
@@ -79,18 +79,6 @@ class EventForm(forms.ModelForm):
             'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen del evento, que saldrá debajo del evento en el listado de eventos'}),
         }
 
-
-# class DatosDurosForm(forms.ModelForm):
-#     class Meta:
-#         model = DatosDuros
-#         fields = ('title', 'author', 'snippet', 'header_image', 'link')
-#         widgets = {
-#             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Dato'}),
-#             'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen del Dato'}),
-#             'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace al que te lleva'}),
-#             'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del Dato'}),
-#             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
-#         }
 
 class CategoryForm(forms.ModelForm):
     class Meta:

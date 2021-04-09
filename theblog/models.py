@@ -23,17 +23,17 @@ MY_CHOICES = (('item_key1', 'Item title 1.1'),
               ('item_key4', 'Item title 1.4'),
               ('item_key5', 'Item title 1.5'))
 
-# choices = Category.objects.all().values_list('name', 'name')
-# choice_list = []
+choices = Category.objects.all().values_list('name', 'name')
+choice_list = []
 
-# for item in choices:
-#     choice_list.append(item)
+for item in choices:
+    choice_list.append(item)
 
-# users = User.objects.all().values_list('first_name', 'last_name')
-# users_choice_list = []
+users = User.objects.all().values_list('first_name', 'last_name')
+users_choice_list = []
 
-# for item in users:
-#     users_choice_list.append(item)
+for item in users:
+    users_choice_list.append(item)
 
 
 class MicroSitios(models.Model):
@@ -78,12 +78,12 @@ class Post(models.Model):
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
-    author = MultiSelectField(choices=MY_CHOICES)
+    author = MultiSelectField(choices=users_choice_list)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=MY_CHOICES)
+    category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -104,12 +104,12 @@ class BlogTransversalPost(models.Model):
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
-    author = MultiSelectField(choices=MY_CHOICES)
+    author = MultiSelectField(choices=users_choice_list)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=MY_CHOICES)
+    category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -128,12 +128,12 @@ class Event(models.Model):
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
-    author = MultiSelectField(choices=MY_CHOICES)
+    author = MultiSelectField(choices=users_choice_list)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=MY_CHOICES)
+    category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
