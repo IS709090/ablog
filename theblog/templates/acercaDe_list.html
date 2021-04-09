@@ -105,7 +105,7 @@ Acerca De
         <div class="row mb-5 ml-5 mr-auto">
 
             <!-- SINGLE TEAM MEMBER -->
-            {% for post in posts %}
+            {% for post in object_list %}
 
             <div class="col-md-6 ml-auto mr-auto">
 
@@ -114,7 +114,7 @@ Acerca De
                     <div class="col-md-6 ml-auto mr-auto">
                         <a href="ejemploAcercaDe.html">
                             <img class="img-fluid img-raised rounded-circle"
-                                src="{{ post.profile.profile_pic.url }}"
+                                src="{{ post.Profile.profile_pic.url }}"
                                 alt="">
                         </a>
 
@@ -127,7 +127,7 @@ Acerca De
                             </a>
                         </div>
                         <div class="row ml-auto mr-auto">
-                            <p>{{ post.profile.profile_pic.rol }}</p>
+                            <p>{{ post.Profile.profile_pic.rol }}</p>
                         </div>
                     </div>
 

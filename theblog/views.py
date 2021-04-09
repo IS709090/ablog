@@ -65,13 +65,13 @@ def HomeView(request):
     posts = []
     eventos = []
 
-    users = User.objects.all().values_list('first_name', 'last_name')
-    choice_list = []
+    # users = User.objects.all().values_list('first_name', 'last_name')
+    # choice_list = []
 
-    for item in users:
-        choice_list.append(item)
+    # for item in users:
+    #     choice_list.append(item)
     
-    print(choice_list)
+    # print(choice_list)
     count = 0
     for blogP in blogPost:
         if count == 3:

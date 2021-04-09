@@ -29,11 +29,11 @@ MY_CHOICES = (('item_key1', 'Item title 1.1'),
 # for item in choices:
 #     choice_list.append(item)
 
-users = User.objects.all().values_list('first_name', 'last_name')
-users_choice_list = []
+# users = User.objects.all().values_list('first_name', 'last_name')
+# users_choice_list = []
 
-for item in users:
-    users_choice_list.append(item)
+# for item in users:
+#     users_choice_list.append(item)
 
 
 class MicroSitios(models.Model):
@@ -78,7 +78,7 @@ class Post(models.Model):
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
-    author = MultiSelectField(choices=users_choice_list)
+    author = MultiSelectField(choices=MY_CHOICES)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
@@ -104,7 +104,7 @@ class BlogTransversalPost(models.Model):
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
-    author = MultiSelectField(choices=users_choice_list)
+    author = MultiSelectField(choices=MY_CHOICES)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
@@ -128,7 +128,7 @@ class Event(models.Model):
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     title_tag = models.CharField(max_length=255)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
-    author = MultiSelectField(choices=users_choice_list)
+    author = MultiSelectField(choices=MY_CHOICES)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
