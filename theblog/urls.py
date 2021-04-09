@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path
 from django.contrib import admin
 from . import views
-from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminLecturaListView, AddLecturaView, UpdateLecturaView, DeleteLecturaView, AcercaDeListView, ThinkTankListView, BlogTransversalDetailView, BlogTransversalListView, AdminBlogTransversalListView, UpdateBlogTransversalPostView, DeleteBlogTransversalPostView, AddBlogTransversalPostView, SearchView, new
+from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminLecturaListView, AddLecturaView, UpdateLecturaView, DeleteLecturaView, AcercaDeListView, ThinkTankListView, BlogTransversalDetailView, BlogTransversalListView, AdminBlogTransversalListView, UpdateBlogTransversalPostView, DeleteBlogTransversalPostView, AddBlogTransversalPostView, SearchView, new, LineasListView
   
 # AdminCarouselListView  UpdateCarouselView AddCarouselView DeleteCarouselView AdminDatosDurosListView, AddDatosView, UpdateDatosView, DeleteDatosView,
 
@@ -36,6 +36,7 @@ urlpatterns = [
     path('admin/micrositios', AdminMicroSitioListView.as_view(), name="adminMicro_list"),
     path('publicaciones/', ArticleListView, name="article_list"),
     path('blogTransversal/', BlogTransversalListView, name="BlogTransversal_list"),
+    path('lineasEstrategicas/', LineasListView, name="lineas"),
     path('eventos/', EventListView, name="event_list"),
     path('categoria/<str:cats>/', CategoryView, name="category"),
     path('busqueda/', SearchView, name="search"),
