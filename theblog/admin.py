@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros, BlogTransversalPost
+from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros, BlogTransversalPost, Subscriber
 # Register your models here.
 
 
@@ -11,3 +11,4 @@ admin.site.register(BlogTransversalPost)
 admin.site.register(Lectura)
 admin.site.register(Carousel)
 admin.site.register(DatosDuros)
+admin.site.register(Subscriber)

@@ -19,11 +19,11 @@ class Category(models.Model):
         return reverse("adminHome")
 
 
-choices = Category.objects.all().values_list('name', 'name')
-choice_list = []
+# choices = Category.objects.all().values_list('name', 'name')
+# choice_list = []
 
-for item in choices:
-    choice_list.append(item)
+# for item in choices:
+#     choice_list.append(item)
 
 
 class MicroSitios(models.Model):
@@ -87,7 +87,7 @@ class Post(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     #category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=choice_list)
+    # category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -112,7 +112,7 @@ class BlogTransversalPost(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=choice_list)
+    # category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -135,7 +135,7 @@ class Event(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=choice_list)
+    # category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -147,3 +147,12 @@ class Event(models.Model):
     
     def get_absolute_url(self):
         return reverse("adminEvent_list")
+
+
+class Subscriber(models.Model):
+    email = models.EmailField(unique=True)
+    conf_num = models.CharField(max_length=15)
+    confirmed = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.email + " (" + ("not " if not self.confirmed else "") + "confirmed)"

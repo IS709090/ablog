@@ -14,11 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+from django.contrib import admin
 from . import views
-from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminCarouselListView, AdminLecturaListView, AddCarouselView, AddLecturaView, UpdateCarouselView, UpdateLecturaView, DeleteCarouselView, DeleteLecturaView, AdminDatosDurosListView, AddDatosView, UpdateDatosView, DeleteDatosView, AcercaDeListView, ThinkTankListView, BlogTransversalDetailView, BlogTransversalListView, AdminBlogTransversalListView, UpdateBlogTransversalPostView, DeleteBlogTransversalPostView, AddBlogTransversalPostView, SearchView
+from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminCarouselListView, AdminLecturaListView, AddCarouselView, AddLecturaView, UpdateCarouselView, UpdateLecturaView, DeleteCarouselView, DeleteLecturaView, AdminDatosDurosListView, AddDatosView, UpdateDatosView, DeleteDatosView, AcercaDeListView, ThinkTankListView, BlogTransversalDetailView, BlogTransversalListView, AdminBlogTransversalListView, UpdateBlogTransversalPostView, DeleteBlogTransversalPostView, AddBlogTransversalPostView, SearchView, new
   
 urlpatterns = [
     # path('', HomeView.as_view(), name="home_list"),
+    # path('admin/', admin.site.urls),
     path('', HomeView, name="home"),
     path('admin/inicio', HomeAdminView.as_view(), name="adminHome"),
     path('admin/publicaciones', AdminArticleListView.as_view(), name="adminArticle_list"),
@@ -60,4 +62,5 @@ urlpatterns = [
     path('admin/micrositio/eliminar/<int:pk>', DeleteMicroSitioView.as_view(), name="delete_micro"),
     path('admin/carrusel/eliminar/<int:pk>', DeleteCarouselView.as_view(), name="delete_carousel"),
     path('admin/lectura/eliminar/<int:pk>', DeleteLecturaView.as_view(), name="delete_lectura"),
+    path('new/', new, name='new'),
 ]

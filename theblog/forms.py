@@ -1,17 +1,22 @@
 from django import forms
 from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros, BlogTransversalPost
 
-choices = Category.objects.all().values_list('name', 'name')
-choice_list = []
+# choices = Category.objects.all().values_list('name', 'name')
+# choice_list = []
 
-for item in choices:
-    choice_list.append(item) 
+# for item in choices:
+#     choice_list.append(item) 
+
+class SubscriberForm(forms.Form):
+    email = forms.EmailField(label='Your email',
+                             max_length=100,
+                             widget=forms.EmailInput(attrs={'class': 'form-control'}))
 
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
-        category = forms.ChoiceField(choices=choice_list)
+        # category = forms.ChoiceField(choices=choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación que veremos en la pestaña'}),
@@ -27,7 +32,7 @@ class BlogTransversalPostForm(forms.ModelForm):
     class Meta:
         model = BlogTransversalPost
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
-        category = forms.ChoiceField(choices=choice_list)
+        # category = forms.ChoiceField(choices=choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog que veremos en la pestaña'}),
@@ -44,7 +49,7 @@ class EventForm(forms.ModelForm):
     class Meta:
         model = Event
         fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
-        category = forms.ChoiceField(choices=choice_list)
+        # category = forms.ChoiceField(choices=choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento que veremos en la pestaña'}),
