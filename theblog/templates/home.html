@@ -15,19 +15,41 @@
 
           <div class="carousel-item active img-hover-zoom">
             <img class="d-block img-fluid" src="{% static 'theblog/assets/img/transversal/carousel1st.png' %}"
-              alt="First slide" style="height: 87vh; width: max-content;">
+              alt="First slide" style="height: auto; width: auto;">
           </div>
 
-          {% for slide in slides %}
-          <div class="carousel-item img-hover-zoom"><img class="d-block img-fluid" src="{{ slide.header_image.url }}"
-              alt="Slides" style="height: 87vh; width: max-content;">
+          
+          <div class="carousel-item img-hover-zoom"><img class="d-block img-fluid" src="{{ slidePost.header_image.url }}"
+              alt="Slides" style="height: auto; width: auto;">
             <div class="carousel-caption d-none d-md-block mb-0 pb-3">
-              <a class="mb-0 pb-0 h1" style="font-weight: 1000;" href="{{ slide.link }}">
-                {{ slide.title }}
-              </a><br>{{ slide.subtitle }}
+              <a class="mb-0 pb-0 h1" style="font-weight: 1000;" href="{% url 'article-detail' slidePost.pk %}">
+                {{ slidePost.title }}
+              </a>
+              {% comment %} <br> {% endcomment %}
+              {% comment %} {{ slide.subtitle }} {% endcomment %}
             </div>
           </div>
-          {% endfor %}
+          
+
+          <div class="carousel-item img-hover-zoom"><img class="d-block img-fluid" src="{{ slideEvent.header_image.url }}"
+              alt="Slides" style="height: auto; width: auto;">
+            <div class="carousel-caption d-none d-md-block mb-0 pb-3">
+              <a class="mb-0 pb-0 h1" style="font-weight: 1000;" href="{% url 'event-detail' slideEvent.pk %}">
+                {{ slideEvent.title }}
+              </a>
+              {% comment %} <br>{{ slide.subtitle }} {% endcomment %}
+            </div>
+          </div>
+
+          <div class="carousel-item img-hover-zoom"><img class="d-block img-fluid" src="{{ slideBlog.header_image.url }}"
+              alt="Slides" style="height: auto; width: auto;">
+            <div class="carousel-caption d-none d-md-block mb-0 pb-3">
+              <a class="mb-0 pb-0 h1" style="font-weight: 1000;" href="{% url 'BlogTransversal-detail' slideBlog.pk %}">
+                {{ slideBlog.title }}
+              </a>
+              {% comment %} <br>{{ slide.subtitle }} {% endcomment %}
+            </div>
+          </div>
 
         </div>
 
@@ -51,7 +73,8 @@
     <!-- TITULO DONACION -->
     <div class="col-md-12 ml-auto mr-auto mb-0 pb-0">
       <a href="">
-        <h2 class="title mb-0 pb-0" style="color: white; font-weight: 1000; font-size: 2em; text-align: center;">¡Tu donación tiene
+        <h2 class="title mb-0 pb-0" style="color: white; font-weight: 1000; font-size: 2em; text-align: center;">¡Tu
+          donación tiene
           un
           impacto transversal en nuestra sociedad!</h2>
       </a>
@@ -90,7 +113,7 @@
         <div class="card">
           <div class="card-header">
             <div class=" img-hover-zoom">
-              <a href="{{ dato.link }}">
+              <a href="{% url 'BlogTransversal-detail' dato.pk %}">
                 <img class="card-img-top" src="{{ dato.header_image.url }}" rel="nofollow" alt="Card image cap">
               </a>
 
@@ -98,17 +121,22 @@
 
           </div>
           <div class="card-body">
-            <a href="{{ dato.link }}">
+            <a href="{% url 'BlogTransversal-detail' dato.pk %}">
               <h4 class="card-title text-primary">{{ dato.title }}</h4>
             </a>
 
             {{ dato.snippet }}
             <div class="text-muted" style="font-size: 90%;">Por {{ dato.author.first_name }} {{ dato.author.last_name }}
               <br>
+              {% if dato.past_Publication_Date %}
+              {{ dato.past_Publication_Date }}
+              {% else %}
               {% load i18n %}
               {% language 'es' %}
               {{ dato.post_date }}
-              {% endlanguage %}</div>
+              {% endlanguage %}
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
@@ -137,11 +165,11 @@
 
       <div class="row ml-auto mr-auto mb-3" style="justify-content: space-evenly; font-size: xx-large;">
         <div class="social-media">
-          <a href=""><i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i></a>
-          <a href=""><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>
-          <a href=""><i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i></a>
-          <a href=""><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
-          <a href=""><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></a>
+          <a href="https://twitter.com/transversal_t"><i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i></a>
+          <a href="https://www.facebook.com/TransversalT"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>
+          {% comment %} <a href=""><i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i></a> {% endcomment %}
+          <a href="https://www.instagram.com/transversalt"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+          <a href="https://www.youtube.com/channel/UC_W3vv7asZXVpqR4b013YCQ"><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></a>
         </div>
 
       </div>

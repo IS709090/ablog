@@ -15,15 +15,39 @@ Blog Transversal
 
     <!-- TRANSVERSAL DIA A DIA -->
 
-    {% for post in object_list %}
+    {% comment %} {% for post in object_list %}
 
     <div class="row ml-auto mr-auto diaLanding" style="justify-content: space-evenly;">
 
         <div class="col-md-4 ml-auto mr-auto ">
             <div class="img-hover-zoom">
                 <a href="{% url 'BlogTransversal-detail' post.pk %}"> <img class="img-fluid img-raised"
-                        src="{{ post.header_image.url }}"
-                        alt=""></a>
+                        src="{{ post.header_image.url }}" alt=""></a>
+            </div>
+        </div>
+
+        <div class="col-md-8 ml-auto mr-auto">
+            <a href="{% url 'BlogTransversal-detail' post.pk %}">
+                <h4 class="text-primary">{{ post.title }}</h4>
+            </a>
+
+            <h5>{{ post.snippet }}</h5>
+        </div>
+
+    </div>
+
+    <hr>
+
+    {% endfor %} {% endcomment %}
+
+    {% for post in page_obj %}
+
+    <div class="row ml-auto mr-auto diaLanding" style="justify-content: space-evenly;">
+
+        <div class="col-md-4 ml-auto mr-auto ">
+            <div class="img-hover-zoom">
+                <a href="{% url 'BlogTransversal-detail' post.pk %}"> <img class="img-fluid img-raised"
+                        src="{{ post.header_image.url }}" alt=""></a>
             </div>
         </div>
 
@@ -40,6 +64,44 @@ Blog Transversal
     <hr>
 
     {% endfor %}
+    
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+            {% if page_obj.has_previous %}
+
+            <li class="page-item">
+                <a class="page-link" href="?page=1">&laquo; Primera</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link"
+                    href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            </li>
+
+            {% endif %}
+
+
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}<span
+                        class="sr-only">(current)</span></a>
+            </li>
+
+
+            {% if page_obj.has_next %}
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+            </li>
+
+            {% endif %}
+
+        </ul>
+    </nav>
 
 
 

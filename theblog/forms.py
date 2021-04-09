@@ -1,5 +1,7 @@
 from django import forms
-from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros, BlogTransversalPost
+from .models import Post, Event, MicroSitios, Category, Lectura, BlogTransversalPost
+
+# Carousel, DatosDuros,
 
 choices = Category.objects.all().values_list('name', 'name')
 choice_list = []
@@ -62,17 +64,17 @@ class EventForm(forms.ModelForm):
         }
 
 
-class DatosDurosForm(forms.ModelForm):
-    class Meta:
-        model = DatosDuros
-        fields = ('title', 'author', 'snippet', 'header_image', 'link')
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Dato'}),
-            'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen del Dato'}),
-            'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace al que te lleva'}),
-            'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del Dato'}),
-            'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
-        }
+# class DatosDurosForm(forms.ModelForm):
+#     class Meta:
+#         model = DatosDuros
+#         fields = ('title', 'author', 'snippet', 'header_image', 'link')
+#         widgets = {
+#             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Dato'}),
+#             'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen del Dato'}),
+#             'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace al que te lleva'}),
+#             'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del Dato'}),
+#             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
+#         }
 
 class CategoryForm(forms.ModelForm):
     class Meta:
@@ -105,13 +107,13 @@ class LecturaForm(forms.ModelForm):
         }
 
 
-class CarouselForm(forms.ModelForm):
-    class Meta:
-        model = Carousel
-        fields = ('title', 'subtitle','header_image', 'link')
-        widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Slide'}),
-            'subtitle': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Subtítulo del Slide'}),
-            'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace a la publicación/evento del Slide'}),
-            'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),   
-        }
+# class CarouselForm(forms.ModelForm):
+#     class Meta:
+#         model = Carousel
+#         fields = ('title', 'subtitle','header_image', 'link')
+#         widgets = {
+#             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Slide'}),
+#             'subtitle': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Subtítulo del Slide'}),
+#             'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace a la publicación/evento del Slide'}),
+#             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),   
+#         }

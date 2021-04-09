@@ -49,31 +49,31 @@ class Lectura(models.Model):
     def get_absolute_url(self):
         return reverse("adminLectura_list")
 
-class Carousel(models.Model):
-    title = models.CharField(max_length=255)
-    subtitle = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
-    header_image = models.ImageField(null=True, blank=True, upload_to="images/")
+# class Carousel(models.Model):
+#     title = models.CharField(max_length=255)
+#     subtitle = models.CharField(max_length=255)
+#     link = models.CharField(max_length=255)
+#     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
 
-    def __str__(self):
-        return self.title
+#     def __str__(self):
+#         return self.title
     
-    def get_absolute_url(self):
-        return reverse("adminCarousel_list")
+#     def get_absolute_url(self):
+#         return reverse("adminCarousel_list")
 
-class DatosDuros(models.Model):
-    title = models.CharField(max_length=255)
-    snippet = models.CharField(max_length=255)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
-    link = models.CharField(max_length=255)
-    post_date = models.DateField(auto_now_add=True)
-    header_image = models.ImageField(null=True, blank=True, upload_to="images/")
+# class DatosDuros(models.Model):
+#     title = models.CharField(max_length=255)
+#     snippet = models.CharField(max_length=255)
+#     author = models.ForeignKey(User, on_delete=models.CASCADE)
+#     link = models.CharField(max_length=255)
+#     post_date = models.DateField(auto_now_add=True)
+#     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
 
-    def __str__(self):
-        return self.title
+#     def __str__(self):
+#         return self.title
     
-    def get_absolute_url(self):
-        return reverse("adminDatos_list")  
+#     def get_absolute_url(self):
+#         return reverse("adminDatos_list")  
 
 
 

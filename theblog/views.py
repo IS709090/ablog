@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Event, MicroSitios, Category, Lectura, Carousel, DatosDuros, User, BlogTransversalPost
-from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, CarouselForm, LecturaForm, DatosDurosForm, BlogTransversalPostForm
+from .models import Post, Event, MicroSitios, Category, Lectura, User, BlogTransversalPost
+from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, LecturaForm, BlogTransversalPostForm
 from django.urls import reverse_lazy
 from itertools import chain
 from django.http import HttpResponse
@@ -12,8 +12,9 @@ from .forms import SubscriberForm
 import random
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from django.core.paginator import Paginator
 
-# Create your views here. 
+# Create your views here. Carousel CarouselForm DatosDuros DatosDurosForm
 
 def SearchView(request, search_query):
     print('ok')
@@ -53,10 +54,19 @@ def HomeView(request):
     micros = MicroSitios.objects.all().order_by('-id')
     eventos = Event.objects.all().order_by('-id')
     lecturas = Lectura.objects.all().order_by('-id')
-    slides = Carousel.objects.all().order_by('-id')
-    datos = DatosDuros.objects.all().order_by('-id')
+    slidePost = Post.objects.latest('id')
+    slideEvent = Event.objects.latest('id')
+    slideBlog = BlogTransversalPost.objects.latest('id')
+    datos = []
     blogPost = BlogTransversalPost.objects.all().order_by('-id')
     posts = Post.objects.all().order_by('-id')
+
+    count = 0
+    for blogP in blogPost:
+        if count == 3:
+            break
+        datos.append(blogP)
+        count += 1
     
     search_query = request.GET.get('búsqueda', '')
 
@@ -64,40 +74,52 @@ def HomeView(request):
         return SearchView(request, search_query)
        
     else:
-        return render(request, 'home.html', {'micros':micros, 'eventos':eventos, 'lecturas':lecturas, 'slides':slides, 'datos':datos, 'blogPost':blogPost, 'posts':posts})
+        return render(request, 'home.html', {'micros':micros, 'eventos':eventos, 'lecturas':lecturas, 'slidePost':slidePost, 'slideEvent':slideEvent, 'slideBlog':slideBlog, 'datos':datos, 'blogPost':blogPost, 'posts':posts})
 
 
 def ArticleListView(request):
     posts = Post.objects.all().order_by('-id')
     search_query = request.GET.get('búsqueda', '')
+    paginator = Paginator(posts, 5) # Show 25 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     if search_query:
         return SearchView(request, search_query)
        
     else:
-        return render(request, 'article_list.html', {'object_list':posts})
+        return render(request, 'article_list.html', {'object_list':posts, 'page_obj': page_obj})
 
 
 def BlogTransversalListView(request):
     posts = BlogTransversalPost.objects.all().order_by('-id')
     search_query = request.GET.get('búsqueda', '')
+    paginator = Paginator(posts, 5) # Show 25 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     if search_query:
         return SearchView(request, search_query)
        
     else:
-        return render(request, 'blogTransversalPost_list.html', {'object_list':posts})
+        return render(request, 'blogTransversalPost_list.html', {'object_list':posts, 'page_obj': page_obj})
 
 
 def EventListView(request):
     posts = Event.objects.all().order_by('-id')
     search_query = request.GET.get('búsqueda', '')
+    paginator = Paginator(posts, 5) # Show 25 contacts per page.
+
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     if search_query:
         return SearchView(request, search_query)
        
     else:
-        return render(request, 'event_list.html', {'object_list':posts})
+        return render(request, 'event_list.html', {'object_list':posts, 'page_obj': page_obj})
 
 
 def AcercaDeListView(request):
@@ -332,18 +354,18 @@ class AdminBlogTransversalListView(ListView):
     #ordering = ['-post_date']
 
 
-class AdminCarouselListView(ListView):
-    model = Carousel
-    template_name = 'adminCarousel_list.html'
-    ordering = ['-id']
-    #ordering = ['-post_date']
+# class AdminCarouselListView(ListView):
+#     model = Carousel
+#     template_name = 'adminCarousel_list.html'
+#     ordering = ['-id']
+#     #ordering = ['-post_date']
 
 
-class AdminDatosDurosListView(ListView):
-    model = DatosDuros
-    template_name = 'adminDatos_list.html'
-    ordering = ['-id']
-    #ordering = ['-post_date']
+# class AdminDatosDurosListView(ListView):
+#     model = DatosDuros
+#     template_name = 'adminDatos_list.html'
+#     ordering = ['-id']
+#     #ordering = ['-post_date']
 
 
 class AdminLecturaListView(ListView):
@@ -398,16 +420,16 @@ class AddEventView(CreateView):
     template_name = 'add_event.html'
 
 
-class AddCarouselView(CreateView):
-    model = Carousel
-    form_class = CarouselForm
-    template_name = 'add_carousel.html'
+# class AddCarouselView(CreateView):
+#     model = Carousel
+#     form_class = CarouselForm
+#     template_name = 'add_carousel.html'
 
 
-class AddDatosView(CreateView):
-    model = DatosDuros
-    form_class = DatosDurosForm
-    template_name = 'add_datos.html'
+# class AddDatosView(CreateView):
+#     model = DatosDuros
+#     form_class = DatosDurosForm
+#     template_name = 'add_datos.html'
 
 
 class AddLecturaView(CreateView):
@@ -442,10 +464,10 @@ class UpdateMicroSitioView(UpdateView):
     form_class = MicroSitioForm
 
 
-class UpdateCarouselView(UpdateView):
-    model = Carousel
-    template_name = 'update_carousel.html'
-    form_class = CarouselForm
+# class UpdateCarouselView(UpdateView):
+#     model = Carousel
+#     template_name = 'update_carousel.html'
+#     form_class = CarouselForm
 
 
 class UpdateLecturaView(UpdateView):
@@ -454,10 +476,10 @@ class UpdateLecturaView(UpdateView):
     form_class = LecturaForm
 
 
-class UpdateDatosView(UpdateView):
-    model = DatosDuros
-    template_name = 'update_datos.html'
-    form_class = DatosDurosForm
+# class UpdateDatosView(UpdateView):
+#     model = DatosDuros
+#     template_name = 'update_datos.html'
+#     form_class = DatosDurosForm
 
 
 #Delete
@@ -484,10 +506,10 @@ class DeleteMicroSitioView(DeleteView):
     template_name = 'delete_micro.html'
     success_url = reverse_lazy('adminMicro_list')
 
-class DeleteCarouselView(DeleteView):
-    model = Carousel
-    template_name = 'delete_carousel.html'
-    success_url = reverse_lazy('adminCarousel_list')
+# class DeleteCarouselView(DeleteView):
+#     model = Carousel
+#     template_name = 'delete_carousel.html'
+#     success_url = reverse_lazy('adminCarousel_list')
 
 class DeleteLecturaView(DeleteView):
     model = Lectura
@@ -495,10 +517,10 @@ class DeleteLecturaView(DeleteView):
     success_url = reverse_lazy('adminLectura_list')
 
 
-class DeleteDatosView(DeleteView):
-    model = DatosDuros
-    template_name = 'delete_datos.html'
-    success_url = reverse_lazy('adminDatos_list')
+# class DeleteDatosView(DeleteView):
+#     model = DatosDuros
+#     template_name = 'delete_datos.html'
+#     success_url = reverse_lazy('adminDatos_list')
 
 
 # Helper Functions
