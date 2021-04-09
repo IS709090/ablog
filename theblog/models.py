@@ -55,6 +55,12 @@ class Lectura(models.Model):
     def get_absolute_url(self):
         return reverse("adminLectura_list")
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    rol = models.TextField()
+
+    def __str__(self):
+        return str(self.user)
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
