@@ -122,6 +122,7 @@ def EventListView(request):
         return render(request, 'event_list.html', {'object_list':posts, 'page_obj': page_obj})
 
 
+
 def AcercaDeListView(request):
     posts = User.objects.all().order_by('-id')
     search_query = request.GET.get('búsqueda', '')
