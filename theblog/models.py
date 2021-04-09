@@ -7,11 +7,6 @@ from tinymce import models as tinymce_models
 from multiselectfield import MultiSelectField
 # Create your models here.
 
-MY_CHOICES = (('item_key1', 'Item title 1.1'),
-              ('item_key2', 'Item title 1.2'),
-              ('item_key3', 'Item title 1.3'),
-              ('item_key4', 'Item title 1.4'),
-              ('item_key5', 'Item title 1.5'))
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -23,11 +18,11 @@ class Category(models.Model):
         return reverse("adminHome")
 
 
-# choices = Category.objects.all().values_list('name', 'name')
-# choice_list = []
+choices = Category.objects.all().values_list('name', 'name')
+choice_list = []
 
-# for item in choices:
-#     choice_list.append(item)
+for item in choices:
+    choice_list.append(item)
 
 
 class MicroSitios(models.Model):
@@ -91,7 +86,7 @@ class Post(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=MY_CHOICES)
+    category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -116,7 +111,7 @@ class BlogTransversalPost(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=MY_CHOICES)
+    category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -139,7 +134,7 @@ class Event(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    category = MultiSelectField(choices=MY_CHOICES)
+    category = MultiSelectField(choices=choice_list)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
