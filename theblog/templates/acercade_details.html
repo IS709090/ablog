@@ -89,18 +89,18 @@ Acerca De
             <!-- SINGLE TEAM MEMBER -->
             {% for post in all_users %}
 
-            <div class="col-md-6 ml-auto mr-auto">
+            <div class="col-md-6 ml-auto mr-auto pb-5">
 
                 <!-- TEAM MEMBER IMG DESC -->
-                <div class="row ml-auto mr-auto">
-                    <div class="col-md-6 ml-auto mr-auto">
+                <div class="row ml-auto mr-auto ">
+                    <div class="col-md-6 ml-auto mr-auto ">
                         <a href="{% url 'acercaDe_detail' post.pk %}">
-                            <img class="img-fluid img-raised rounded-circle" src="{{ post.profile_pic.url }}" alt="">
+                            <img class="img-fluid img-raised rounded-circle " src="{{ post.profile_pic.url }}" alt="">
                         </a>
 
                     </div>
                     <!-- DESC -->
-                    <div class="col-md-6 ml-auto mr-auto">
+                    <div class="col-md-6 ml-auto mr-auto ">
                         <div class="row ml-auto mr-auto">
                             <a href="{% url 'acercaDe_detail' post.pk %}" class="h3">
                                 {{ post.full_name }}
