@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from .models import Post, Event, MicroSitios, Category, Lectura, User, BlogTransversalPost
+from .models import Post, Event, MicroSitios, Category, Lectura, User, BlogTransversalPost, Profile
 from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, LecturaForm, BlogTransversalPostForm
 from django.urls import reverse_lazy
 from itertools import chain
@@ -149,7 +149,7 @@ def EventListView(request):
 
 
 def AcercaDeListView(request):
-    posts = User.objects.all().order_by('-id')
+    posts = Profile.objects.all().order_by('-id')
     search_query = request.GET.get('búsqueda', '')
 
     if search_query:
