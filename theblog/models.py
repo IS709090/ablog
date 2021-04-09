@@ -7,7 +7,11 @@ from tinymce import models as tinymce_models
 from multiselectfield import MultiSelectField
 # Create your models here.
 
-
+MY_CHOICES = (('item_key1', 'Item title 1.1'),
+              ('item_key2', 'Item title 1.2'),
+              ('item_key3', 'Item title 1.3'),
+              ('item_key4', 'Item title 1.4'),
+              ('item_key5', 'Item title 1.5'))
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -86,8 +90,8 @@ class Post(models.Model):
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
-    #category = models.CharField(max_length=255, default='Transversal')
-    # category = MultiSelectField(choices=choice_list)
+    # category = models.CharField(max_length=255, default='Transversal')
+    category = MultiSelectField(choices=MY_CHOICES)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -112,7 +116,7 @@ class BlogTransversalPost(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    # category = MultiSelectField(choices=choice_list)
+    category = MultiSelectField(choices=MY_CHOICES)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
@@ -135,7 +139,7 @@ class Event(models.Model):
     #body = models.TextField()
     body = tinymce_models.HTMLField()
     # category = models.CharField(max_length=255, default='Transversal')
-    # category = MultiSelectField(choices=choice_list)
+    category = MultiSelectField(choices=MY_CHOICES)
     snippet = models.CharField(max_length=255)
     post_date = models.DateField(auto_now_add=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
