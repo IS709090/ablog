@@ -238,31 +238,6 @@
     <!-- TITULO PLATAFORMAS -->
 
     <div class="col-md-12  ml-auto mr-auto pb-3">
-      <!-- PRIMER MICROSITIO -->
-      {% comment %} {% for micro in micros %}
-      <div class="col-md-6  ml-auto mr-auto pb-3">
-        <div class="row ml-auto mr-auto" style="justify-content: center;">
-          <div class=" img-hover-zoom img-raised">
-            <a href="{{ micro.link }}">
-              <img class="img-fluid img-raised" src="{{ micro.header_image.url }}" alt=""
-                style="height: 28vh; width: auto;">
-            </a>
-
-          </div>
-
-        </div>
-        <div class="row ml-auto mr-auto pt-0 mt-0" style="justify-content: center;">
-          <a href="{{ micro.link }}">
-            <h5 class="title text-primary">{{ micro.title }}</h5>
-          </a>
-        </div>
-        <div class="row ml-auto mr-auto pt-0 mt-0" style="justify-content: center;">
-          <a href="{{ micro.link }}"> <button class="btn btn-primary">Visitar</button> </a>
-        </div>
-      </div>
-      {% endfor %} {% endcomment %}
-
-      <!-- PRIMER MICROSITIO -->
 
       <div class="carouselContainer pb-5">
         <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>

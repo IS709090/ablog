@@ -52,20 +52,38 @@ def SearchView(request, search_query):
 
 def HomeView(request):
     micros = MicroSitios.objects.all().order_by('-id')
-    eventos = Event.objects.all().order_by('-id')
+    all_eventos = Event.objects.all().order_by('-id')
     lecturas = Lectura.objects.all().order_by('-id')
+    blogPost = BlogTransversalPost.objects.all().order_by('-id')
+    all_posts = Post.objects.all().order_by('-id')
+
     slidePost = Post.objects.latest('id')
     slideEvent = Event.objects.latest('id')
     slideBlog = BlogTransversalPost.objects.latest('id')
-    datos = []
-    blogPost = BlogTransversalPost.objects.all().order_by('-id')
-    posts = Post.objects.all().order_by('-id')
 
+    datos = []
+    posts = []
+    eventos = []
+    
     count = 0
     for blogP in blogPost:
         if count == 3:
             break
         datos.append(blogP)
+        count += 1
+    
+    count = 0
+    for blogP in all_posts:
+        if count == 3:
+            break
+        posts.append(blogP)
+        count += 1
+    
+    count = 0
+    for blogP in all_eventos:
+        if count == 3:
+            break
+        eventos.append(blogP)
         count += 1
     
     search_query = request.GET.get('búsqueda', '')
@@ -74,7 +92,7 @@ def HomeView(request):
         return SearchView(request, search_query)
        
     else:
-        return render(request, 'home.html', {'micros':micros, 'eventos':eventos, 'lecturas':lecturas, 'slidePost':slidePost, 'slideEvent':slideEvent, 'slideBlog':slideBlog, 'datos':datos, 'blogPost':blogPost, 'posts':posts})
+        return render(request, 'home.html', {'micros':micros, 'eventos':eventos, 'lecturas':lecturas, 'slidePost':slidePost, 'slideEvent':slideEvent, 'slideBlog':slideBlog, 'datos':datos, 'posts':posts})
 
 
 def ArticleListView(request):
