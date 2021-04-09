@@ -7,7 +7,6 @@ choice_list = []
 for item in choices:
     choice_list.append(item) 
 
-
 class SubscriberForm(forms.Form):
     email = forms.EmailField(label='Your email',
                              max_length=100,
