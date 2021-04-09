@@ -64,6 +64,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255, default='Nombre Completo')
     rol = models.TextField()
+    bio = models.TextField(default='Biografía')
     profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile/")
     twitter = models.CharField(max_length=255, null=True, blank=True)
     facebook = models.CharField(max_length=255, null=True, blank=True)

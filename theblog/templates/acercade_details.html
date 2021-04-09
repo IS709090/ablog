@@ -1,0 +1,132 @@
+{% extends 'baseListAcercaDe.html' %}
+
+{% block title %}
+Acerca De
+{% endblock %}
+
+{% block content %}
+
+<div class="section detalles acercaDe">
+
+    <div class="row ml-auto mr-auto pb-3">
+        <a href="feedPublicaciones.html" class="h2" style="font-weight: 1000;">INTEGRANTES</a>
+    </div>
+
+
+    <div class="row ml-auto mr-auto">
+        <div class="col-md-4 ml-auto mr-auto teamSection">
+            <a href="{% url 'acercaDe_detail' object.pk %}">
+                <img class="img-fluid img-raised rounded-circle" src="{{ object.profile_pic.url }}" alt="">
+            </a>
+            <div class="row mt-5 ml-auto mr-auto mb-3" style="justify-content: space-evenly; font-size: xx-large;">
+                <div class="social-media">
+                    {% if object.twitter %}
+                    <a href="{{ object.twitter }}"><i class="fa fa-twitter-square fa-lg" aria-hidden="true"></i></a>
+                    {% endif %}
+
+                    {% if object.facebook %}
+                    <a href="{{ object.facebook }}"><i class="fa fa-facebook-square fa-lg" aria-hidden="true"></i></a>
+                    {% endif %}
+
+                    {% if object.linkedin %}
+                    <a href="{{ object.linkedin }}"><i class="fa fa-linkedin-square fa-lg" aria-hidden="true"></i></a>
+                    {% endif %}
+
+                    {% if object.instagram %}
+                    <a href="{{ object.instagram }}"><i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+                    {% endif %}
+
+                    {% if object.youtube %}
+                    <a href="{{ object.youtube }}"><i class="fa fa-youtube-play fa-lg" aria-hidden="true"></i></a>
+                    {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+        <!-- DESC -->
+        <div class="col-md-8 ml-auto mr-auto">
+            <div class="row ml-auto mr-auto">
+                <h3 class="text-primary " style="font-weight: 1000;">{{ object.full_name }}</h3>
+            </div>
+            <div class="row ml-auto mr-auto">
+                <p>{{ object.bio }}</p>
+            </div>
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="row ml-auto mr-auto acercaDe">
+        <h4 class="text-primary" style="font-size: 2em;">Galería de Proyectos</h4>
+    </div>
+
+
+    <div class="carouselContainer pb-5">
+        <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
+
+
+        </div>
+    </div>
+
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="teamSection">
+
+
+        <!-- TEAM ROW -->
+        <div class="row mb-5 ml-5 mr-auto">
+
+            <!-- SINGLE TEAM MEMBER -->
+            {% for post in all_users %}
+
+            <div class="col-md-6 ml-auto mr-auto">
+
+                <!-- TEAM MEMBER IMG DESC -->
+                <div class="row ml-auto mr-auto">
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <a href="{% url 'acercaDe_detail' post.pk %}">
+                            <img class="img-fluid img-raised rounded-circle" src="{{ post.profile_pic.url }}" alt="">
+                        </a>
+
+                    </div>
+                    <!-- DESC -->
+                    <div class="col-md-6 ml-auto mr-auto">
+                        <div class="row ml-auto mr-auto">
+                            <a href="{% url 'acercaDe_detail' post.pk %}" class="h3">
+                                {{ post.full_name }}
+                            </a>
+                        </div>
+                        <div class="row ml-auto mr-auto">
+                            <p>{{ post.rol }}</p>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+            {% endfor %}
+
+
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+{% endblock %}

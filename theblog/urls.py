@@ -16,7 +16,7 @@ Including another URLconf
 from django.urls import path
 from django.contrib import admin
 from . import views
-from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminLecturaListView, AddLecturaView, UpdateLecturaView, DeleteLecturaView, AcercaDeListView, ThinkTankListView, BlogTransversalDetailView, BlogTransversalListView, AdminBlogTransversalListView, UpdateBlogTransversalPostView, DeleteBlogTransversalPostView, AddBlogTransversalPostView, SearchView, new, LineasListView
+from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminLecturaListView, AddLecturaView, UpdateLecturaView, DeleteLecturaView, AcercaDeListView, ThinkTankListView, BlogTransversalDetailView, BlogTransversalListView, AdminBlogTransversalListView, UpdateBlogTransversalPostView, DeleteBlogTransversalPostView, AddBlogTransversalPostView, SearchView, new, LineasListView, acercaDeDetailView
   
 # AdminCarouselListView  UpdateCarouselView AddCarouselView DeleteCarouselView AdminDatosDurosListView, AddDatosView, UpdateDatosView, DeleteDatosView,
 
@@ -31,6 +31,7 @@ urlpatterns = [
     # path('admin/datosduros', AdminDatosDurosListView.as_view(), name="adminDatos_list"),
     # path('admin/carrusel', AdminCarouselListView.as_view(), name="adminCarousel_list"),
     path('acercaDe/', AcercaDeListView, name="acercaDe_list"),
+    path('acercaDe/<int:pk>/', acercaDeDetailView, name="acercaDe_detail"),
     path('thinktank/', ThinkTankListView, name="think_list"),
     path('admin/lectura', AdminLecturaListView.as_view(), name="adminLectura_list"),
     path('admin/micrositios', AdminMicroSitioListView.as_view(), name="adminMicro_list"),

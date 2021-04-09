@@ -343,8 +343,6 @@ def BlogTransversalDetailView(request, pk):
                 if eventCat == cat and event.id != posts.id:
                     tags_blogp.append(BlogTransversalPost.objects.get(id = event.id))
     
-    for cat in posts.author:
-        print(cat)
 
 
     tags_events = uniq(tags_events)
@@ -361,6 +359,62 @@ def BlogTransversalDetailView(request, pk):
         return render(request, 'blogTransversal_details.html', {'object':posts, 'post_tag_list':tags_post, 'event_tag_list':tags_events, 'BlogPost_tag_list':tags_blogp})
 
 
+def acercaDeDetailView(request, pk):
+    posts = Profile.objects.get(id = pk)
+    search_query = request.GET.get('búsqueda', '')
+    
+    tags_post = []
+    tags_events = []
+    tags_blogp = []
+    
+    all_tags_post = Post.objects.all().order_by('-id')
+    all_tags_events = Event.objects.all().order_by('-id')
+    all_tags_blogp = BlogTransversalPost.objects.all().order_by('-id')
+    all_users = Profile.objects.all().order_by('-id')
+
+
+    def uniq(iterable):
+        seen = set()
+        for x in iterable:
+            if x in seen:
+                continue
+            seen.add(x)
+            yield x
+
+    # for cat in posts.category:
+    #     for event in all_tags_events:
+    #         for eventCat in event.category:
+    #             if eventCat == cat:
+    #                 tags_events.append(Event.objects.get(id = event.id))
+ 
+    # for cat in posts.category:
+    #     for event in all_tags_post:
+    #         for eventCat in event.category:
+    #             if eventCat == cat:
+    #                 tags_post.append(Post.objects.get(id = event.id))
+    
+    # for cat in posts.category:
+    #     for event in all_tags_blogp:
+    #         for eventCat in event.category:
+    #             if eventCat == cat and event.id != posts.id:
+    #                 tags_blogp.append(BlogTransversalPost.objects.get(id = event.id))
+    
+    # for cat in posts.author:
+    #     print(cat)
+
+
+    # tags_events = uniq(tags_events)
+    # tags_post = uniq(tags_post)
+    # tags_blogp = uniq(tags_blogp)
+
+    # tags_events = sorted(tags_events, key=lambda instance: instance.pk, reverse=True)
+    # tags_post = sorted(tags_post, key=lambda instance: instance.pk, reverse=True)
+    # tags_blogp = sorted(tags_blogp, key=lambda instance: instance.pk, reverse=True)
+
+    if search_query:
+        return SearchView(request, search_query)   
+    else:
+        return render(request, 'acercade_details.html', {'object':posts, 'post_tag_list':tags_post, 'event_tag_list':tags_events, 'BlogPost_tag_list':tags_blogp,  'all_users':all_users})
 
 
 # ADMIN
