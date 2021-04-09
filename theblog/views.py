@@ -419,6 +419,7 @@ def acercaDeDetailView(request, pk):
 
 # ADMIN
 
+
 class HomeAdminView(ListView):
     model = Post
     template_name = 'adminHome.html'
