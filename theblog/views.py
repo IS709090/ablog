@@ -381,35 +381,30 @@ def acercaDeDetailView(request, pk):
             seen.add(x)
             yield x
 
-    # for cat in posts.category:
-    #     for event in all_tags_events:
-    #         for eventCat in event.category:
-    #             if eventCat == cat:
-    #                 tags_events.append(Event.objects.get(id = event.id))
+
+    for event in all_tags_events:
+        for eventCat in event.author:
+            if eventCat == posts.full_name:
+                tags_events.append(Event.objects.get(id = event.id))
  
-    # for cat in posts.category:
-    #     for event in all_tags_post:
-    #         for eventCat in event.category:
-    #             if eventCat == cat:
-    #                 tags_post.append(Post.objects.get(id = event.id))
+    for event in all_tags_post:
+        for eventCat in event.author:
+            if eventCat == posts.full_name:
+                tags_post.append(Post.objects.get(id = event.id))
+
+    for event in all_tags_blogp:
+        for eventCat in event.author:
+            if eventCat == posts.full_name:
+                tags_blogp.append(BlogTransversalPost.objects.get(id = event.id))
     
-    # for cat in posts.category:
-    #     for event in all_tags_blogp:
-    #         for eventCat in event.category:
-    #             if eventCat == cat and event.id != posts.id:
-    #                 tags_blogp.append(BlogTransversalPost.objects.get(id = event.id))
-    
-    # for cat in posts.author:
-    #     print(cat)
 
+    tags_events = uniq(tags_events)
+    tags_post = uniq(tags_post)
+    tags_blogp = uniq(tags_blogp)
 
-    # tags_events = uniq(tags_events)
-    # tags_post = uniq(tags_post)
-    # tags_blogp = uniq(tags_blogp)
-
-    # tags_events = sorted(tags_events, key=lambda instance: instance.pk, reverse=True)
-    # tags_post = sorted(tags_post, key=lambda instance: instance.pk, reverse=True)
-    # tags_blogp = sorted(tags_blogp, key=lambda instance: instance.pk, reverse=True)
+    tags_events = sorted(tags_events, key=lambda instance: instance.pk, reverse=True)
+    tags_post = sorted(tags_post, key=lambda instance: instance.pk, reverse=True)
+    tags_blogp = sorted(tags_blogp, key=lambda instance: instance.pk, reverse=True)
 
     if search_query:
         return SearchView(request, search_query)   
