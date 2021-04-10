@@ -254,7 +254,7 @@
           {% for micro in micros %}
 
           <div class="carousel-cell pr-5 pl-5">
-            <h5>{{ micro.title }}</h5>
+            <h5>{{ micro.title|truncatechars:60 }}</h5>
             <div class="img-hover-zoom">
               <a href="{{ micro.link }}">
                 <img class="carousel-image" data-flickity-lazyload="{{ micro.header_image.url }}" />
