@@ -36,7 +36,7 @@ class PostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación que veremos en la pestaña'}),
-            'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si es uno, inicia con "y NOMBRE DE AUTOR", si son varios, sepáralos con coma y al último agrega "y NOMBRE DE AUTOR"'}),
+            'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si son varios, sepáralos con coma'}),
             # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor de la publicación'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
@@ -56,7 +56,7 @@ class BlogTransversalPostForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog que veremos en la pestaña'}),
-            'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si es uno, inicia con "y NOMBRE DE AUTOR", si son varios, sepáralos con coma y al último agrega "y NOMBRE DE AUTOR"'}),
+            'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si son varios, sepáralos con coma'}),
             # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del Blog'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
@@ -75,7 +75,7 @@ class EventForm(forms.ModelForm):
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento que veremos en la pestaña'}),
-            'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si es uno, inicia con "y NOMBRE DE AUTOR", si son varios, sepáralos con coma y al último agrega "y NOMBRE DE AUTOR"'}),
+            'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si son varios, sepáralos con coma'}),
             # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del evento'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
