@@ -17,6 +17,22 @@ class Category(models.Model):
     def get_absolute_url(self):
         return reverse("adminHome")
 
+class Profile(models.Model):
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+    full_name = models.CharField(max_length=255, default='Nombre Completo')
+    rol = models.TextField()
+    bio = models.TextField(default='Biografía')
+    profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile/")
+    twitter = models.CharField(max_length=255, null=True, blank=True)
+    facebook = models.CharField(max_length=255, null=True, blank=True)
+    linkedin = models.CharField(max_length=255, null=True, blank=True)
+    instagram = models.CharField(max_length=255, null=True, blank=True)
+    youtube = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.user)
+
+
 MY_CHOICES = (('item_key1', 'Item title 1.1'),
               ('item_key2', 'Item title 1.2'),
               ('item_key3', 'Item title 1.3'),
@@ -29,7 +45,7 @@ choice_list = []
 for item in choices:
     choice_list.append(item)
 
-users = User.objects.all().values_list('first_name', 'last_name')
+users = Profile.objects.all().values_list('full_name', 'full_name')
 users_choice_list = []
 
 for item in users:
@@ -51,6 +67,7 @@ class Lectura(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
     link = models.CharField(max_length=255)
+    fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     post_date = models.DateField(auto_now_add=True)
 
@@ -60,20 +77,7 @@ class Lectura(models.Model):
     def get_absolute_url(self):
         return reverse("adminLectura_list")
 
-class Profile(models.Model):
-    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
-    full_name = models.CharField(max_length=255, default='Nombre Completo')
-    rol = models.TextField()
-    bio = models.TextField(default='Biografía')
-    profile_pic = models.ImageField(null=True, blank=True, upload_to="images/profile/")
-    twitter = models.CharField(max_length=255, null=True, blank=True)
-    facebook = models.CharField(max_length=255, null=True, blank=True)
-    linkedin = models.CharField(max_length=255, null=True, blank=True)
-    instagram = models.CharField(max_length=255, null=True, blank=True)
-    youtube = models.CharField(max_length=255, null=True, blank=True)
 
-    def __str__(self):
-        return str(self.user)
 
 class Post(models.Model):
     title = models.CharField(max_length=255)
@@ -81,6 +85,7 @@ class Post(models.Model):
     title_tag = models.CharField(max_length=255)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
     author = MultiSelectField(choices=users_choice_list)
+    optional_author = models.CharField(max_length=255, null=True, blank=True)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
@@ -107,6 +112,7 @@ class BlogTransversalPost(models.Model):
     title_tag = models.CharField(max_length=255)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
     author = MultiSelectField(choices=users_choice_list)
+    optional_author = models.CharField(max_length=255, null=True, blank=True)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()
@@ -131,6 +137,7 @@ class Event(models.Model):
     title_tag = models.CharField(max_length=255)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
     author = MultiSelectField(choices=users_choice_list)
+    optional_author = models.CharField(max_length=255, null=True, blank=True)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()

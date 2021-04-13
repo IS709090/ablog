@@ -1,5 +1,5 @@
 from django import forms
-from .models import Post, Event, MicroSitios, Category, Lectura, BlogTransversalPost, User
+from .models import Post, Event, MicroSitios, Category, Lectura, BlogTransversalPost, User, Profile
 
 # Carousel, DatosDuros,
 
@@ -16,7 +16,7 @@ choice_list = []
 for item in choices:
     choice_list.append(item)
 
-users = User.objects.all().values_list('first_name', 'last_name')
+users = Profile.objects.all().values_list('full_name', 'full_name')
 users_choice_list = []
 
 for item in users:
@@ -30,12 +30,13 @@ class SubscriberForm(forms.Form):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
+        fields = ('title', 'title_tag', 'author', 'optional_author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
         category = forms.ChoiceField(choices=choice_list)
         author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la publicación que veremos en la pestaña'}),
+            'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si es uno, inicia con "y NOMBRE DE AUTOR", si son varios, sepáralos con coma y al último agrega "y NOMBRE DE AUTOR"'}),
             # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor de la publicación'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
@@ -47,12 +48,13 @@ class PostForm(forms.ModelForm):
 class BlogTransversalPostForm(forms.ModelForm):
     class Meta:
         model = BlogTransversalPost
-        fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
+        fields = ('title', 'title_tag', 'author', 'optional_author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
         category = forms.ChoiceField(choices=choice_list)
         author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog que veremos en la pestaña'}),
+            'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si es uno, inicia con "y NOMBRE DE AUTOR", si son varios, sepáralos con coma y al último agrega "y NOMBRE DE AUTOR"'}),
             # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del Blog'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
@@ -65,12 +67,13 @@ class BlogTransversalPostForm(forms.ModelForm):
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
+        fields = ('title', 'title_tag', 'author', 'optional_author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
         category = forms.ChoiceField(choices=choice_list)
         author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del evento que veremos en la pestaña'}),
+            'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si es uno, inicia con "y NOMBRE DE AUTOR", si son varios, sepáralos con coma y al último agrega "y NOMBRE DE AUTOR"'}),
             # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del evento'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
@@ -102,11 +105,12 @@ class MicroSitioForm(forms.ModelForm):
 class LecturaForm(forms.ModelForm):
     class Meta:
         model = Lectura
-        fields = ('title', 'description','header_image', 'link')
+        fields = ('title', 'description','header_image', 'fileDownload', 'link')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la lectura'}),
             'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace a la lectura'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
+            'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen de la lectura'}),
         }
 
