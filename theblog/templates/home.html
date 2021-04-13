@@ -205,18 +205,12 @@
             </a>
           </div> {% endcomment %}
 
-          <div class="card-header"
-            style="border-radius: 3px;
-	padding: 1rem 15px;
-	margin-left: 15px;
-	margin-right: 15px;
-	margin-top: 20px;
-	border: 0;
-	background: linear-gradient(60deg, #54BBAB, #54BBAB);
-  box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);">
+          <div class="card-header col-md-12 ml-auto mr-auto"
+            style="display: flex; border-radius: 3px; padding: 1rem 15px; margin-left: 15px; margin-right: 15px; margin-top: 20px; border: 0; background: linear-gradient(60deg, #54BBAB, #54BBAB); box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2); justify-content: center;">
             <div class=" img-hover-zoom">
               <a href="{{ lectura.link }}">
-                <img style="height: 200px; width: auto;" class="card-img-top" src="{{ lectura.header_image.url }}" rel="nofollow" alt="Card image cap">
+                <img style="height: 200px; width: auto;" class="card-img-top"
+                  src="{{ lectura.header_image.url }}" rel="nofollow" alt="Card image cap">
               </a>
 
             </div>
@@ -273,7 +267,7 @@
           {% for micro in micros %}
 
           <div class="carousel-cell pr-5 pl-5">
-            <h5>{{ micro.title|truncatechars:60 }}</h5>
+            <h5>{{ micro.title|truncatewords:4 }}</h5>
             <div class="img-hover-zoom">
               <a href="{{ micro.link }}">
                 <img class="carousel-image" data-flickity-lazyload="{{ micro.header_image.url }}" />
