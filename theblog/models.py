@@ -112,7 +112,7 @@ class BlogTransversalPost(models.Model):
     title_tag = models.CharField(max_length=255)
     # author = models.ForeignKey(User, on_delete=models.CASCADE)
     author = MultiSelectField(choices=users_choice_list)
-    #optional_author = models.CharField(max_length=255, null=True, blank=True)
+    optional_author = models.CharField(max_length=255, null=True, blank=True)
     #body = RichTextField(blank=True, null=True)
     #body = models.TextField()
     body = tinymce_models.HTMLField()

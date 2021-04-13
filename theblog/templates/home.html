@@ -216,7 +216,7 @@
   box-shadow: 0 16px 38px -12px rgba(0, 0, 0, 0.56), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);">
             <div class=" img-hover-zoom">
               <a href="{{ lectura.link }}">
-                <img class="card-img-top" src="{{ lectura.header_image.url }}" rel="nofollow" alt="Card image cap">
+                <img style="height: 200px; width: auto;" class="card-img-top" src="{{ lectura.header_image.url }}" rel="nofollow" alt="Card image cap">
               </a>
 
             </div>
@@ -232,7 +232,7 @@
 
           </div>
           <div class="row ml-auto mr-auto">
-            <h5 style="color: rgb(80, 80, 80);">{{ lectura.description }}</h5>
+            <h5 style="color: rgb(80, 80, 80);">{{ lectura.description }}</h5> <br>
             <h5 style="color: rgb(80, 80, 80);">
               {% load i18n %}
               {% language 'es' %}
