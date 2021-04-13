@@ -130,7 +130,6 @@ class BlogTransversalPost(models.Model):
     def get_absolute_url(self):
         return reverse("adminBlogTransversal_list")
 
-
 class Event(models.Model):
     title = models.CharField(max_length=255)
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
