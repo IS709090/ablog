@@ -42,6 +42,20 @@
 
 /* FONT DEFINITION */
 
+/* @media screen and (min-width: 0px) and (max-width: 991px) {
+  .test {
+    display: block;
+  }
+
+} */
+
+/* @media screen and (min-width: 0px) and (max-width: 991px) {
+  #test {
+    display: none;
+  }
+
+} */
+
 /* FOOTER img */
 
 .footer-image {
@@ -54,7 +68,7 @@
   /* Center the image */
   background-repeat: no-repeat;
   /* Do not repeat the image */
-  background-size: cover;
+  background-size: contain;
   /* background: linear-gradient(0deg, #00000088 0%, #ffffff44 100%); */
   /* Resize the background image to cover the entire container */
 }
@@ -17492,7 +17506,7 @@ footer ul {
 footer ul li {
   display: inline-block;
   color: inherit;
-  line-height: 5px;
+  line-height: 1;
   font-weight: 500;
   font-size: inherit;
   text-transform: none;
