@@ -112,7 +112,7 @@
       <div class="col-md-4">
         <div class="card">
 
-          {% comment %} <div class="card-header" style="display: flex; justify-content: center; height: 277px; width: auto;">
+          <div class="card-header" style="display: flex; justify-content: center; height: 277px; width: auto;">
             <div class=" img-hover-zoom">
               <a href="{% url 'BlogTransversal-detail' dato.pk %}">
                 <img class="card-img-top" src="{{ dato.header_image.url }}" rel="nofollow" alt="Card image cap">
@@ -120,21 +120,7 @@
 
             </div>
 
-          </div> {% endcomment %}
-
-          <div class="card-header col-md-12 ml-auto mr-auto"
-            style="display: flex; height: 277px; width: auto; justify-content: center;">
-            <div class=" img-hover-zoom" style="text-align: center;">
-              <a href="{% url 'BlogTransversal-detail' dato.pk %}">
-                <img style="height: 100%; width: auto;" class="card-img-top" src="{{ dato.header_image.url }}"
-                  rel="nofollow" alt="Card image cap">
-              </a>
-
-            </div>
-
           </div>
-
-
 
           <div class="card-body">
             <a href="{% url 'BlogTransversal-detail' dato.pk %}">
@@ -230,14 +216,15 @@
 
           <div class="row ml-auto mr-auto">
             <a href="{{ lectura.link }}">
-              <h4 class="text-primary" style="font-size:  140%;">{{ lectura.title }}</h4>
+              <h4 class="col-md-12 ml-auto mr-auto" class="text-primary" style="font-size:  140%;">{{ lectura.title }}
+              </h4>
             </a>
 
           </div>
           <div class="row ml-auto mr-auto">
-            <h5 style="color: rgb(80, 80, 80);">{{ lectura.description }}</h5>
-            <br />
-            <h5 style="color: rgb(80, 80, 80);">
+            <h5 class="col-md-12 ml-auto mr-auto" style="color: rgb(80, 80, 80);">{{ lectura.description }}</h5>
+
+            <h5 class="col-md-12 ml-auto mr-auto" style="color: rgb(80, 80, 80);">
 
               {% load i18n %}
               {% language 'es' %}
