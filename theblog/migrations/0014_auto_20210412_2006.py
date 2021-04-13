@@ -14,16 +14,16 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='blogtransversalpost',
             name='author',
-            field=multiselectfield.db.fields.MultiSelectField(choices=[('Nombre Completo', 'Nombre Completo'), ('Nombre Completo3', 'Nombre Completo3'), ('Holaaa', 'Holaaa'), ('Nombre Completo4', 'Nombre Completo4')], max_length=56),
+            field=multiselectfield.db.fields.MultiSelectField(choices=[('Nombre Completo', 'Nombre Completo'), ('Nombre Completo3', 'Nombre Completo3'), ('Holaaa', 'Holaaa'), ('Nombre Completo4', 'Nombre Completo4')], max_length=5600),
         ),
         migrations.AlterField(
             model_name='event',
             name='author',
-            field=multiselectfield.db.fields.MultiSelectField(choices=[('Nombre Completo', 'Nombre Completo'), ('Nombre Completo3', 'Nombre Completo3'), ('Holaaa', 'Holaaa'), ('Nombre Completo4', 'Nombre Completo4')], max_length=56),
+            field=multiselectfield.db.fields.MultiSelectField(choices=[('Nombre Completo', 'Nombre Completo'), ('Nombre Completo3', 'Nombre Completo3'), ('Holaaa', 'Holaaa'), ('Nombre Completo4', 'Nombre Completo4')], max_length=5600),
         ),
         migrations.AlterField(
             model_name='post',
             name='author',
-            field=multiselectfield.db.fields.MultiSelectField(choices=[('Nombre Completo', 'Nombre Completo'), ('Nombre Completo3', 'Nombre Completo3'), ('Holaaa', 'Holaaa'), ('Nombre Completo4', 'Nombre Completo4')], max_length=56),
+            field=multiselectfield.db.fields.MultiSelectField(choices=[('Nombre Completo', 'Nombre Completo'), ('Nombre Completo3', 'Nombre Completo3'), ('Holaaa', 'Holaaa'), ('Nombre Completo4', 'Nombre Completo4')], max_length=5600),
         ),
     ]
