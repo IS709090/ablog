@@ -46,7 +46,7 @@
 
 .footer-image {
   background-image: linear-gradient(to bottom, rgba(238, 238, 238, .999), rgba(255, 255, 255, 0)),
-    url("http://transversalthinktank.org/img/img-footer/events-footer.png");
+    url("/theblog/assets/img/transversal/landing/footer_home.png");
   /* The image used */
   height: 500px;
   /* You must set a specified height */
