@@ -45,16 +45,18 @@ class PostForm(forms.ModelForm):
             'snippet': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen de la publicación, que saldrá debajo de la publicación en el listado de publicaciones'}),
         }
 
+
+# , 'optional_author'
 class BlogTransversalPostForm(forms.ModelForm):
     class Meta:
         model = BlogTransversalPost
-        fields = ('title', 'title_tag', 'author', 'optional_author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
+        fields = ('title', 'title_tag', 'author', 'snippet', 'header_image', 'fileDownload', 'linkToFile', 'past_Publication_Date', 'category', 'body')
         category = forms.ChoiceField(choices=choice_list)
         author = forms.ChoiceField(choices=users_choice_list)
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog'}),
             'title_tag': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Blog que veremos en la pestaña'}),
-            'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si es uno, inicia con "y NOMBRE DE AUTOR", si son varios, sepáralos con coma y al último agrega "y NOMBRE DE AUTOR"'}),
+            # 'optional_author': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Autores que no salen en la lista. Si es uno, inicia con "y NOMBRE DE AUTOR", si son varios, sepáralos con coma y al último agrega "y NOMBRE DE AUTOR"'}),
             # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del Blog'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
