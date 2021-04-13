@@ -244,6 +244,10 @@ def EventDetailView(request, pk):
     tags_post = sorted(tags_post, key=lambda instance: instance.pk, reverse=True)
     tags_blogp = sorted(tags_blogp, key=lambda instance: instance.pk, reverse=True)
 
+    tags_events = tags_events[:3]
+    tags_post = tags_post[:1]
+    tags_blogp = tags_blogp[:1]
+
     if search_query:
         return SearchView(request, search_query)
        
@@ -297,6 +301,10 @@ def ArticleDetailView(request, pk):
     tags_events = sorted(tags_events, key=lambda instance: instance.pk, reverse=True)
     tags_post = sorted(tags_post, key=lambda instance: instance.pk, reverse=True)
     tags_blogp = sorted(tags_blogp, key=lambda instance: instance.pk, reverse=True)
+
+    tags_events = tags_events[:1]
+    tags_post = tags_post[:3]
+    tags_blogp = tags_blogp[:1]
 
     if search_query:
         return SearchView(request, search_query)
@@ -353,6 +361,11 @@ def BlogTransversalDetailView(request, pk):
     tags_post = sorted(tags_post, key=lambda instance: instance.pk, reverse=True)
     tags_blogp = sorted(tags_blogp, key=lambda instance: instance.pk, reverse=True)
 
+    tags_events = tags_events[:1]
+    tags_post = tags_post[:1]
+    tags_blogp = tags_blogp[:3]
+
+
     if search_query:
         return SearchView(request, search_query)   
     else:
@@ -405,6 +418,8 @@ def acercaDeDetailView(request, pk):
     tags_events = sorted(tags_events, key=lambda instance: instance.pk, reverse=True)
     tags_post = sorted(tags_post, key=lambda instance: instance.pk, reverse=True)
     tags_blogp = sorted(tags_blogp, key=lambda instance: instance.pk, reverse=True)
+
+
 
     if search_query:
         return SearchView(request, search_query)   
