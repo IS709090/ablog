@@ -112,7 +112,8 @@
       <div class="col-md-4">
         <div class="card">
 
-          <div class="card-header" style="display: flex; justify-content: center; text-align: center; align-items: center; height: 277px; width: auto;">
+          <div class="card-header"
+            style="display: flex; justify-content: center; text-align: center; align-items: center; height: 277px; width: auto;">
             <div class=" img-hover-zoom" style="text-align: center;">
               <a href="{% url 'BlogTransversal-detail' dato.pk %}">
                 <img class="card-img-top" src="{{ dato.header_image.url }}" rel="nofollow" alt="Card image cap">
@@ -128,14 +129,52 @@
             </a>
 
             {{ dato.snippet }}
-            <div class="text-muted" style="font-size: 90%;">Por
+            <div class="text-muted" style="font-size: 90%;">
+
+              {% if dato.author and dato.optional_author %}
+              Escrito por:
               {% for item in dato.author %}
+
+              {{ item }},
+
+              {% endfor %}
+
+              {% for item in dato.optional_author %}
+
               {% if forloop.last %}
               {{ item }}
               {% else %}
               {{ item }},
               {% endif %}
+
               {% endfor %}
+
+              {% elif dato.author %}
+              Escrito por:
+              {% for item in dato.author %}
+
+              {% if forloop.last %}
+              {{ item }}
+              {% else %}
+              {{ item }},
+              {% endif %}
+
+              {% endfor %}
+
+              {% elif dato.optional_author %}
+              Escrito por:
+              {% for item in dato.optional_author %}
+
+              {% if forloop.last %}
+              {{ item }}
+              {% else %}
+              {{ item }},
+              {% endif %}
+
+              {% endfor %}
+
+              {% endif %}
+
               <br>
               {% if dato.past_Publication_Date %}
               {{ dato.past_Publication_Date }}
@@ -311,6 +350,72 @@
       </a>
 
       <h5>{{ post.snippet }}</h5>
+
+      <p class="text-muted h5" style="font-weight: 1000;">
+
+        {% if post.author and post.optional_author %}
+        Escrito por:
+        {% for item in post.author %}
+
+        {{ item }},
+
+        {% endfor %}
+
+        {% for item in post.optional_author %}
+        {% if forloop.last %}
+        {{ item }}
+        {% else %}
+        {{ item }},
+        {% endif %}
+        {% endfor %}
+
+
+        {% elif post.author %}
+        Escrito por:
+        {% for item in post.author %}
+
+        {% if forloop.last %}
+        {{ item }}
+        {% else %}
+        {{ item }},
+        {% endif %}
+
+        {% endfor %}
+
+        {% elif post.optional_author %}
+        Escrito por:
+        {% for item in post.optional_author %}
+
+        {% if forloop.last %}
+        {{ item }}
+        {% else %}
+        {{ item }},
+        {% endif %}
+
+        {% endfor %}
+
+        {% endif %}
+
+      </p>
+
+
+
+      {% if post.past_Publication_Date %}
+
+      <p class="text-muted h5" style="font-weight: 1000;">
+        {{ post.past_Publication_Date }}
+      </p>
+
+      {% else %}
+
+      <p class="text-muted h5" style="font-weight: 1000;">
+        {% load i18n %}
+        {% language 'es' %}
+        {{ post.post_date }}
+        {% endlanguage %}
+      </p>
+
+      {% endif %}
     </div>
 
   </div>
@@ -336,6 +441,74 @@
       </a>
 
       <h5>{{ event.snippet }}</h5>
+
+      <p class="text-muted h5" style="font-weight: 1000;">
+
+        {% if event.author and event.optional_author %}
+        Escrito por:
+        {% for item in event.author %}
+
+        {{ item }},
+
+        {% endfor %}
+
+        {% for item in event.optional_author %}
+
+        {% if forloop.last %}
+        {{ item }}
+        {% else %}
+        {{ item }},
+        {% endif %}
+
+        {% endfor %}
+
+        {% elif event.author %}
+        Escrito por:
+        {% for item in event.author %}
+
+        {% if forloop.last %}
+        {{ item }}
+        {% else %}
+        {{ item }},
+        {% endif %}
+
+        {% endfor %}
+
+        {% elif event.optional_author %}
+        Escrito por:
+        {% for item in event.optional_author %}
+
+        {% if forloop.last %}
+        {{ item }}
+        {% else %}
+        {{ item }},
+        {% endif %}
+
+        {% endfor %}
+
+        {% endif %}
+
+      </p>
+
+
+      {% if event.past_Publication_Date %}
+
+      <p class="text-muted h5" style="font-weight: 1000;">
+        {{ event.past_Publication_Date }}
+      </p>
+
+      {% else %}
+
+      <p class="text-muted h5" style="font-weight: 1000;">
+        {% load i18n %}
+        {% language 'es' %}
+        {{ event.post_date }}
+        {% endlanguage %}
+      </p>
+
+      {% endif %}
+
+
     </div>
 
   </div>
