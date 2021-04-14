@@ -66,6 +66,28 @@ class BlogTransversalPostForm(forms.ModelForm):
         }
 
 
+
+class ProfileForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ('user', 'full_name', 'rol', 'bio', 'profile_pic', 'twitter', 'facebook', 'linkedin', 'instagram', 'youtube')
+        widgets = {
+            'user': forms.Select(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Usuario al que se le asignará el perfil'}),
+            'full_name': forms.TextInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Nombre completo'}),
+            'rol': forms.TextInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Rol en TRANSVERSAL'}),
+            # 'author': forms.Select(attrs={'class': 'form-control', 'placeholder': 'Autor del Blog'}),
+            'bio': forms.Textarea(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Biografía'}),
+            'profile_pic': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
+            'twitter': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL.'}),
+            'facebook': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL.'}),
+            'linkedin': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL.'}),
+            'instagram': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL.'}),
+            'youtube': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL.'}),
+        }
+
+
+
+
 class EventForm(forms.ModelForm):
     class Meta:
         model = Event
@@ -110,20 +132,9 @@ class LecturaForm(forms.ModelForm):
         fields = ('title', 'description','header_image', 'fileDownload', 'link')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título de la lectura'}),
-            'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace a la lectura'}),
+            'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Enlace a la lectura'}),
             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),
             'fileDownload': forms.ClearableFileInput(attrs={'class': 'form-control', 'placeholder': 'OPCIONAL. Archivo a descargar'}),
             'description': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción o resumen de la lectura'}),
         }
 
-
-# class CarouselForm(forms.ModelForm):
-#     class Meta:
-#         model = Carousel
-#         fields = ('title', 'subtitle','header_image', 'link')
-#         widgets = {
-#             'title': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Título del Slide'}),
-#             'subtitle': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Subtítulo del Slide'}),
-#             'link': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Enlace a la publicación/evento del Slide'}),
-#             'header_image': forms.ClearableFileInput(attrs={'class': 'form-control', 'required' : '' , 'placeholder': 'Imágen'}),   
-#         }

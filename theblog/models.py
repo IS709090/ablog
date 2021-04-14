@@ -31,6 +31,9 @@ class Profile(models.Model):
 
     def __str__(self):
         return str(self.user)
+    
+    def get_absolute_url(self):
+        return reverse("adminProfile_list")
 
 
 MY_CHOICES = (('item_key1', 'Item title 1.1'),
@@ -66,7 +69,7 @@ class MicroSitios(models.Model):
 class Lectura(models.Model):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255)
-    link = models.CharField(max_length=255)
+    link = models.CharField(max_length=255, null=True, blank=True)
     fileDownload = models.FileField(null=True, blank=True, upload_to="files/")
     header_image = models.ImageField(null=True, blank=True, upload_to="images/")
     post_date = models.DateField(auto_now_add=True)

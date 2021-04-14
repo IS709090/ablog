@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Post, Event, MicroSitios, Category, Lectura, User, BlogTransversalPost, Profile
-from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, LecturaForm, BlogTransversalPostForm
+from .forms import PostForm, EventForm, MicroSitioForm, CategoryForm, LecturaForm, BlogTransversalPostForm, ProfileForm
 from django.urls import reverse_lazy
 from itertools import chain
 from django.http import HttpResponse
@@ -448,19 +448,11 @@ class AdminBlogTransversalListView(ListView):
     #ordering = ['-post_date']
 
 
-# class AdminCarouselListView(ListView):
-#     model = Carousel
-#     template_name = 'adminCarousel_list.html'
-#     ordering = ['-id']
-#     #ordering = ['-post_date']
-
-
-# class AdminDatosDurosListView(ListView):
-#     model = DatosDuros
-#     template_name = 'adminDatos_list.html'
-#     ordering = ['-id']
-#     #ordering = ['-post_date']
-
+class AdminProfilesListView(ListView):
+    model = Profile
+    template_name = 'adminProfile_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
 
 class AdminLecturaListView(ListView):
     model = Lectura
@@ -494,6 +486,12 @@ class AddBlogTransversalPostView(CreateView):
     model = BlogTransversalPost
     form_class = BlogTransversalPostForm
     template_name = 'add_BlogTransversal.html'
+
+
+class AddProfileView(CreateView):
+    model = Profile
+    form_class = ProfileForm
+    template_name = 'add_profile.html'
 
 
 class AddCategoryView(CreateView):
@@ -552,6 +550,14 @@ class UpdateEventView(UpdateView):
     template_name = 'update_event.html'
     form_class = EventForm
 
+
+class UpdateProfileView(UpdateView):
+    model = Profile
+    template_name = 'update_profile.html'
+    form_class = ProfileForm
+
+
+
 class UpdateMicroSitioView(UpdateView):
     model = MicroSitios
     template_name = 'update_micro.html'
@@ -588,6 +594,12 @@ class DeleteBlogTransversalPostView(DeleteView):
     model = BlogTransversalPost
     template_name = 'delete_BlogTransversal.html'
     success_url = reverse_lazy('adminBlogTransversal_list')
+
+
+class DeleteProfileView(DeleteView):
+    model = Profile
+    template_name = 'delete_profile.html'
+    success_url = reverse_lazy('adminProfile_list')
 
 
 class DeleteEventView(DeleteView):
