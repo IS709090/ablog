@@ -134,7 +134,7 @@
 
     <div class="row pb-5 ml-auto mr-auto tags acercaDe" style="padding-left: 5%;">
         {% for cat in object.category %}
-        <a href="{% url 'category' cat %}"> <button class="btn btn-default btn-round">
+        <a href="{% url 'category' cat %}"> <button class="btn mr-2 btn-default btn-round">
                 {{cat}}
             </button> </a>
         {% endfor %}
@@ -146,8 +146,55 @@
         <h4 class="text-primary" style="font-size: 2em;">Publicaciones Similares</h4>
     </div>
 
-    <div class="carouselContainer pb-5">
+    <div class="carouselContainer d-none d-lg-block pb-5">
         <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
+
+            {% for article in BlogPost_tag_list %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in post_tag_list %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in event_tag_list %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+
+
+        </div>
+    </div>
+
+    <div class="carouselContainer d-lg-none pb-5">
+        <div class="carousel" data-flickity='{ "groupCells": 1, "lazyLoad": 2  }'>
 
             {% for article in BlogPost_tag_list %}
 
