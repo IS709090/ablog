@@ -375,6 +375,11 @@ h4:hover {
   text-decoration: underline;
 }
 
+.lectura h4:hover {
+  color: #378b7e !important;
+  text-decoration: underline;
+}
+
 /* LINK STYLING diaLanding */
 
 
