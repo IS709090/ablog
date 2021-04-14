@@ -62,13 +62,95 @@
   background-image: linear-gradient(to bottom, rgba(238, 238, 238, .999), rgba(255, 255, 255, 0)),
     url("/theblog/assets/img/transversal/landing/footer_home.png");
   /* The image used */
-  height: 500px;
+  height: auto;
   /* You must set a specified height */
   /* background-position: center; */
   /* Center the image */
   background-repeat: no-repeat;
   /* Do not repeat the image */
-  background-size: contain;
+  background-size: cover;
+  /* background: linear-gradient(0deg, #00000088 0%, #ffffff44 100%); */
+  /* Resize the background image to cover the entire container */
+}
+
+
+
+.footer-acercaDe {
+  background-image: linear-gradient(to bottom, rgba(238, 238, 238, .999), rgba(255, 255, 255, 0)),
+    url("/theblog/assets/img/transversal/landing/footer_acercaDe.png");
+  /* The image used */
+  height: auto;
+  /* You must set a specified height */
+  /* background-position: center; */
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* background: linear-gradient(0deg, #00000088 0%, #ffffff44 100%); */
+  /* Resize the background image to cover the entire container */
+}
+
+
+
+.footer-blog {
+  background-image: linear-gradient(to bottom, rgba(238, 238, 238, .999), rgba(255, 255, 255, 0)),
+    url("/theblog/assets/img/transversal/landing/footer_blog.png");
+  /* The image used */
+  height: auto;
+  /* You must set a specified height */
+  /* background-position: center; */
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* background: linear-gradient(0deg, #00000088 0%, #ffffff44 100%); */
+  /* Resize the background image to cover the entire container */
+}
+
+
+.footer-eventos {
+  background-image: linear-gradient(to bottom, rgba(238, 238, 238, .999), rgba(255, 255, 255, 0)),
+    url("/theblog/assets/img/transversal/landing/footer_eventos.png");
+  /* The image used */
+  height: auto;
+  /* You must set a specified height */
+  /* background-position: center; */
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* background: linear-gradient(0deg, #00000088 0%, #ffffff44 100%); */
+  /* Resize the background image to cover the entire container */
+}
+
+
+.footer-post {
+  background-image: linear-gradient(to bottom, rgba(238, 238, 238, .999), rgba(255, 255, 255, 0)),
+    url("/theblog/assets/img/transversal/landing/footer_publicaciones.png");
+  /* The image used */
+  height: auto;
+  /* You must set a specified height */
+  /* background-position: center; */
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* background: linear-gradient(0deg, #00000088 0%, #ffffff44 100%); */
+  /* Resize the background image to cover the entire container */
+}
+
+
+.footer-think {
+  background-image: linear-gradient(to bottom, rgba(238, 238, 238, .999), rgba(255, 255, 255, 0)),
+    url("/theblog/assets/img/transversal/landing/footer_thinktank.png");
+  /* The image used */
+  height: auto;
+  /* You must set a specified height */
+  /* background-position: center; */
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
   /* background: linear-gradient(0deg, #00000088 0%, #ffffff44 100%); */
   /* Resize the background image to cover the entire container */
 }
