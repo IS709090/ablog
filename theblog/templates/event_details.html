@@ -56,15 +56,7 @@
 
             {% endfor %}
 
-            {% for item in event.optional_author %}
-
-            {% if forloop.last %}
-            {{ item }}
-            {% else %}
-            {{ item }},
-            {% endif %}
-
-            {% endfor %}
+            {{ event.optional_author }}
 
             {% elif event.author %}
             Escrito por:
@@ -80,15 +72,7 @@
 
             {% elif event.optional_author %}
             Escrito por:
-            {% for item in event.optional_author %}
-
-            {% if forloop.last %}
-            {{ item }}
-            {% else %}
-            {{ item }},
-            {% endif %}
-
-            {% endfor %}
+            {{ event.optional_author }}
 
             {% endif %}
 

@@ -44,15 +44,7 @@ Blog Transversal
 
                 {% endfor %}
 
-                {% for item in post.optional_author %}
-
-                {% if forloop.last %}
-                {{ item }}
-                {% else %}
-                {{ item }},
-                {% endif %}
-
-                {% endfor %}
+                {{ post.optional_author }}
 
                 {% elif post.author %}
                 Escrito por:
@@ -68,15 +60,7 @@ Blog Transversal
 
                 {% elif post.optional_author %}
                 Escrito por:
-                {% for item in post.optional_author %}
-
-                {% if forloop.last %}
-                {{ item }}
-                {% else %}
-                {{ item }},
-                {% endif %}
-
-                {% endfor %}
+                {{ post.optional_author }}
 
                 {% endif %}
 

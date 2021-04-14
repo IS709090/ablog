@@ -139,15 +139,7 @@
 
               {% endfor %}
 
-              {% for item in dato.optional_author %}
-
-              {% if forloop.last %}
-              {{ item }}
-              {% else %}
-              {{ item }},
-              {% endif %}
-
-              {% endfor %}
+              {{ dato.optional_author }}
 
               {% elif dato.author %}
               Escrito por:
@@ -163,15 +155,7 @@
 
               {% elif dato.optional_author %}
               Escrito por:
-              {% for item in dato.optional_author %}
-
-              {% if forloop.last %}
-              {{ item }}
-              {% else %}
-              {{ item }},
-              {% endif %}
-
-              {% endfor %}
+              {{ dato.optional_author }}
 
               {% endif %}
 
@@ -380,13 +364,7 @@
 
         {% endfor %}
 
-        {% for item in post.optional_author %}
-        {% if forloop.last %}
-        {{ item }}
-        {% else %}
-        {{ item }},
-        {% endif %}
-        {% endfor %}
+        {{ post.optional_author }}
 
 
         {% elif post.author %}
@@ -403,15 +381,7 @@
 
         {% elif post.optional_author %}
         Escrito por:
-        {% for item in post.optional_author %}
-
-        {% if forloop.last %}
-        {{ item }}
-        {% else %}
-        {{ item }},
-        {% endif %}
-
-        {% endfor %}
+        {{ post.optional_author }}
 
         {% endif %}
 
@@ -471,15 +441,7 @@
 
         {% endfor %}
 
-        {% for item in event.optional_author %}
-
-        {% if forloop.last %}
-        {{ item }}
-        {% else %}
-        {{ item }},
-        {% endif %}
-
-        {% endfor %}
+        {{ event.optional_author }}
 
         {% elif event.author %}
         Escrito por:
@@ -495,15 +457,7 @@
 
         {% elif event.optional_author %}
         Escrito por:
-        {% for item in event.optional_author %}
-
-        {% if forloop.last %}
-        {{ item }}
-        {% else %}
-        {{ item }},
-        {% endif %}
-
-        {% endfor %}
+        {{ event.optional_author }}
 
         {% endif %}
 

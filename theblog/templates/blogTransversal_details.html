@@ -53,15 +53,7 @@
 
             {% endfor %}
 
-            {% for item in object.optional_author %}
-
-            {% if forloop.last %}
-            {{ item }}
-            {% else %}
-            {{ item }},
-            {% endif %}
-
-            {% endfor %}
+            {{ object.optional_author }}
 
             {% elif object.author %}
             Escrito por:
@@ -77,15 +69,7 @@
 
             {% elif object.optional_author %}
             Escrito por:
-            {% for item in object.optional_author %}
-
-            {% if forloop.last %}
-            {{ item }}
-            {% else %}
-            {{ item }},
-            {% endif %}
-
-            {% endfor %}
+            {{ object.optional_author }}
 
             {% endif %}
 
