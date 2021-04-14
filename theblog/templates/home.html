@@ -298,12 +298,31 @@
 
     <div class="col-md-12  ml-auto mr-auto pb-3">
 
-      <div class="carouselContainer pb-5">
+      <div class="carouselContainer d-none d-lg-block pb-5">
         <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
 
           {% for micro in micros %}
 
-          <div class="carousel-cell pr-5 pl-5">
+          <div class="carousel-cell pr-3 pl-3">
+            <h5>{{ micro.title|truncatewords:4 }}</h5>
+            <div class="img-hover-zoom">
+              <a href="{{ micro.link }}">
+                <img class="carousel-image" data-flickity-lazyload="{{ micro.header_image.url }}" />
+              </a>
+            </div>
+          </div>
+
+          {% endfor %}
+
+        </div>
+      </div>
+
+      <div class="carouselContainer d-lg-none pb-5">
+        <div class="carousel" data-flickity='{ "groupCells": 1, "lazyLoad": 2  }'>
+
+          {% for micro in micros %}
+
+          <div class="carousel-cell pr-3 pl-3">
             <h5>{{ micro.title|truncatewords:4 }}</h5>
             <div class="img-hover-zoom">
               <a href="{{ micro.link }}">
