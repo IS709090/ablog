@@ -12,32 +12,7 @@
 
     </div>
 
-    <!-- TRANSVERSAL DIA A DIA -->
-
-    {% comment %} {% for event in object_list %}
-
-    <div class="row ml-auto mr-auto diaLanding" style="justify-content: space-evenly;">
-
-        <div class="col-md-4 ml-auto mr-auto ">
-            <div class="img-hover-zoom">
-                <a href="{% url 'event-detail' event.pk %}"> <img class="img-fluid img-raised"
-                        src="{{ event.header_image.url }}" alt=""></a>
-            </div>
-        </div>
-
-        <div class="col-md-8 ml-auto mr-auto">
-            <a href="{% url 'event-detail' event.pk %}">
-                <h4 class="text-primary">{{ event.title }}</h4>
-            </a>
-
-            <h5>{{ event.snippet }}</h5>
-        </div>
-
-    </div>
-
-    <hr>
-
-    {% endfor %} {% endcomment %}
+    
 
     {% for event in page_obj %}
 
@@ -56,6 +31,76 @@
             </a>
 
             <h5>{{ event.snippet }}</h5>
+
+            <p class="text-muted h5" style="font-weight: 1000;">
+
+                {% if event.author and event.optional_author %}
+                Escrito por:
+                {% for item in event.author %}
+
+                {{ item }},
+
+                {% endfor %}
+
+                {% for item in event.optional_author %}
+                {% if forloop.last %}
+                y {{ item }}
+                {% elif forloop.revcounter0 < 2 %}
+                {{ item }}
+                {% else %}
+                {{ item }},
+                {% endif %}
+                {% endfor %}
+
+                {% elif event.author %}
+                Escrito por:
+                {% for item in event.author %}
+
+                {% if forloop.last %}
+                y {{ item }}
+                {% elif forloop.revcounter0 < 2 %}
+                {{ item }}
+                {% else %}
+                {{ item }},
+                {% endif %}
+
+                {% endfor %}
+
+                {% elif event.optional_author %}
+                Escrito por:
+                {% for item in event.optional_author %}
+
+                {% if forloop.last %}
+                y {{ item }}
+                {% elif forloop.revcounter0 < 2 %}
+                {{ item }}
+                {% else %}
+                {{ item }},
+                {% endif %}
+
+                {% endfor %}
+
+                {% endif %}
+
+            </p>
+
+            {% if event.past_Publication_Date %}
+
+            <p class="text-muted h5" style="font-weight: 1000;">
+                {{ event.past_Publication_Date }}
+            </p>
+
+            {% else %}
+
+            <p class="text-muted h5" style="font-weight: 1000;">
+                {% load i18n %}
+                {% language 'es' %}
+                {{ event.post_date }}
+                {% endlanguage %}
+            </p>
+
+            {% endif %}
+
         </div>
 
     </div>

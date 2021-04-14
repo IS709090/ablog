@@ -40,13 +40,62 @@
     </div> {% endcomment %}
     <div class="row ml-auto mr-auto">
         <p class="text-muted h4" style="font-weight: 1000;">
-            {% for item in event.author %}
+            {% comment %} {% for item in event.author %}
             {% if forloop.last %}
             {{ item }}
             {% else %}
             {{ item }},
             {% endif %}
+            {% endfor %} {% endcomment %}
+
+            {% if event.author and event.optional_author %}
+            Escrito por:
+            {% for item in event.author %}
+
+            {{ item }},
+
             {% endfor %}
+
+            {% for item in event.optional_author %}
+            {% if forloop.last %}
+            y {{ item }}
+            {% elif forloop.revcounter0 < 2 %}
+            {{ item }}
+            {% else %}
+            {{ item }},
+            {% endif %}
+            {% endfor %}
+
+            {% elif event.author %}
+            Escrito por:
+            {% for item in event.author %}
+
+            {% if forloop.last %}
+            y {{ item }}
+            {% elif forloop.revcounter0 < 2 %}
+            {{ item }}
+            {% else %}
+            {{ item }},
+            {% endif %}
+
+            {% endfor %}
+
+            {% elif event.optional_author %}
+            Escrito por:
+            {% for item in event.optional_author %}
+
+            {% if forloop.last %}
+            y {{ item }}
+            {% elif forloop.revcounter0 < 2 %}
+            {{ item }}
+            {% else %}
+            {{ item }},
+            {% endif %}
+
+            {% endfor %}
+
+            {% endif %}
+
         </p>
     </div>
 
@@ -113,7 +162,7 @@
             </div>
 
             {% endfor %}
-            
+
             {% for article in post_tag_list %}
 
             <div class="carousel-cell pr-5 pl-5">

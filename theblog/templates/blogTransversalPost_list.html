@@ -15,30 +15,6 @@ Blog Transversal
 
     <!-- TRANSVERSAL DIA A DIA -->
 
-    {% comment %} {% for post in object_list %}
-
-    <div class="row ml-auto mr-auto diaLanding" style="justify-content: space-evenly;">
-
-        <div class="col-md-4 ml-auto mr-auto ">
-            <div class="img-hover-zoom">
-                <a href="{% url 'BlogTransversal-detail' post.pk %}"> <img class="img-fluid img-raised"
-                        src="{{ post.header_image.url }}" alt=""></a>
-            </div>
-        </div>
-
-        <div class="col-md-8 ml-auto mr-auto">
-            <a href="{% url 'BlogTransversal-detail' post.pk %}">
-                <h4 class="text-primary">{{ post.title }}</h4>
-            </a>
-
-            <h5>{{ post.snippet }}</h5>
-        </div>
-
-    </div>
-
-    <hr>
-
-    {% endfor %} {% endcomment %}
 
     {% for post in page_obj %}
 
@@ -57,6 +33,76 @@ Blog Transversal
             </a>
 
             <h5>{{ post.snippet }}</h5>
+
+            <p class="text-muted h5" style="font-weight: 1000;">
+
+                {% if post.author and post.optional_author %}
+                Escrito por:
+                {% for item in post.author %}
+
+                {{ item }},
+
+                {% endfor %}
+
+                {% for item in post.optional_author %}
+                {% if forloop.last %}
+                y {{ item }}
+                {% elif forloop.revcounter0 < 2 %}
+                {{ item }}
+                {% else %}
+                {{ item }},
+                {% endif %}
+                {% endfor %}
+
+                {% elif post.author %}
+                Escrito por:
+                {% for item in post.author %}
+
+                {% if forloop.last %}
+                y {{ item }}
+                {% elif forloop.revcounter0 < 2 %}
+                {{ item }}
+                {% else %}
+                {{ item }},
+                {% endif %}
+
+                {% endfor %}
+
+                {% elif post.optional_author %}
+                Escrito por:
+                {% for item in post.optional_author %}
+
+                {% if forloop.last %}
+                y {{ item }}
+                {% elif forloop.revcounter0 < 2 %}
+                {{ item }}
+                {% else %}
+                {{ item }},
+                {% endif %}
+
+                {% endfor %}
+
+                {% endif %}
+
+            </p>
+
+            {% if post.past_Publication_Date %}
+
+            <p class="text-muted h5" style="font-weight: 1000;">
+                {{ post.past_Publication_Date }}
+            </p>
+
+            {% else %}
+
+            <p class="text-muted h5" style="font-weight: 1000;">
+                {% load i18n %}
+                {% language 'es' %}
+                {{ post.post_date }}
+                {% endlanguage %}
+            </p>
+
+            {% endif %}
+
         </div>
 
     </div>
