@@ -128,7 +128,7 @@
               <h4 class="card-title text-primary">{{ dato.title }}</h4>
             </a>
 
-            {{ dato.snippet }}
+            {{ dato.snippet|truncatewords:18 }}
             <div class="text-muted" style="font-size: 90%;">
 
               {% if dato.author and dato.optional_author %}
