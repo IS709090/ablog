@@ -57,13 +57,13 @@
             {% endfor %}
 
             {% for item in event.optional_author %}
+
             {% if forloop.last %}
-            y {{ item }}
-            {% elif forloop.revcounter0 < 2 %}
             {{ item }}
             {% else %}
             {{ item }},
             {% endif %}
+
             {% endfor %}
 
             {% elif event.author %}
@@ -71,8 +71,6 @@
             {% for item in event.author %}
 
             {% if forloop.last %}
-            y {{ item }}
-            {% elif forloop.revcounter0 < 2 %}
             {{ item }}
             {% else %}
             {{ item }},
@@ -85,8 +83,6 @@
             {% for item in event.optional_author %}
 
             {% if forloop.last %}
-            y {{ item }}
-            {% elif forloop.revcounter0 < 2 %}
             {{ item }}
             {% else %}
             {{ item }},

@@ -70,21 +70,18 @@ Publicaciones
 
                 {% for item in post.optional_author %}
                 {% if forloop.last %}
-                y {{ item }}
-                {% elif forloop.revcounter0 < 2 %}
                 {{ item }}
                 {% else %}
                 {{ item }},
                 {% endif %}
                 {% endfor %}
+                
 
                 {% elif post.author %}
                 Escrito por:
                 {% for item in post.author %}
 
                 {% if forloop.last %}
-                y {{ item }}
-                {% elif forloop.revcounter0 < 2 %}
                 {{ item }}
                 {% else %}
                 {{ item }},
@@ -97,8 +94,6 @@ Publicaciones
                 {% for item in post.optional_author %}
 
                 {% if forloop.last %}
-                y {{ item }}
-                {% elif forloop.revcounter0 < 2 %}
                 {{ item }}
                 {% else %}
                 {{ item }},

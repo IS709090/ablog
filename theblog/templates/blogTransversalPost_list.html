@@ -45,13 +45,13 @@ Blog Transversal
                 {% endfor %}
 
                 {% for item in post.optional_author %}
+
                 {% if forloop.last %}
-                y {{ item }}
-                {% elif forloop.revcounter0 < 2 %}
                 {{ item }}
                 {% else %}
                 {{ item }},
                 {% endif %}
+
                 {% endfor %}
 
                 {% elif post.author %}
@@ -59,8 +59,6 @@ Blog Transversal
                 {% for item in post.author %}
 
                 {% if forloop.last %}
-                y {{ item }}
-                {% elif forloop.revcounter0 < 2 %}
                 {{ item }}
                 {% else %}
                 {{ item }},
@@ -73,8 +71,6 @@ Blog Transversal
                 {% for item in post.optional_author %}
 
                 {% if forloop.last %}
-                y {{ item }}
-                {% elif forloop.revcounter0 < 2 %}
                 {{ item }}
                 {% else %}
                 {{ item }},
@@ -110,7 +106,7 @@ Blog Transversal
     <hr>
 
     {% endfor %}
-    
+
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
 

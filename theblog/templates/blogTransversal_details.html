@@ -54,13 +54,13 @@
             {% endfor %}
 
             {% for item in object.optional_author %}
+
             {% if forloop.last %}
-            y {{ item }}
-            {% elif forloop.revcounter0 < 2 %}
             {{ item }}
             {% else %}
             {{ item }},
             {% endif %}
+
             {% endfor %}
 
             {% elif object.author %}
@@ -68,8 +68,6 @@
             {% for item in object.author %}
 
             {% if forloop.last %}
-            y {{ item }}
-            {% elif forloop.revcounter0 < 2 %}
             {{ item }}
             {% else %}
             {{ item }},
@@ -82,8 +80,6 @@
             {% for item in object.optional_author %}
 
             {% if forloop.last %}
-            y {{ item }}
-            {% elif forloop.revcounter0 < 2 %}
             {{ item }}
             {% else %}
             {{ item }},
