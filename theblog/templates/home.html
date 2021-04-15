@@ -91,7 +91,22 @@
 
 
     <div class="col-md-10 ml-auto mr-auto pb-4">
-      <button style="width: 23vw; background-color: rgb(231, 207, 227);" class="btn btn-round btn-secondary">Donar</button>
+
+      {% comment %} <button style=" width: 23vw; background-color: rgb(231, 207, 227);"
+        class="btn btn-round btn-secondary">
+        <form action="https://www.paypal.com/donate" method="post" target="_top">
+          <input type="hidden" name="hosted_button_id" value="WMT84LV6FSQJW" />
+          <input type="image" src="" border="0" name="submit" title="Donar" alt="Donar" />
+        </form>
+      </button> {% endcomment %}
+
+      <form action="https://www.paypal.com/donate" method="post" target="_top">
+        <input type="hidden" name="hosted_button_id" value="WMT84LV6FSQJW" />
+        <input style=" width: 23vw; background-color: rgb(231, 207, 227);" class="btn btn-round btn-secondary"
+          type="image" src="" border="0" name="submit" title="Donar" alt="Donar" />
+      </form>
+
+
     </div>
   </div>
   <!-- AQUI VA DONACION -->
@@ -116,7 +131,8 @@
             style="display: flex; justify-content: center; text-align: center; align-items: center;">
             <div class=" img-hover-zoom" style="text-align: center;">
               <a href="{% url 'BlogTransversal-detail' dato.pk %}">
-                <img style="height: auto; width: 100%;" class="card-img-top" src="{{ dato.header_image.url }}" rel="nofollow" alt="Card image cap">
+                <img style="height: auto; width: 100%;" class="card-img-top" src="{{ dato.header_image.url }}"
+                  rel="nofollow" alt="Card image cap">
               </a>
 
             </div>
