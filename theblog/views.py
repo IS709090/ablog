@@ -623,10 +623,18 @@ class DeleteLecturaView(DeleteView):
     success_url = reverse_lazy('adminLectura_list')
 
 
-# class DeleteDatosView(DeleteView):
-#     model = DatosDuros
-#     template_name = 'delete_datos.html'
-#     success_url = reverse_lazy('adminDatos_list')
+
+
+def FacturacionView(request):
+    search_query = request.GET.get('búsqueda', '')
+
+    if search_query:
+        return SearchView(request, search_query)
+       
+    else:
+        return render(request, 'facturacion.html')
+
+
 
 
 # Helper Functions
