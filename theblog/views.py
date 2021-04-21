@@ -160,14 +160,29 @@ def AcercaDeListView(request):
 
 
 def LineasListView(request):
-    posts = Category.objects.all().order_by('-id')
+    analisis_posts = Post.objects.filter(category__contains='Análisis y evaluación de políticas públicas').order_by('-id')
+    analisis_posts_events = Event.objects.filter(category__contains='Análisis y evaluación de políticas públicas').order_by('-id')
+    analisis_BlogPost = BlogTransversalPost.objects.filter(category__contains='Análisis y evaluación de políticas públicas').order_by('-id')
+
+    invol_posts = Post.objects.filter(category__contains='Involucramiento cívico y opinión pública ').order_by('-id')
+    invol_posts_events = Event.objects.filter(category__contains='Involucramiento cívico y opinión pública ').order_by('-id')
+    invol_BlogPost = BlogTransversalPost.objects.filter(category__contains='Involucramiento cívico y opinión pública ').order_by('-id')
+
+    lit_posts = Post.objects.filter(category__contains='Litigio estratégico').order_by('-id')
+    lit_posts_events = Event.objects.filter(category__contains='Litigio estratégico').order_by('-id')
+    lit_BlogPost = BlogTransversalPost.objects.filter(category__contains='Litigio estratégico').order_by('-id')
+
+    fed_posts = Post.objects.filter(category__contains='Federalismo fiscal, presupuesto y gasto público').order_by('-id')
+    fed_posts_events = Event.objects.filter(category__contains='Federalismo fiscal, presupuesto y gasto público').order_by('-id')
+    fed_BlogPost = BlogTransversalPost.objects.filter(category__contains='Federalismo fiscal, presupuesto y gasto público').order_by('-id')
+
     search_query = request.GET.get('búsqueda', '')
 
     if search_query:
         return SearchView(request, search_query)
        
     else:
-        return render(request, 'lineas.html', {'object_list':posts})
+        return render(request, 'lineas.html', {'analisis_posts':analisis_posts, 'analisis_posts_events':analisis_posts_events, 'analisis_BlogPost':analisis_BlogPost, 'invol_posts':invol_posts, 'invol_posts_events':invol_posts_events, 'invol_BlogPost':invol_BlogPost, 'lit_posts':lit_posts, 'lit_posts_events':lit_posts_events, 'lit_BlogPost':lit_BlogPost, 'fed_posts':fed_posts, 'fed_posts_events':fed_posts_events, 'fed_BlogPost':fed_BlogPost})
 
 
 def ThinkTankListView(request):

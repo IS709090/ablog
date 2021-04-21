@@ -17,8 +17,7 @@ Líneas Estratégicas
 
     <div class="row ml-auto mr-auto pb-5 acercaDe teamSection" style="padding-left: 5%;">
         <div class="col-md-2 ml-auto mr-auto ">
-            <img class="img-fluid"
-                src="{% static 'theblog/assets/img/transversal/landing/analisis.png' %}" alt="">
+            <img class="img-fluid" src="{% static 'theblog/assets/img/transversal/landing/analisis.png' %}" alt="">
         </div>
 
         <div class="col-md-4 ml-auto mr-auto ">
@@ -32,7 +31,7 @@ Líneas Estratégicas
 
     </div>
 
-    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%;">
+    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%; padding-right: 5%;">
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id nibh aliquet, placerat elit
             vel,
@@ -86,9 +85,92 @@ Líneas Estratégicas
     </div>
 
 
-    <div class="carouselContainer pb-5">
+    <div class="carouselContainer d-none d-lg-block pb-5">
         <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
 
+            {% for article in analisis_posts %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in analisis_posts_events %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in analisis_BlogPost %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="carouselContainer d-lg-none pb-5">
+        <div class="carousel" data-flickity='{ "groupCells": 1, "lazyLoad": 2  }'>
+
+            {% for article in analisis_posts %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in analisis_posts_events %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in analisis_BlogPost %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
 
         </div>
     </div>
@@ -102,8 +184,8 @@ Líneas Estratégicas
 
     <div class="row ml-auto mr-auto pb-5 acercaDe teamSection" style="padding-left: 5%;">
         <div class="col-md-2 ml-auto mr-auto ">
-            <img class="img-fluid"
-                src="{% static 'theblog/assets/img/transversal/landing/involucramiento.png' %}" alt="">
+            <img class="img-fluid" src="{% static 'theblog/assets/img/transversal/landing/involucramiento.png' %}"
+                alt="">
         </div>
 
         <div class="col-md-4 ml-auto mr-auto ">
@@ -117,7 +199,7 @@ Líneas Estratégicas
 
     </div>
 
-    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%;">
+    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%; padding-right: 5%;">
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id nibh aliquet, placerat elit
             vel,
@@ -171,9 +253,92 @@ Líneas Estratégicas
     </div>
 
 
-    <div class="carouselContainer pb-5">
+    <div class="carouselContainer d-none d-lg-block pb-5">
         <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
 
+            {% for article in invol_posts %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in invol_posts_events %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in invol_BlogPost %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="carouselContainer d-lg-none pb-5">
+        <div class="carousel" data-flickity='{ "groupCells": 1, "lazyLoad": 2  }'>
+
+            {% for article in invol_posts %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in invol_posts_events %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in invol_BlogPost %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
 
         </div>
     </div>
@@ -185,8 +350,7 @@ Líneas Estratégicas
 
     <div class="row ml-auto mr-auto pb-5 acercaDe teamSection" style="padding-left: 5%;">
         <div class="col-md-2 ml-auto mr-auto ">
-            <img class="img-fluid" src="{% static 'theblog/assets/img/transversal/landing/litigio.png' %}"
-                alt="">
+            <img class="img-fluid" src="{% static 'theblog/assets/img/transversal/landing/litigio.png' %}" alt="">
         </div>
 
         <div class="col-md-4 ml-auto mr-auto ">
@@ -199,7 +363,7 @@ Líneas Estratégicas
 
     </div>
 
-    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%;">
+    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%; padding-right: 5%;">
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id nibh aliquet, placerat elit
             vel,
@@ -253,10 +417,92 @@ Líneas Estratégicas
     </div>
 
 
-    <div class="carouselContainer pb-5">
+    <div class="carouselContainer d-none d-lg-block pb-5">
         <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
 
+            {% for article in lit_posts %}
 
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in lit_posts_events %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in lit_BlogPost %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="carouselContainer d-lg-none pb-5">
+        <div class="carousel" data-flickity='{ "groupCells": 1, "lazyLoad": 2  }'>
+
+            {% for article in lit_posts %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in lit_posts_events %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in lit_BlogPost %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
 
         </div>
     </div>
@@ -282,7 +528,7 @@ Líneas Estratégicas
 
     </div>
 
-    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%;">
+    <div class="row pb-4 ml-auto mr-auto acercaDe" style="padding-left: 5%; padding-right: 5%;">
         <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id nibh aliquet, placerat elit
             vel,
@@ -336,9 +582,92 @@ Líneas Estratégicas
     </div>
 
 
-    <div class="carouselContainer pb-5">
+    <div class="carouselContainer d-none d-lg-block pb-5">
         <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
-            
+
+            {% for article in fed_posts %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in fed_posts_events %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in fed_BlogPost %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="carouselContainer d-lg-none pb-5">
+        <div class="carousel" data-flickity='{ "groupCells": 1, "lazyLoad": 2  }'>
+
+            {% for article in fed_posts %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in fed_posts_events %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in fed_BlogPost %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
 
         </div>
     </div>
