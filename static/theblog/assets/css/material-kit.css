@@ -450,6 +450,14 @@ h4:hover {
   /* Resize the background image to cover the entire container */
 }
 
+
+@media screen and (min-width: 0px) and (max-width: 991px) {
+  .donation-title {
+    background-size: 55vw auto;
+  }
+
+}
+
 /* LINK STYLING DONATION TITLE */
 
 
@@ -468,6 +476,14 @@ h4:hover {
 
 @media screen and (min-width: 0px) and (max-width: 991px) {
   iframe {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+}
+
+@media screen and (min-width: 0px) and (max-width: 991px) {
+  p img {
     width: 100% !important;
     height: auto !important;
   }
