@@ -32,6 +32,7 @@ urlpatterns = [
     # path('admin/datosduros', AdminDatosDurosListView.as_view(), name="adminDatos_list"),
     # path('admin/carrusel', AdminCarouselListView.as_view(), name="adminCarousel_list"),
     path('acercaDe/', AcercaDeListView, name="acercaDe_list"),
+    path('about/', AcercaDeListView, name="about_list"),
     path('acercaDe/<int:pk>/', acercaDeDetailView, name="acercaDe_detail"),
     path('facturacion/', FacturacionView, name="facturacion"),
     path('thinktank/', ThinkTankListView, name="think_list"),
