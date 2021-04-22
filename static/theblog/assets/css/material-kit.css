@@ -466,6 +466,14 @@ h4:hover {
 /* LINK STYLING SOCIAL MEDIA  */
 
 
+@media screen and (min-width: 0px) and (max-width: 991px) {
+  iframe {
+    width: 100% !important;
+    height: auto !important;
+  }
+
+}
+
 
 /* LINK STYLING MODAL */
 
