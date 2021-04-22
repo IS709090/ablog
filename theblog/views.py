@@ -164,9 +164,9 @@ def LineasListView(request):
     analisis_posts_events = Event.objects.filter(category__contains='Análisis y evaluación de políticas públicas').order_by('-id')
     analisis_BlogPost = BlogTransversalPost.objects.filter(category__contains='Análisis y evaluación de políticas públicas').order_by('-id')
 
-    invol_posts = Post.objects.filter(category__contains='Involucramiento cívico y opinión pública ').order_by('-id')
-    invol_posts_events = Event.objects.filter(category__contains='Involucramiento cívico y opinión pública ').order_by('-id')
-    invol_BlogPost = BlogTransversalPost.objects.filter(category__contains='Involucramiento cívico y opinión pública ').order_by('-id')
+    invol_posts = Post.objects.filter(category__contains='Involucramiento cívico y opinión pública').order_by('-id')
+    invol_posts_events = Event.objects.filter(category__contains='Involucramiento cívico y opinión pública').order_by('-id')
+    invol_BlogPost = BlogTransversalPost.objects.filter(category__contains='Involucramiento cívico y opinión pública').order_by('-id')
 
     lit_posts = Post.objects.filter(category__contains='Litigio estratégico').order_by('-id')
     lit_posts_events = Event.objects.filter(category__contains='Litigio estratégico').order_by('-id')
