@@ -67,7 +67,7 @@
 
 
 
-  <!-- AQUI VA DONACION -->
+  {% comment %} <!-- AQUI VA DONACION -->
   <div class="row mt-4 ml-auto mr-auto mb-3 donation-title"
     style="background-color: rgb(105, 79, 114); text-align: right;">
     <!-- TITULO DONACION -->
@@ -92,24 +92,15 @@
 
     <div class="col-md-10 ml-auto mr-auto pb-4">
 
-      {% comment %} <button style=" width: 23vw; background-color: rgb(231, 207, 227);"
-        class="btn btn-round btn-secondary">
-        <form action="https://www.paypal.com/donate" method="post" target="_top">
-          <input type="hidden" name="hosted_button_id" value="WMT84LV6FSQJW" />
-          <input type="image" src="" border="0" name="submit" title="Donar" alt="Donar" />
-        </form>
-      </button> {% endcomment %}
-
       <form action="https://www.paypal.com/donate" method="post" target="_top">
         <input type="hidden" name="hosted_button_id" value="WMT84LV6FSQJW" />
         <input style=" width: 23vw; background-color: rgb(231, 207, 227);" class="btn btn-round btn-secondary"
           type="submit" name="submit" value="Donar" title="Donar" alt="Donar" />
       </form>
 
-
     </div>
   </div>
-  <!-- AQUI VA DONACION -->
+  <!-- AQUI VA DONACION --> {% endcomment %}
 
   <div class="row ml-auto mr-auto" style="justify-content: center;">
     <h2 class="title text-center" style="color: rgb(128, 128, 129);font-size: 2em;  font-weight: 1000;">
