@@ -1,0 +1,234 @@
+{% extends 'baseListBlogTransversal2.html' %}
+
+{% block title %}
+{{ object.title_tag }}
+{% endblock %}
+
+{% block content %}
+
+<div class="section detalles ">
+
+    {% comment %} <div class="row ml-auto mr-auto">
+        <a href="{% url 'article_list' %}" class="h2" style="font-weight: 1000;">Blog TRANSVERSAL</a>
+    </div> {% endcomment %}
+
+    <div class="row pb-5 ml-auto mr-auto">
+        <div class="col-md-8 ml-auto mr-auto">
+
+            <img class="img-fluid img-raised" src="{{ object.header_image.url }}" alt="">
+        </div>
+
+    </div>
+
+    <div class="row ml-auto mr-auto">
+        <p class="text-primary h4" style="font-weight: 1000; font-size: 200%;">
+            {% comment %} {% for item in object.author %}
+            {% if forloop.last %}
+            {{ item }}
+            {% else %}
+            {{ item }},
+            {% endif %}
+            {% endfor %} {% endcomment %}
+
+            {% if object.author and object.optional_author %}
+            
+            {% for item in object.author %}
+
+            {{ item }},
+
+            {% endfor %}
+
+            {{ object.optional_author }}
+
+            {% elif object.author %}
+            
+            {% for item in object.author %}
+
+            {% if forloop.last %}
+            {{ item }}
+            {% else %}
+            {{ item }},
+            {% endif %}
+
+            {% endfor %}
+
+            {% elif object.optional_author %}
+            Escrito por:
+            {{ object.optional_author }}
+
+            {% endif %}
+
+        </p>
+    </div>
+
+    <div class="row ml-auto mr-auto acercaDe">
+        <h3 class="" style="font-weight: 1000; font-size: 2em; color: gray;"> {{ object.title }} </h3>
+    </div>
+
+    {% comment %} <div class="row ml-auto mr-auto">
+        {% if object.past_Publication_Date %}
+
+        <p class="text-muted h4" style="font-weight: 1000;">
+            {{ object.past_Publication_Date }}
+        </p>
+
+        {% else %}
+
+        <p class="text-muted h4" style="font-weight: 1000;">
+            {% load i18n %}
+            {% language 'es' %}
+            {{ object.post_date }}
+            {% endlanguage %}
+        </p>
+
+        {% endif %}
+    </div> {% endcomment %}
+
+
+
+
+    
+
+
+    <div class="row px-2 py-4 ml-auto mr-auto acercaDe" style="text-align: justify; background-color: gray; color: white;">
+        <p>
+            {{ object.body|safe }}
+        </p>
+    </div>
+
+    {% if object.fileDownload %}
+
+    <div class="row pb-4 ml-auto mr-auto acercaDe">
+        <a href="{{ object.fileDownload.url }}">
+            <button class="btn btn-primary btn-round">Descargar</button>
+        </a>
+    </div>
+
+    {% elif object.linkToFile %}
+
+    <div class="row pb-4 ml-auto mr-auto acercaDe">
+        <a href="{{ object.linkToFile }}">
+            <button class="btn btn-primary btn-round">Descargar</button>
+        </a>
+    </div>
+
+    {% endif %}
+
+
+    <div class="row pb-3 ml-auto mr-auto acercaDe">
+        <h4 class="text-primary" style="font-weight: 1000; font-size: 1.5em; padding-left: 0%;">Tags</h4>
+    </div>
+
+
+    <div class="row pb-5 ml-auto mr-auto tags acercaDe">
+        {% for cat in object.category %}
+        <a href="{% url 'category' cat %}"> <button class="btn mr-2 btn-default btn-round">
+                {{cat}}
+            </button> </a>
+        {% endfor %}
+    </div>
+
+
+
+    {% comment %} <div class="row ml-auto mr-auto acercaDe">
+        <h4 class="text-primary" style="font-size: 2em;">Publicaciones Similares</h4>
+    </div> {% endcomment %}
+
+    {% comment %} <div class="carouselContainer d-none d-lg-block pb-5">
+        <div class="carousel" data-flickity='{ "groupCells": 2, "lazyLoad": 2  }'>
+
+            {% for article in BlogPost_tag_list %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in post_tag_list %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in event_tag_list %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+
+
+        </div>
+    </div> {% endcomment %}
+
+    {% comment %} <div class="carouselContainer d-lg-none pb-5">
+        <div class="carousel" data-flickity='{ "groupCells": 1, "lazyLoad": 2  }'>
+
+            {% for article in BlogPost_tag_list %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'BlogTransversal-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in post_tag_list %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'article-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+            {% for article in event_tag_list %}
+
+            <div class="carousel-cell pr-5 pl-5">
+                <h5>{{ article.title|truncatewords:4 }}</h5>
+                <div class="img-hover-zoom">
+                    <a href="{% url 'event-detail' article.pk %}">
+                        <img class="carousel-image" data-flickity-lazyload="{{ article.header_image.url }}" />
+                    </a>
+                </div>
+            </div>
+
+            {% endfor %}
+
+
+
+        </div>
+    </div> {% endcomment %}
+
+</div>
+
+
+{% endblock %}

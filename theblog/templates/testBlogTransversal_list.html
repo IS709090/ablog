@@ -1,0 +1,86 @@
+{% extends 'baseListBlogTransversal2.html' %}
+
+{% block title %}
+Blog Transversal
+{% endblock %}
+
+{% block content %}
+
+<div class="section">
+
+    <div class="row ml-auto mr-auto">
+        <h2 class="col-12" style="font-weight: 1000; color: black">ENTRADAS</h2>
+        <hr class="ml-3" align="left" style="height: 1px; width: 50%; background-color: black;">
+
+    </div>
+
+    <br>
+
+    <!-- TRANSVERSAL DIA A DIA -->
+
+
+    {% for post in object_list %}
+
+    <div class="row ml-auto mr-auto diaLanding py-3" style="justify-content: space-evenly;  background-color: gray;">
+
+        <div class="col-md-4 ml-auto mr-auto ">
+            <div class="img-hover-zoom">
+                <a href="{% url 'BlogTransversal-detail' post.pk %}"> <img class="img-fluid img-raised"
+                        src="{{ post.header_image.url }}" alt=""></a>
+            </div>
+        </div>
+
+        <div class="col-md-8 ml-auto mr-auto">
+            <p class="text-primary h4" style="font-weight: 1000;">
+                {% if post.author and post.optional_author %}
+                
+                {% for item in post.author %}
+
+                {{ item }},
+
+                {% endfor %}
+
+                {{ post.optional_author }}
+
+                {% elif post.author %}
+                
+                {% for item in post.author %}
+
+                {% if forloop.last %}
+                {{ item }}
+                {% else %}
+                {{ item }},
+                {% endif %}
+
+                {% endfor %}
+
+                {% elif post.optional_author %}
+                
+                {{ post.optional_author }}
+
+                {% endif %}
+
+            </p>
+
+            <a href="{% url 'BlogTransversal-detail' post.pk %}">
+                <h4 style="color: white; font-size: 200%;">{{ post.title }}</h4>
+            </a>
+
+            <h5 style="color: white; font-size: 120%;">{{ post.snippet }}</h5>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    {% endfor %}
+
+
+    <!-- TRANSVERSAL DIA A DIA -->
+
+
+
+</div>
+
+{% endblock %}

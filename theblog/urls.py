@@ -16,8 +16,7 @@ Including another URLconf
 from django.urls import path
 from django.contrib import admin
 from . import views
-from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminLecturaListView, AddLecturaView, UpdateLecturaView, DeleteLecturaView, AcercaDeListView, ThinkTankListView, BlogTransversalDetailView, BlogTransversalListView, AdminBlogTransversalListView, UpdateBlogTransversalPostView, DeleteBlogTransversalPostView, AddBlogTransversalPostView, SearchView, new, LineasListView, acercaDeDetailView, AddProfileView, DeleteProfileView, UpdateProfileView, AdminProfilesListView, FacturacionView
-  
+from .views import HomeView, CategoryView, AddCategoryView, ArticleDetailView, AddPostView, EventDetailView, AddEventView, ArticleListView, EventListView, UpdateEventView, UpdatePostView, AdminArticleListView, AdminEventListView, DeleteEventView, DeletePostView, HomeAdminView, DeleteMicroSitioView, UpdateMicroSitioView, AdminMicroSitioListView, AddMicroSitioView, AdminLecturaListView, AddLecturaView, UpdateLecturaView, DeleteLecturaView, AcercaDeListView, ThinkTankListView, BlogTransversalDetailView, BlogTransversalListView, AdminBlogTransversalListView, UpdateBlogTransversalPostView, DeleteBlogTransversalPostView, AddBlogTransversalPostView, SearchView, new, LineasListView, acercaDeDetailView, AddProfileView, DeleteProfileView, UpdateProfileView, AdminProfilesListView, FacturacionView, TestBlogTransversalListView, TestBlogTransversalDetailView
 
 
 urlpatterns = [
@@ -72,5 +71,7 @@ urlpatterns = [
     path('admin/perfil/eliminar/<int:pk>', DeleteProfileView.as_view(), name="delete_profile"),
     # path('admin/carrusel/eliminar/<int:pk>', DeleteCarouselView.as_view(), name="delete_carousel"),
     path('admin/lectura/eliminar/<int:pk>', DeleteLecturaView.as_view(), name="delete_lectura"),
+    path('testBlog/', TestBlogTransversalListView.as_view(), name="testBlog"),
+    path('testBlog/<int:pk>/', TestBlogTransversalDetailView.as_view(), name="testBlogDetail"),
     path('new/', new, name='new'),
 ]

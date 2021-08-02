@@ -132,6 +132,8 @@ def BlogTransversalListView(request):
         return render(request, 'blogTransversalPost_list.html', {'object_list':posts, 'page_obj': page_obj})
 
 
+
+
 def EventListView(request):
     posts = Event.objects.all().order_by('-id')
     search_query = request.GET.get('búsqueda', '')
@@ -454,6 +456,21 @@ class AdminArticleListView(ListView):
     template_name = 'adminArticle_list.html'
     ordering = ['-id']
     #ordering = ['-post_date']
+
+# BLOGTRANSVERSAL
+
+class TestBlogTransversalListView(ListView):
+    model = BlogTransversalPost
+    template_name = 'testBlogTransversal_list.html'
+    ordering = ['-id']
+    #ordering = ['-post_date']
+
+
+class TestBlogTransversalDetailView(DetailView):
+    model = BlogTransversalPost
+    template_name = 'testBlogTransversal_details.html'
+
+
 
 
 class AdminBlogTransversalListView(ListView):
