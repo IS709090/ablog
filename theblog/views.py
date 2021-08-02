@@ -488,7 +488,7 @@ class TestBlogTransversalHomeView(ListView):
         count = 0
 
         for blogP in blogPost:
-            if count == 3:
+            if count == 4:
                 break
             datos.append(blogP)
             count += 1
@@ -496,9 +496,9 @@ class TestBlogTransversalHomeView(ListView):
         datos2 = []
         count = 0
         for blogP in blogPost:
-            if count == 5:
+            if count == 6:
                 break
-            if count > 2:
+            if count > 3:
                 datos2.append(blogP)
             count += 1
         
