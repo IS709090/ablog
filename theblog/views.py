@@ -471,6 +471,42 @@ class TestBlogTransversalDetailView(DetailView):
     template_name = 'testBlogTransversal_details.html'
 
 
+class TestBlogTransversalHomeView(ListView):
+    model = BlogTransversalPost
+    template_name = 'testBlogTransversal_homePage.html'
+    ordering = ['-id']
+
+    
+    #ordering = ['-post_date']
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        blogPost = BlogTransversalPost.objects.all().order_by('-id')
+        datos = []
+        count = 0
+
+        for blogP in blogPost:
+            if count == 3:
+                break
+            datos.append(blogP)
+            count += 1
+        
+        datos2 = []
+        count = 0
+        for blogP in blogPost:
+            if count == 5:
+                break
+            if count > 2:
+                datos2.append(blogP)
+            count += 1
+        
+        context['resumen'] = datos
+        context['entradas'] = datos2
+        return context
+
+# BLOGTRANSVERSAL
 
 
 class AdminBlogTransversalListView(ListView):

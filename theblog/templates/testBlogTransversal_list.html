@@ -25,7 +25,7 @@ Blog Transversal
 
         <div class="col-md-4 ml-auto mr-auto ">
             <div class="img-hover-zoom">
-                <a href="{% url 'BlogTransversal-detail' post.pk %}"> <img class="img-fluid img-raised"
+                <a href="{% url 'testBlogDetail' post.pk %}"> <img class="img-fluid img-raised"
                         src="{{ post.header_image.url }}" alt=""></a>
             </div>
         </div>
@@ -62,7 +62,7 @@ Blog Transversal
 
             </p>
 
-            <a href="{% url 'BlogTransversal-detail' post.pk %}">
+            <a href="{% url 'testBlogDetail' post.pk %}">
                 <h4 style="color: white; font-size: 200%;">{{ post.title }}</h4>
             </a>
 
