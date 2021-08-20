@@ -73,7 +73,19 @@
   /* Resize the background image to cover the entire container */
 }
 
-
+.backgroundBlog {
+  background-image: url("/theblog/assets/img/transversal/landing/backgroundBlog.png");
+  /* The image used */
+  height: auto;
+  /* You must set a specified height */
+  background-position: center;
+  /* Center the image */
+  background-repeat: no-repeat;
+  /* Do not repeat the image */
+  background-size: cover;
+  /* background: linear-gradient(0deg, #00000088 0%, #ffffff44 100%); */
+  /* Resize the background image to cover the entire container */
+}
 
 .footer-acercaDe {
   background-image: linear-gradient(to bottom, rgba(238, 238, 238, .999), rgba(255, 255, 255, 0)),
