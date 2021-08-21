@@ -69,9 +69,9 @@ Blog Transversal
                     {% comment %} {{ slide.subtitle }} {% endcomment %}
                 </div>
 
-                <div class="carousel-caption .d-none .d-sm-block .d-md-none pl-3 mb-0 pb-3">
+                <div class="carousel-caption d-lg-none pl-3 mb-0 pb-3">
 
-                    <p class="text-primary .d-none .d-sm-block .d-md-none  h6 mb-0 pb-0" style="font-weight: 1000;">
+                    <p class="text-primary  h6 mb-0 pb-0" style="font-weight: 1000;">
                         {% if post.author and post.optional_author %}
 
                         {% for item in post.author %}
@@ -102,7 +102,7 @@ Blog Transversal
 
                     </p>
 
-                    <a class="mb-0 pb-0 h4 .d-none .d-sm-block .d-md-none " style="font-weight: 1000;" href="{% url 'testBlogDetail' post.pk %}">
+                    <a class="mb-0 pb-0 h4 " style="font-weight: 1000;" href="{% url 'testBlogDetail' post.pk %}">
                         {{ post.title|truncatewords:5 }}
                     </a>
                     {% comment %} <br> {% endcomment %}
