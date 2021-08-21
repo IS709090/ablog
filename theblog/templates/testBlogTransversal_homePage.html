@@ -26,7 +26,7 @@ Blog Transversal
 
                 <a href="{% url 'testBlogDetail' post.pk %}">
                     <img class="d-block img-fluid" src="{{ post.header_image.url }}" alt="Slides"
-                        style="height: 42vh; width: auto; opacity: .4; object-fit: contain; display: block; margin-left: auto; margin-right: auto;">
+                        style="height: 42vh; width: auto; opacity: .55; object-fit: contain; display: block; margin-left: auto; margin-right: auto;">
                 </a>
 
                 <div class="carousel-caption d-none d-md-block pl-3 mb-0 pb-3">
@@ -68,6 +68,47 @@ Blog Transversal
                     {% comment %} <br> {% endcomment %}
                     {% comment %} {{ slide.subtitle }} {% endcomment %}
                 </div>
+
+                <div class="carousel-caption .d-none .d-sm-block .d-md-none pl-3 mb-0 pb-3">
+
+                    <p class="text-primary h6 mb-0 pb-0" style="font-weight: 1000;">
+                        {% if post.author and post.optional_author %}
+
+                        {% for item in post.author %}
+
+                        {{ item }},
+
+                        {% endfor %}
+
+                        {{ post.optional_author }}
+
+                        {% elif post.author %}
+
+                        {% for item in post.author %}
+
+                        {% if forloop.last %}
+                        {{ item }}
+                        {% else %}
+                        {{ item }},
+                        {% endif %}
+
+                        {% endfor %}
+
+                        {% elif post.optional_author %}
+
+                        {{ post.optional_author }}
+
+                        {% endif %}
+
+                    </p>
+
+                    <a class="mb-0 pb-0 h4" style="font-weight: 1000;" href="{% url 'testBlogDetail' post.pk %}">
+                        {{ post.title|truncatewords:5 }}
+                    </a>
+                    {% comment %} <br> {% endcomment %}
+                    {% comment %} {{ slide.subtitle }} {% endcomment %}
+                </div>
+
             </div>
 
         </div>
