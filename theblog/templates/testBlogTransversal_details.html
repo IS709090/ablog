@@ -20,7 +20,7 @@
 
     </div>
 
-    <div class="row ml-auto mr-auto">
+    <div class="row ml-3 mr-auto">
         <p class="text-primary h4" style="font-weight: 1000; font-size: 1.8em;">
             {% comment %} {% for item in object.author %}
             {% if forloop.last %}
@@ -61,7 +61,7 @@
         </p>
     </div>
 
-    <div class="row ml-auto mr-auto acercaDe">
+    <div class="row ml-3 mr-auto acercaDe">
         <h3 class="" style="font-weight: 1000; font-size: 1.8em; color: gray;"> {{ object.title }} </h3>
     </div>
 
@@ -90,7 +90,7 @@
     
 
 
-    <div class="row px-2 py-4 ml-auto mr-auto acercaDe" style="text-align: justify; background-color: gray; color: white;">
+    <div class="row px-4 py-4 mx-3 acercaDe" style="text-align: justify; background-color: #575756; color: white;">
         <p>
             {{ object.body|safe }}
         </p>
@@ -98,7 +98,7 @@
 
     {% if object.fileDownload %}
 
-    <div class="row pb-4 ml-auto mr-auto acercaDe">
+    <div class="row pb-4 ml-3 mr-auto acercaDe">
         <a href="{{ object.fileDownload.url }}">
             <button class="btn btn-primary btn-round">Descargar</button>
         </a>
@@ -106,7 +106,7 @@
 
     {% elif object.linkToFile %}
 
-    <div class="row pb-4 ml-auto mr-auto acercaDe">
+    <div class="row pb-4 ml-3 mr-auto acercaDe">
         <a href="{{ object.linkToFile }}">
             <button class="btn btn-primary btn-round">Descargar</button>
         </a>
@@ -115,12 +115,12 @@
     {% endif %}
 
 
-    <div class="row pb-3 ml-auto mr-auto acercaDe">
+    <div class="row pb-3 ml-3 mr-auto acercaDe">
         <h4 class="text-primary" style="font-weight: 1000; font-size: 1.5em; padding-left: 0%;">Tags</h4>
     </div>
 
 
-    <div class="row pb-5 ml-auto mr-auto tags acercaDe">
+    <div class="row pb-5 ml-3 mr-auto tags acercaDe">
         {% for cat in object.category %}
         <a href="{% url 'category' cat %}"> <button class="btn mr-2 btn-default btn-round">
                 {{cat}}
