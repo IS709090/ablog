@@ -21,7 +21,7 @@
     </div>
 
     <div class="row ml-auto mr-auto">
-        <p class="text-primary h4" style="font-weight: 1000; font-size: 200%;">
+        <p class="text-primary h4" style="font-weight: 1000; font-size: 1.5em;">
             {% comment %} {% for item in object.author %}
             {% if forloop.last %}
             {{ item }}
@@ -53,7 +53,7 @@
             {% endfor %}
 
             {% elif object.optional_author %}
-            Escrito por:
+            
             {{ object.optional_author }}
 
             {% endif %}
@@ -62,7 +62,7 @@
     </div>
 
     <div class="row ml-auto mr-auto acercaDe">
-        <h3 class="" style="font-weight: 1000; font-size: 2em; color: gray;"> {{ object.title }} </h3>
+        <h3 class="" style="font-weight: 1000; font-size: 1.5em; color: gray;"> {{ object.title }} </h3>
     </div>
 
     {% comment %} <div class="row ml-auto mr-auto">
