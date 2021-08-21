@@ -117,10 +117,16 @@ Blog Transversal
     </div>
 
     <div class="row ml-auto mr-auto">
-        <h2 class="col-6" style="font-weight: 1000; color: black;">ENTRADAS</h2>
+        <h2 class="col-6 d-none d-lg-block" style="font-weight: 1000; color: black;">ENTRADAS</h2>
 
-        <a class="col-6" href="{% url 'testBlog' %}">
+        <a class="col-6 d-none d-lg-block" href="{% url 'testBlog' %}">
             <h2 style="font-weight: 1000; color: black; text-align: right;">Ver más ➔</h2>
+        </a>
+
+        <h3 class="col-5 d-lg-none" style="font-weight: 1000; color: black;">ENTRADAS</h3>
+
+        <a class="col-5 d-lg-none" href="{% url 'testBlog' %}">
+            <h3 style="font-weight: 1000; color: black; text-align: right;">Ver más ➔</h3>
         </a>
 
         <hr class="ml-3" align="left" style="height: 1px; width: 50%; background-color: black;">
