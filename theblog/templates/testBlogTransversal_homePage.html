@@ -22,7 +22,7 @@ Blog Transversal
         {% for post in resumen %}
         <div class="col-12 col-md-6 mb-2 ml-auto mr-auto">
 
-            <div class="img-hover-zoom" style="background: #575756;">
+            <div class="img-hover-zoom" style="background: black;">
 
                 <a class="d-none d-lg-block" href="{% url 'testBlogDetail' post.pk %}">
                     <img class="d-block img-fluid" src="{{ post.header_image.url }}" alt="Slides"
@@ -145,7 +145,7 @@ Blog Transversal
 
     {% for post in entradas %}
 
-    <div class="row ml-auto mr-auto diaLanding py-3" style="justify-content: space-evenly;  background-color: gray;">
+    <div class="row mx-3 diaLanding py-3" style="justify-content: space-evenly;  background-color: gray;">
 
         <div class="col-md-4 ml-auto mr-auto ">
             <div class="img-hover-zoom">
