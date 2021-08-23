@@ -145,7 +145,7 @@ Blog Transversal
 
     {% for post in entradas %}
 
-    <div class="row mx-3 diaLanding py-3" style="justify-content: space-evenly;  background-color: gray;">
+    <div class="row mx-3 diaLanding py-3" style="justify-content: space-evenly;  background-color: rgb(88, 86, 87);">
 
         <div class="col-md-4 ml-auto mr-auto ">
             <div class="img-hover-zoom">
@@ -187,10 +187,10 @@ Blog Transversal
             </p>
 
             <a href="{% url 'testBlogDetail' post.pk %}">
-                <h4 style="color: white; font-size: 200%;">{{ post.title }}</h4>
+                <h4 style="color: white; font-size: 1.7em;">{{ post.title }}</h4>
             </a>
 
-            <h5 style="color: white; font-size: 120%;">{{ post.snippet }}</h5>
+            <h5 style="color: white; font-size: 1.2em;">{{ post.snippet }}</h5>
 
         </div>
 
