@@ -463,6 +463,7 @@ class TestBlogTransversalListView(ListView):
     model = BlogTransversalPost
     template_name = 'testBlogTransversal_list.html'
     ordering = ['-id']
+    paginate_by = 6
     #ordering = ['-post_date']
 
 

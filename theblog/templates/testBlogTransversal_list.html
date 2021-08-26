@@ -33,7 +33,7 @@ Blog Transversal
         <div class="col-md-8 ml-auto mr-auto">
             <p class="text-primary h4" style="font-weight: 1000;">
                 {% if post.author and post.optional_author %}
-                
+
                 {% for item in post.author %}
 
                 {{ item }},
@@ -43,7 +43,7 @@ Blog Transversal
                 {{ post.optional_author }}
 
                 {% elif post.author %}
-                
+
                 {% for item in post.author %}
 
                 {% if forloop.last %}
@@ -55,7 +55,7 @@ Blog Transversal
                 {% endfor %}
 
                 {% elif post.optional_author %}
-                
+
                 {{ post.optional_author }}
 
                 {% endif %}
@@ -75,6 +75,44 @@ Blog Transversal
     <hr>
 
     {% endfor %}
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+
+            {% if page_obj.has_previous %}
+
+            <li class="page-item">
+                <a class="page-link" href="?page=1">&laquo; Primera</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link"
+                    href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            </li>
+
+            {% endif %}
+
+
+            <li class="page-item active">
+                <a class="page-link" href="?page={{ page_obj.number }}">{{ page_obj.number }}<span
+                        class="sr-only">(current)</span></a>
+            </li>
+
+
+            {% if page_obj.has_next %}
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+            </li>
+
+            <li class="page-item">
+                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+            </li>
+
+            {% endif %}
+
+        </ul>
+    </nav>
 
 
     <!-- TRANSVERSAL DIA A DIA -->
