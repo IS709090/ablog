@@ -82,11 +82,11 @@ Blog Transversal
             {% if page_obj.has_previous %}
 
             <li class="page-item">
-                <a class="page-link" href="?page=1">&laquo; Primera</a>
+                <a style="color: black;" class="page-link" href="?page=1">&laquo; Primera</a>
             </li>
 
             <li class="page-item">
-                <a class="page-link"
+                <a style="color: black;" class="page-link"
                     href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
             </li>
 
@@ -102,11 +102,11 @@ Blog Transversal
             {% if page_obj.has_next %}
 
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                <a style="color: black;" class="page-link" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
             </li>
 
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
+                <a style="color: black;" class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Última &raquo;</a>
             </li>
 
             {% endif %}
