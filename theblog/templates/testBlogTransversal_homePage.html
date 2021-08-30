@@ -24,12 +24,12 @@ Blog Transversal
 
             <div class="img-hover-zoom" style="background: black;">
 
-                <a class="d-none d-lg-block" href="{% url 'testBlogDetail' post.pk %}">
+                <a class="d-none d-lg-block" href="{% url 'BlogTransversal-detail' post.pk %}">
                     <img class="d-block img-fluid" src="{{ post.header_image.url }}" alt="Slides"
                         style="height: 42vh; width: auto; opacity: .55; object-fit: contain; display: block; margin-left: auto; margin-right: auto;">
                 </a>
 
-                <a class="d-lg-none" href="{% url 'testBlogDetail' post.pk %}">
+                <a class="d-lg-none" href="{% url 'BlogTransversal-detail' post.pk %}">
                     <img class="d-block img-fluid" src="{{ post.header_image.url }}" alt="Slides"
                         style="height: 33vh; width: auto; opacity: .55; object-fit: contain; display: block; margin-left: auto; margin-right: auto;">
                 </a>
@@ -67,7 +67,7 @@ Blog Transversal
 
                     </p>
 
-                    <a class="mb-0 pb-0 h2" style="font-weight: 1000;" href="{% url 'testBlogDetail' post.pk %}">
+                    <a class="mb-0 pb-0 h2" style="font-weight: 1000;" href="{% url 'BlogTransversal-detail' post.pk %}">
                         {{ post.title|truncatewords:5 }}
                     </a>
                     {% comment %} <br> {% endcomment %}
@@ -107,7 +107,7 @@ Blog Transversal
 
                     </p>
 
-                    <a class="mb-0 pb-0 h4 " style="font-weight: 1000;" href="{% url 'testBlogDetail' post.pk %}">
+                    <a class="mb-0 pb-0 h4 " style="font-weight: 1000;" href="{% url 'BlogTransversal-detail' post.pk %}">
                         {{ post.title|truncatewords:5 }}
                     </a>
                     {% comment %} <br> {% endcomment %}
@@ -124,13 +124,13 @@ Blog Transversal
     <div class="row ml-auto mr-auto">
         <h2 class="col-6 d-none d-lg-block" style="font-weight: 1000; color: black;">ENTRADAS</h2>
 
-        <a class="col-6 d-none d-lg-block" href="{% url 'testBlog' %}">
+        <a class="col-6 d-none d-lg-block" href="{% url 'BlogTransversal_entradas' %}">
             <h2 style="font-weight: 1000; color: black; text-align: right;">Ver más ➔</h2>
         </a>
 
         <h3 class="col-6 d-lg-none" style="font-weight: 1000; color: black;">ENTRADAS</h3>
 
-        <a class="col-6 d-lg-none" href="{% url 'testBlog' %}">
+        <a class="col-6 d-lg-none" href="{% url 'BlogTransversal_entradas' %}">
             <h3 style="font-weight: 1000; color: black; text-align: right;">Ver más ➔</h3>
         </a>
 
@@ -149,7 +149,7 @@ Blog Transversal
 
         <div class="col-md-4 ml-auto mr-auto ">
             <div class="img-hover-zoom">
-                <a href="{% url 'testBlogDetail' post.pk %}"> <img class="img-fluid img-raised"
+                <a href="{% url 'BlogTransversal-detail' post.pk %}"> <img class="img-fluid img-raised"
                         src="{{ post.header_image.url }}" alt=""></a>
             </div>
             {% comment %} <hr style="color: white; border: none; border-left: 1px solid hsla(200, 10%, 50%,100); height: 80%; width: 3px;"> {% endcomment %}
@@ -187,7 +187,7 @@ Blog Transversal
 
             </p>
 
-            <a href="{% url 'testBlogDetail' post.pk %}">
+            <a href="{% url 'BlogTransversal-detail' post.pk %}">
                 <h4 style="color: white; font-size: 1.7em;">{{ post.title }}</h4>
             </a>
 
